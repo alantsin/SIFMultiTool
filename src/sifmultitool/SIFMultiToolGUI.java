@@ -19,6 +19,17 @@ import org.json.JSONObject;
  */
 public class SIFMultiToolGUI extends javax.swing.JFrame {
     
+    Card card1;
+    Card card2;
+    Card card3;
+    Card card4;
+    Card card5;
+    Card card6;
+    Card card7;
+    Card card8;
+    Card card9;
+    JSONArray output;
+    
     int[][] SkillLevelCard1 = new int[8][2];
     int[][] SkillLevelCard2 = new int[8][2];
     int[][] SkillLevelCard3 = new int[8][2];
@@ -45,7 +56,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jFrame1 = new javax.swing.JFrame();
+        jLabel1 = new javax.swing.JLabel();
         jLabelCard1 = new javax.swing.JLabel();
         jLabelCard2 = new javax.swing.JLabel();
         jLabelCard3 = new javax.swing.JLabel();
@@ -92,7 +104,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jComboBoxSIS2 = new javax.swing.JComboBox<>();
         jComboBoxSIS3 = new javax.swing.JComboBox<>();
         jComboBoxSIS4 = new javax.swing.JComboBox<>();
-        jComboBoxSIS5 = new javax.swing.JComboBox<>();
         jComboBoxSIS6 = new javax.swing.JComboBox<>();
         jComboBoxSIS7 = new javax.swing.JComboBox<>();
         jComboBoxSIS8 = new javax.swing.JComboBox<>();
@@ -110,21 +121,34 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jLabelTime = new javax.swing.JLabel();
         jSpinnerTime = new javax.swing.JSpinner();
         jLabelPerfect = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        jSpinnerPerfect = new javax.swing.JSpinner();
         jLabelStep2 = new javax.swing.JLabel();
         jButtonCalculate = new javax.swing.JButton();
         jRadioButtonAverage = new javax.swing.JRadioButton();
         jRadioButtonAbsolute = new javax.swing.JRadioButton();
+        jComboBoxSIS5 = new javax.swing.JComboBox<>();
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jFrame1.setTitle("Test");
+        jFrame1.setName("frame2"); // NOI18N
+
+        jLabel1.setText("jLabel1");
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(356, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(275, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -297,12 +321,15 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
 
         jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+        jComboBoxSIS2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSIS2ActionPerformed(evt);
+            }
+        });
 
         jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
 
         jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
-
-        jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
 
         jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
 
@@ -319,6 +346,11 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jLabelAttribute.setText("Attribute");
 
         jComboBoxAttribute.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Smile", "Pure", "Cool" }));
+        jComboBoxAttribute.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxAttributeActionPerformed(evt);
+            }
+        });
 
         jLabelSubSkill.setText("Sub Skill");
 
@@ -338,7 +370,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
 
         jLabelPerfect.setText("Perfect %");
 
-        jSpinner1.setValue(75);
+        jSpinnerPerfect.setValue(75);
 
         jLabelStep2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelStep2.setText("Step 2:");
@@ -351,12 +383,14 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
 
         jRadioButtonAbsolute.setText("Absolute");
 
+        jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume", "Kiss + Perfume" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(jLabelCardID)
@@ -429,77 +463,70 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                         .addComponent(jCheckBoxIdolized9)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSpinnerCardSkill9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinnerCardSkill8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinnerCardSkill7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinnerCardSkill6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinnerCardSkill5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinnerCardSkill4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinnerCardSkill3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinnerCardSkill2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinnerCardSkill1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jSpinnerCardSkill1)
+                                    .addComponent(jSpinnerCardSkill2)
+                                    .addComponent(jSpinnerCardSkill3)
+                                    .addComponent(jSpinnerCardSkill4)
+                                    .addComponent(jSpinnerCardSkill5)
+                                    .addComponent(jSpinnerCardSkill6)
+                                    .addComponent(jSpinnerCardSkill7)
+                                    .addComponent(jSpinnerCardSkill8)
+                                    .addComponent(jSpinnerCardSkill9))))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelSIS)
-                    .addComponent(jComboBoxSIS4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxSIS7, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxSIS8, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBoxSIS9, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButtonAverage)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButtonAbsolute))
+                    .addComponent(jLabelSIS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jComboBoxSIS5, javax.swing.GroupLayout.Alignment.LEADING, 0, 100, Short.MAX_VALUE)
+                            .addComponent(jComboBoxSIS4, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxSIS3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxSIS2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxSIS1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxSIS6, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxSIS7, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxSIS8, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxSIS9, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jComboBoxSIS5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabelCenterSkill)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jComboBoxSIS6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelStep2)
-                                            .addComponent(jLabelSubSkill))
-                                        .addGap(25, 25, 25)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBoxCenterSkill, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxSubSkill, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonCalculate)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBoxSIS3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabelPerfect)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jSpinner1))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jComboBoxSIS1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jLabelAttribute)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jComboBoxAttribute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jComboBoxSIS2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jLabelNoteCount)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jSpinnerNoteCount, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jRadioButtonAverage)
+                                    .addComponent(jLabelStep2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelTime)
-                                    .addComponent(jLabelSongType))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBoxSongType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSpinnerTime))))
-                .addContainerGap(54, Short.MAX_VALUE))
+                                    .addComponent(jButtonCalculate)
+                                    .addComponent(jRadioButtonAbsolute)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelSubSkill)
+                                .addGap(25, 25, 25)
+                                .addComponent(jComboBoxSubSkill, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelPerfect)
+                                    .addComponent(jLabelNoteCount)
+                                    .addComponent(jLabelAttribute))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jSpinnerNoteCount, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                                        .addComponent(jSpinnerPerfect))
+                                    .addComponent(jComboBoxAttribute, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelSongType)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBoxSongType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelTime)
+                                        .addGap(17, 17, 17)
+                                        .addComponent(jSpinnerTime, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelCenterSkill)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBoxCenterSkill, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 36, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -539,7 +566,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     .addComponent(jSpinnerCardSkill3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxSIS3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelPerfect)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinnerPerfect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCard4)
@@ -578,7 +605,9 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     .addComponent(jSpinnerCardID8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBoxIdolized8)
                     .addComponent(jSpinnerCardSkill8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxSIS8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxSIS8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButtonAverage)
+                    .addComponent(jRadioButtonAbsolute))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCard9)
@@ -586,14 +615,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     .addComponent(jCheckBoxIdolized9)
                     .addComponent(jSpinnerCardSkill9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxSIS9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButtonAverage)
-                    .addComponent(jRadioButtonAbsolute))
+                    .addComponent(jLabelStep2)
+                    .addComponent(jButtonCalculate))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGetCardData)
-                    .addComponent(jLabelStep1)
-                    .addComponent(jLabelStep2)
-                    .addComponent(jButtonCalculate))
+                    .addComponent(jLabelStep1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelSuccess)
                 .addContainerGap(92, Short.MAX_VALUE))
@@ -611,8 +638,35 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jSpinnerCardSkill8.setVisible(false);
         jSpinnerCardSkill9.setVisible(false);
         jLabelSIS.setVisible(false);
+        jComboBoxSIS1.setVisible(false);
+        jComboBoxSIS2.setVisible(false);
+        jComboBoxSIS3.setVisible(false);
+        jComboBoxSIS4.setVisible(false);
+        jComboBoxSIS6.setVisible(false);
+        jComboBoxSIS7.setVisible(false);
+        jComboBoxSIS8.setVisible(false);
+        jComboBoxSIS9.setVisible(false);
+        jLabelCenterSkill.setVisible(false);
+        jComboBoxCenterSkill.setVisible(false);
+        jLabelAttribute.setVisible(false);
+        jComboBoxAttribute.setVisible(false);
+        jLabelSubSkill.setVisible(false);
+        jComboBoxSubSkill.setVisible(false);
+        jLabelSongType.setVisible(false);
+        jComboBoxSongType.setVisible(false);
+        jLabelNoteCount.setVisible(false);
+        jSpinnerNoteCount.setVisible(false);
+        jLabelTime.setVisible(false);
+        jSpinnerTime.setVisible(false);
+        jLabelPerfect.setVisible(false);
+        jSpinnerPerfect.setVisible(false);
+        jLabelStep2.setVisible(false);
+        jButtonCalculate.setVisible(false);
+        jRadioButtonAverage.setVisible(false);
+        jRadioButtonAbsolute.setVisible(false);
+        jComboBoxSIS5.setVisible(false);
 
-        setBounds(0, 0, 720, 543);
+        setBounds(0, 0, 748, 543);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGetCardDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetCardDataActionPerformed
@@ -620,16 +674,445 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         
         UserInput userInput = new UserInput();
         
-        userInput.setCard1ID(jSpinnerCardID1.getValue().toString());
-        userInput.setCard2ID(jSpinnerCardID2.getValue().toString());
-        userInput.setCard3ID(jSpinnerCardID3.getValue().toString());
-        userInput.setCard4ID(jSpinnerCardID4.getValue().toString());
-        userInput.setCard5ID(jSpinnerCardID5.getValue().toString());
-        userInput.setCard6ID(jSpinnerCardID6.getValue().toString());
-        userInput.setCard7ID(jSpinnerCardID7.getValue().toString());
-        userInput.setCard8ID(jSpinnerCardID8.getValue().toString());
-        userInput.setCard9ID(jSpinnerCardID9.getValue().toString());
+        setCardID(userInput);
         
+        // Check for valid card ID
+        try {
+            if (!isValidID(userInput)) {
+                jLabelSuccess.setText("Error: Invalid Card ID");
+                jLabelSuccess.setVisible(true);
+                return;
+            }
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        setIdolized(userInput);
+        
+
+        int[] cardIDs = { Integer.parseInt(userInput.getCard1ID()), Integer.parseInt(userInput.getCard2ID()), Integer.parseInt(userInput.getCard3ID()),
+                          Integer.parseInt(userInput.getCard4ID()), Integer.parseInt(userInput.getCard5ID()), Integer.parseInt(userInput.getCard6ID()),
+                          Integer.parseInt(userInput.getCard7ID()), Integer.parseInt(userInput.getCard8ID()), Integer.parseInt(userInput.getCard9ID()),
+                        }; 
+        
+        GetCardJSON cardJSON = new GetCardJSON();
+        
+        try {
+            createCards(cardIDs, cardJSON, userInput);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        try {
+            generateSkillTables(cardIDs);
+            
+            addSkillTables();
+            
+            addSIS();
+            
+            addCenterSkill();
+            
+            addTheRest();
+            
+            System.out.println("Part 1 Done.");
+            
+	} catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+	}
+        
+         jLabelSuccess.setText("Success!");
+         jLabelSuccess.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonGetCardDataActionPerformed
+
+    private void addTheRest() {
+        jLabelAttribute.setVisible(true);
+        jComboBoxAttribute.setVisible(true);
+        
+        jLabelSongType.setVisible(true);
+        jComboBoxSongType.setVisible(true);
+        
+        jLabelNoteCount.setVisible(true);
+        jSpinnerNoteCount.setVisible(true);
+        
+        jLabelTime.setVisible(true);
+        jSpinnerTime.setVisible(true);
+        
+        jLabelPerfect.setVisible(true);
+        jSpinnerPerfect.setVisible(true);
+        
+        jRadioButtonAverage.setVisible(true);
+        jRadioButtonAbsolute.setVisible(true);
+        
+        jLabelStep2.setVisible(true);
+        jButtonCalculate.setVisible(true);
+    }
+
+    private void addCenterSkill() {
+        jLabelCenterSkill.setVisible(true);
+        jComboBoxCenterSkill.setVisible(true);
+        
+        jLabelSubSkill.setVisible(true);
+        jComboBoxSubSkill.setVisible(true);
+    }
+
+    private void addSIS() {
+        jLabelSIS.setVisible(true);
+        jComboBoxSIS1.setVisible(true);
+        jComboBoxSIS2.setVisible(true);
+        jComboBoxSIS3.setVisible(true);
+        jComboBoxSIS4.setVisible(true);
+        jComboBoxSIS5.setVisible(true);
+        jComboBoxSIS6.setVisible(true);
+        jComboBoxSIS7.setVisible(true);
+        jComboBoxSIS8.setVisible(true);
+        jComboBoxSIS9.setVisible(true);
+    }
+
+    private void addSkillTables() {
+        boolean allZero = true;
+        if (SkillLevelCard1[0][0] != 0) {
+            card1.setSkillLevelTable(SkillLevelCard1);
+            jSpinnerCardSkill1.setVisible(true);
+            allZero = false;
+        }
+        
+        if (SkillLevelCard2[0][0] != 0) {
+            card2.setSkillLevelTable(SkillLevelCard2);
+            jSpinnerCardSkill2.setVisible(true);
+            allZero = false;
+        }
+        
+        if (SkillLevelCard3[0][0] != 0) {
+            card3.setSkillLevelTable(SkillLevelCard3);
+            jSpinnerCardSkill3.setVisible(true);
+            allZero = false;
+        }
+        
+        if (SkillLevelCard4[0][0] != 0) {
+            card4.setSkillLevelTable(SkillLevelCard4);
+            jSpinnerCardSkill4.setVisible(true);
+            allZero = false;
+        }
+        
+        if (SkillLevelCard5[0][0] != 0) {
+            card5.setSkillLevelTable(SkillLevelCard5);
+            jSpinnerCardSkill5.setVisible(true);
+            allZero = false;
+        }
+        
+        if (SkillLevelCard6[0][0] != 0) {
+            card6.setSkillLevelTable(SkillLevelCard6);
+            jSpinnerCardSkill6.setVisible(true);
+            allZero = false;
+        }
+        
+        if (SkillLevelCard7[0][0] != 0) {
+            card7.setSkillLevelTable(SkillLevelCard7);
+            jSpinnerCardSkill7.setVisible(true);
+            allZero = false;
+        }
+        
+        if (SkillLevelCard8[0][0] != 0) {
+            card8.setSkillLevelTable(SkillLevelCard8);
+            jSpinnerCardSkill8.setVisible(true);
+            allZero = false;
+        }
+        
+        if (SkillLevelCard9[0][0] != 0) {
+            card9.setSkillLevelTable(SkillLevelCard9);
+            jSpinnerCardSkill9.setVisible(true);
+            allZero = false;
+        }
+        
+        if (!allZero) {
+            jLabelCardSkill.setVisible(true);
+        }
+
+    }
+
+    private void generateSkillTables(int[] cardIDs) throws NumberFormatException, IOException {
+        for (int i = 0; i < 9; i++) {
+            if (cardIDs[i] > 0) {
+                
+                String html = Jsoup.connect("https://sif.kirara.ca/card/" + Integer.toString(cardIDs[i])).get().html();
+                int indexBegin = html.indexOf("document.precalc");
+                int indexEnd = html.indexOf("document.cllite_ids");
+             //   System.out.println(html.substring(indexBegin, indexEnd));
+                
+                html = html.substring(indexBegin, indexEnd);
+                indexBegin = html.indexOf("skill");
+                indexEnd = html.indexOf("cid");
+             //   System.out.println(html.substring(indexBegin, indexEnd));
+                
+                html = html.substring(indexBegin, indexEnd);
+                
+                if (html.contains("null")) {
+                    
+                }
+                
+                else {
+                    String temp;
+                    
+                    for (int j = 0; j < 8; j++) {
+                        
+                        if (i == 0) {
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard1[j][0] = Integer.parseInt(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard1[j][1] = (int) Double.parseDouble(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                        }
+                        
+                        else if (i == 1) {
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard2[j][0] = Integer.parseInt(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard2[j][1] = (int) Double.parseDouble(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                        }
+                        
+                        else if (i == 2) {
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard3[j][0] = Integer.parseInt(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard3[j][1] = (int) Double.parseDouble(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                        }
+                        
+                        else if (i == 3) {
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard4[j][0] = Integer.parseInt(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard4[j][1] = (int) Double.parseDouble(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                        }
+                        
+                        else if (i == 4) {
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard5[j][0] = Integer.parseInt(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard5[j][1] = (int) Double.parseDouble(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                        }
+                        
+                        else if (i == 5) {
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard6[j][0] = Integer.parseInt(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard6[j][1] = (int) Double.parseDouble(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                        }
+                        
+                        else if (i == 6) {
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard7[j][0] = Integer.parseInt(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard7[j][1] = (int) Double.parseDouble(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                        }
+                        
+                        else if (i == 7) {
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard8[j][0] = Integer.parseInt(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard8[j][1] = (int) Double.parseDouble(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                        }
+                        
+                        else {
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard9[j][0] = Integer.parseInt(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                            
+                            indexEnd = html.indexOf(",");
+                            temp = html.substring(0, indexEnd);
+                            temp = temp.replaceAll("[^\\d.]", "");
+                            
+                            SkillLevelCard9[j][1] = (int) Double.parseDouble(temp);
+                            html = html.substring(indexEnd + 1, html.length());
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+                
+                
+            }
+            
+        }
+    }
+
+    private void createCards(int[] cardIDs, GetCardJSON cardJSON, UserInput userInput) throws IOException {
+        if (cardIDs[0] > 0) {
+            output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[0]));
+            card1 = new Card(output, userInput, 1);
+        }
+        
+        if (cardIDs[1] > 0) {
+            output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[1]));
+            card2 = new Card(output, userInput, 2);
+        }
+        
+        if (cardIDs[2] > 0) {
+            output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[2]));
+            card3 = new Card(output, userInput, 3);
+        }
+        
+        if (cardIDs[3] > 0) {
+            output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[3]));
+            card4 = new Card(output, userInput, 4);
+        }
+        
+        if (cardIDs[4] > 0) {
+            output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[4]));
+            card5 = new Card(output, userInput, 5);
+        }
+        
+        if (cardIDs[5] > 0) {
+            output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[5]));
+            card6 = new Card(output, userInput, 6);
+        }
+        
+        if (cardIDs[6] > 0) {
+            output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[6]));
+            card7 = new Card(output, userInput, 7);
+        }
+        
+        if (cardIDs[7] > 0) {
+            output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[7]));
+            card8 = new Card(output, userInput, 8);
+        }
+        
+        if (cardIDs[8] > 0) {
+            output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[8]));
+            card9 = new Card(output, userInput, 9);
+        }
+    }
+
+    private boolean isValidID(UserInput userInput) throws IOException, NumberFormatException {
+        // Check if Card IDs are valid
+        try {
+            // GET total number of cards
+            GetCardJSON cardJSONTotal = new GetCardJSON();
+            JSONArray cardTotalArray = cardJSONTotal.readJSONFromURL("");
+            JSONObject cardTotalObject = cardTotalArray.getJSONObject(0);
+            if (Integer.parseInt(userInput.getCard1ID()) > cardTotalObject.getInt("count") ||
+                Integer.parseInt(userInput.getCard2ID()) > cardTotalObject.getInt("count") ||
+                Integer.parseInt(userInput.getCard3ID()) > cardTotalObject.getInt("count") ||    
+                Integer.parseInt(userInput.getCard4ID()) > cardTotalObject.getInt("count") ||    
+                Integer.parseInt(userInput.getCard5ID()) > cardTotalObject.getInt("count") ||    
+                Integer.parseInt(userInput.getCard6ID()) > cardTotalObject.getInt("count") || 
+                Integer.parseInt(userInput.getCard7ID()) > cardTotalObject.getInt("count") ||
+                Integer.parseInt(userInput.getCard8ID()) > cardTotalObject.getInt("count") ||    
+                Integer.parseInt(userInput.getCard9ID()) > cardTotalObject.getInt("count")) 
+                {
+                    return false;
+                }
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    private void setIdolized(UserInput userInput) {
         userInput.setCard1Idolized(jCheckBoxIdolized1.isSelected());
         userInput.setCard2Idolized(jCheckBoxIdolized2.isSelected());
         userInput.setCard3Idolized(jCheckBoxIdolized3.isSelected());
@@ -639,268 +1122,19 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         userInput.setCard7Idolized(jCheckBoxIdolized7.isSelected());
         userInput.setCard8Idolized(jCheckBoxIdolized8.isSelected());
         userInput.setCard9Idolized(jCheckBoxIdolized9.isSelected());
-        
+    }
 
-        int[] cardIDs = { Integer.parseInt(userInput.getCard1ID()), Integer.parseInt(userInput.getCard2ID()), Integer.parseInt(userInput.getCard3ID()),
-                          Integer.parseInt(userInput.getCard4ID()), Integer.parseInt(userInput.getCard5ID()), Integer.parseInt(userInput.getCard6ID()),
-                          Integer.parseInt(userInput.getCard7ID()), Integer.parseInt(userInput.getCard8ID()), Integer.parseInt(userInput.getCard9ID()),
-        }; 
-        
-        GetCardJSON cardJSON = new GetCardJSON();
-       
-        
-        try {
-            for (int i = 0; i < 9; i++) {
-                if (cardIDs[i] > 0) {
-                    
-                    String html = Jsoup.connect("https://sif.kirara.ca/card/" + Integer.toString(cardIDs[i])).get().html();
-                    int indexBegin = html.indexOf("document.precalc");
-                    int indexEnd = html.indexOf("document.cllite_ids");
-                    System.out.println(html.substring(indexBegin, indexEnd));
-                    
-                    html = html.substring(indexBegin, indexEnd);
-                    indexBegin = html.indexOf("skill");
-                    indexEnd = html.indexOf("cid");
-                    System.out.println(html.substring(indexBegin, indexEnd));
-                    
-                    html = html.substring(indexBegin, indexEnd);
-                    
-                    if (html.contains("null")) {
-                        
-                    }
-                    
-                    else {
-                        String temp;
-                        
-                        for (int j = 0; j < 8; j++) {
-                            
-                            if (i == 0) {
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard1[j][0] = Integer.parseInt(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard1[j][1] = (int) Double.parseDouble(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                            }
-                            
-                            else if (i == 1) {
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard2[j][0] = Integer.parseInt(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard2[j][1] = (int) Double.parseDouble(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                            }
-                            
-                            else if (i == 2) {
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard3[j][0] = Integer.parseInt(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard3[j][1] = (int) Double.parseDouble(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                            }
-                            
-                            else if (i == 3) {
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard4[j][0] = Integer.parseInt(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard4[j][1] = (int) Double.parseDouble(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                            }
-                            
-                            else if (i == 4) {
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard5[j][0] = Integer.parseInt(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard5[j][1] = (int) Double.parseDouble(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                            }
-                            
-                            else if (i == 5) {
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard6[j][0] = Integer.parseInt(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard6[j][1] = (int) Double.parseDouble(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                            }
-                            
-                            else if (i == 6) {
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard7[j][0] = Integer.parseInt(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard7[j][1] = (int) Double.parseDouble(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                            }
-                            
-                            else if (i == 7) {
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard8[j][0] = Integer.parseInt(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard8[j][1] = (int) Double.parseDouble(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                            }
-                            
-                            else {
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard9[j][0] = Integer.parseInt(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                                
-                                indexEnd = html.indexOf(",");
-                                temp = html.substring(0, indexEnd);
-                                temp = temp.replaceAll("[^\\d.]", "");
-                                
-                                SkillLevelCard9[j][1] = (int) Double.parseDouble(temp);
-                                html = html.substring(indexEnd + 1, html.length());
-                                
-                            }
-                            
-                        }
-                        
-                    }
-                    
-                    
-                    
-                }
-                
-            }
-            
-            if (SkillLevelCard1[0][0] != 0) {
-                jSpinnerCardSkill1.setVisible(true);
-            }
-            
-            if (SkillLevelCard2[0][0] != 0) {
-                jSpinnerCardSkill2.setVisible(true);
-            }
-            
-            if (SkillLevelCard3[0][0] != 0) {
-                jSpinnerCardSkill3.setVisible(true);
-            }
-            
-            if (SkillLevelCard4[0][0] != 0) {
-                jSpinnerCardSkill4.setVisible(true);
-            }
-            
-            if (SkillLevelCard5[0][0] != 0) {
-                jSpinnerCardSkill5.setVisible(true);
-            }
-            
-            if (SkillLevelCard6[0][0] != 0) {
-                jSpinnerCardSkill6.setVisible(true);
-            }
-            
-            if (SkillLevelCard7[0][0] != 0) {
-                jSpinnerCardSkill7.setVisible(true);
-            }
-            
-            if (SkillLevelCard8[0][0] != 0) {
-                jSpinnerCardSkill8.setVisible(true);
-            }
-            
-            if (SkillLevelCard9[0][0] != 0) {
-                jSpinnerCardSkill9.setVisible(true);
-            }
-            
-            System.out.println("Done");
-            
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-         jLabelSuccess.setVisible(true);
-        
-    }//GEN-LAST:event_jButtonGetCardDataActionPerformed
+    private void setCardID(UserInput userInput) {
+        userInput.setCard1ID(jSpinnerCardID1.getValue().toString());
+        userInput.setCard2ID(jSpinnerCardID2.getValue().toString());
+        userInput.setCard3ID(jSpinnerCardID3.getValue().toString());
+        userInput.setCard4ID(jSpinnerCardID4.getValue().toString());
+        userInput.setCard5ID(jSpinnerCardID5.getValue().toString());
+        userInput.setCard6ID(jSpinnerCardID6.getValue().toString());
+        userInput.setCard7ID(jSpinnerCardID7.getValue().toString());
+        userInput.setCard8ID(jSpinnerCardID8.getValue().toString());
+        userInput.setCard9ID(jSpinnerCardID9.getValue().toString());
+    }
 
     private void jSpinnerCardSkill1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCardSkill1StateChanged
         // TODO add your handling code here:
@@ -992,6 +1226,14 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jSpinnerCardSkill9StateChanged
 
+    private void jComboBoxSIS2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSIS2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxSIS2ActionPerformed
+
+    private void jComboBoxAttributeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAttributeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxAttributeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1053,6 +1295,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxSIS9;
     private javax.swing.JComboBox<String> jComboBoxSongType;
     private javax.swing.JComboBox<String> jComboBoxSubSkill;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAttribute;
     private javax.swing.JLabel jLabelCard1;
     private javax.swing.JLabel jLabelCard2;
@@ -1075,10 +1319,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSubSkill;
     private javax.swing.JLabel jLabelSuccess;
     private javax.swing.JLabel jLabelTime;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButtonAbsolute;
     private javax.swing.JRadioButton jRadioButtonAverage;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinnerCardID1;
     private javax.swing.JSpinner jSpinnerCardID2;
     private javax.swing.JSpinner jSpinnerCardID3;
@@ -1098,6 +1340,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinnerCardSkill8;
     private javax.swing.JSpinner jSpinnerCardSkill9;
     private javax.swing.JSpinner jSpinnerNoteCount;
+    private javax.swing.JSpinner jSpinnerPerfect;
     private javax.swing.JSpinner jSpinnerTime;
     // End of variables declaration//GEN-END:variables
 

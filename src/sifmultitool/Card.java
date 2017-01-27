@@ -16,6 +16,9 @@ import org.json.JSONObject;
 public class Card {
     
     private int cardNumber;
+    private JSONArray cardJSON;
+    private UserInput userInput;
+    private JSONObject card;
 	
 	private boolean special;
 	
@@ -44,9 +47,10 @@ public class Card {
 	
 
 	public Card(JSONArray cardJSON, UserInput userInput, int cardNumber) {
-		JSONObject card;
 		
 		this.cardNumber = cardNumber;
+                this.cardJSON = cardJSON;
+                this.userInput = userInput;
 		
 		try {
 			card = cardJSON.getJSONObject(0);
@@ -74,34 +78,12 @@ public class Card {
 			this.cardAttribute = card.getString("attribute");
 			
 			SkillDetails(card);
-			
-				// If card is idolized
-				if (isIdolized(userInput, cardNumber) || this.promo) {
-					
-					this.baseStat = baseStatIdolized(userInput, card);
-					
-					this.offStat = offStatIdolized(userInput, card);
-					
-					this.bondPoints = bondPoints();
-					
-				}
-				
-				// Else card is not idolized
-				else {
-					
-					this.baseStat = baseStatNotIdolized(userInput, card);
-					
-					this.offStat = offStatNotIdolized(userInput, card);
-					
-					this.bondPoints = bondPoints() / 2;
-					
-				}
 
-			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
         
         private boolean isIdolized(UserInput userInput, int cardNumber) {
@@ -177,198 +159,6 @@ public class Card {
                     this.setMainUnit(idol.getString("main_unit"));
                     this.setSubUnit(idol.getString("sub_unit"));
 		
-		}
-	}
-
-	private int baseStatIdolized(UserInput userInput, JSONObject obj) throws JSONException {
-		// GET base stat
-		if ("Smile".equals(userInput.getAttribute())) {
-                    this.setBaseStatType("Smile");
-			return obj.getInt("idolized_maximum_statistics_smile");
-		}
-		
-		else if ("Pure".equals(userInput.getAttribute())) {
-                    this.setBaseStatType("Pure");
-			return obj.getInt("idolized_maximum_statistics_pure");
-		}
-		
-		else if ("Cool".equals(userInput.getAttribute())) {
-                    this.setBaseStatType("Cool");
-			return obj.getInt("idolized_maximum_statistics_cool");
-		}
-		
-		else {
-			return 0;
-		}
-	}
-
-	private int baseStatNotIdolized(UserInput userInput, JSONObject obj) throws JSONException {
-		// GET not idolized base stats
-		if ("Smile".equals(userInput.getAttribute())) {
-                    this.setBaseStatType("Smile");
-			return obj.getInt("non_idolized_maximum_statistics_smile");
-		}
-		
-		else if ("Pure".equals(userInput.getAttribute())) {
-                    this.setBaseStatType("Pure");
-			return obj.getInt("non_idolized_maximum_statistics_pure");
-		}
-		
-		else if ("Cool".equals(userInput.getAttribute())) {
-                    this.setBaseStatType("Cool");
-			return obj.getInt("non_idolized_maximum_statistics_cool");
-		}
-		
-		else {
-			return 0;
-		}
-	}
-	
-	private int offStatIdolized(UserInput userInput, JSONObject card) throws JSONException {
-		if (userInput.getCenterSkill().contains("12% Smile")) {
-			
-			if (userInput.getCenterSkill().contains("Pure")) {
-				
-				return card.getInt("idolized_maximum_statistics_pure");
-				
-			}
-			
-			else if (userInput.getCenterSkill().contains("Cool")) {
-				
-				return card.getInt("idolized_maximum_statistics_cool");
-				
-			}
-			
-			else {
-				// Set Off Stat to equal Base Stat
-				return this.getBaseStat();
-				
-			}
-			
-		}
-		
-		else if (userInput.getCenterSkill().contains("12% Pure")) {
-			
-			if (userInput.getCenterSkill().contains("Smile")) {
-				
-				return card.getInt("idolized_maximum_statistics_smile");
-				
-			}
-			
-			else if (userInput.getCenterSkill().contains("Cool")) {
-				
-				return card.getInt("idolized_maximum_statistics_cool");
-				
-			}
-			
-			else {
-				// Set Off Stat to equal Base Stat
-				return this.getBaseStat();
-				
-			}
-			
-		}
-		
-		else if (userInput.getCenterSkill().contains("12% Cool")) {
-			
-			if (userInput.getCenterSkill().contains("Smile")) {
-				
-				return card.getInt("idolized_maximum_statistics_smile");
-				
-			}
-			
-			else if (userInput.getCenterSkill().contains("Pure")) {
-				
-				return card.getInt("idolized_maximum_statistics_pure");
-				
-			}
-			
-			else {
-				// Set Off Stat to equal Base Stat
-				return this.getBaseStat();
-				
-			}
-			
-		}
-		
-		else {
-			// Set Off Stat to equal Base Stat
-			return this.getBaseStat();
-			
-		}
-	}
-	
-	private int offStatNotIdolized(UserInput userInput, JSONObject card) throws JSONException {
-		if (userInput.getCenterSkill().contains("12% Smile")) {
-			
-			if (userInput.getCenterSkill().contains("Pure")) {
-				
-				return card.getInt("non_idolized_maximum_statistics_pure");
-				
-			}
-			
-			else if (userInput.getCenterSkill().contains("Cool")) {
-				
-				return card.getInt("non_idolized_maximum_statistics_cool");
-				
-			}
-			
-			else {
-				// Set Off Stat to equal Base Stat
-				return this.getBaseStat();
-				
-			}
-			
-		}
-		
-		else if (userInput.getCenterSkill().contains("12% Pure")) {
-			
-			if (userInput.getCenterSkill().contains("Smile")) {
-				
-				return card.getInt("non_idolized_maximum_statistics_smile");
-				
-			}
-			
-			else if (userInput.getCenterSkill().contains("Cool")) {
-				
-				return card.getInt("non_idolized_maximum_statistics_cool");
-				
-			}
-			
-			else {
-				// Set Off Stat to equal Base Stat
-				return this.getBaseStat();
-				
-			}
-			
-		}
-		
-		else if (userInput.getCenterSkill().contains("12% Cool")) {
-			
-			if (userInput.getCenterSkill().contains("Smile")) {
-				
-				return card.getInt("non_idolized_maximum_statistics_smile");
-				
-			}
-			
-			else if (userInput.getCenterSkill().contains("Pure")) {
-				
-				return card.getInt("non_idolized_maximum_statistics_pure");
-				
-			}
-			
-			else {
-				// Set Off Stat to equal Base Stat
-				return this.getBaseStat();
-				
-			}
-			
-		}
-		
-		else {
-			// Set Off Stat to equal Base Stat
-			return this.getBaseStat();
-			
 		}
 	}
 

@@ -75,7 +75,7 @@ public class UserInput {
 	}
 
 	public boolean isCard1Idolized() {
-		return isCard1Idolized();
+		return card1Idolized;
 	}
 
 	public void setCard1Idolized(boolean card1Idolized) {
@@ -83,7 +83,7 @@ public class UserInput {
 	}
 
 	public boolean isCard2Idolized() {
-		return isCard2Idolized();
+		return card1Idolized;
 	}
 
 	public void setCard2Idolized(boolean card2Idolized) {
