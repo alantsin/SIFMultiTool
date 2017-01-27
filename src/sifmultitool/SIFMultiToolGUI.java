@@ -9,6 +9,10 @@ import java.io.IOException;
 import java.util.*;
 import org.jsoup.Jsoup;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  *
  * @author Alan
@@ -42,15 +46,15 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabelCardID1 = new javax.swing.JLabel();
-        jLabelCardID2 = new javax.swing.JLabel();
-        jLabelCardID3 = new javax.swing.JLabel();
-        jLabelCardID4 = new javax.swing.JLabel();
-        jLabelCardID5 = new javax.swing.JLabel();
-        jLabelCardID6 = new javax.swing.JLabel();
-        jLabelCardID7 = new javax.swing.JLabel();
-        jLabelCardID8 = new javax.swing.JLabel();
-        jLabelCardID9 = new javax.swing.JLabel();
+        jLabelCard1 = new javax.swing.JLabel();
+        jLabelCard2 = new javax.swing.JLabel();
+        jLabelCard3 = new javax.swing.JLabel();
+        jLabelCard4 = new javax.swing.JLabel();
+        jLabelCard5 = new javax.swing.JLabel();
+        jLabelCard6 = new javax.swing.JLabel();
+        jLabelCard7 = new javax.swing.JLabel();
+        jLabelCard8 = new javax.swing.JLabel();
+        jLabelCard9 = new javax.swing.JLabel();
         jSpinnerCardID1 = new javax.swing.JSpinner();
         jSpinnerCardID2 = new javax.swing.JSpinner();
         jSpinnerCardID3 = new javax.swing.JSpinner();
@@ -72,6 +76,45 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jButtonGetCardData = new javax.swing.JButton();
         jLabelStep1 = new javax.swing.JLabel();
         jLabelSuccess = new javax.swing.JLabel();
+        jLabelCardSkill = new javax.swing.JLabel();
+        jSpinnerCardSkill1 = new javax.swing.JSpinner();
+        jSpinnerCardSkill2 = new javax.swing.JSpinner();
+        jSpinnerCardSkill3 = new javax.swing.JSpinner();
+        jSpinnerCardSkill4 = new javax.swing.JSpinner();
+        jSpinnerCardSkill5 = new javax.swing.JSpinner();
+        jSpinnerCardSkill6 = new javax.swing.JSpinner();
+        jSpinnerCardSkill7 = new javax.swing.JSpinner();
+        jSpinnerCardSkill8 = new javax.swing.JSpinner();
+        jSpinnerCardSkill9 = new javax.swing.JSpinner();
+        jLabelSIS = new javax.swing.JLabel();
+        jLabelCardID = new javax.swing.JLabel();
+        jComboBoxSIS1 = new javax.swing.JComboBox<>();
+        jComboBoxSIS2 = new javax.swing.JComboBox<>();
+        jComboBoxSIS3 = new javax.swing.JComboBox<>();
+        jComboBoxSIS4 = new javax.swing.JComboBox<>();
+        jComboBoxSIS5 = new javax.swing.JComboBox<>();
+        jComboBoxSIS6 = new javax.swing.JComboBox<>();
+        jComboBoxSIS7 = new javax.swing.JComboBox<>();
+        jComboBoxSIS8 = new javax.swing.JComboBox<>();
+        jComboBoxSIS9 = new javax.swing.JComboBox<>();
+        jLabelCenterSkill = new javax.swing.JLabel();
+        jComboBoxCenterSkill = new javax.swing.JComboBox<>();
+        jLabelAttribute = new javax.swing.JLabel();
+        jComboBoxAttribute = new javax.swing.JComboBox<>();
+        jLabelSubSkill = new javax.swing.JLabel();
+        jComboBoxSubSkill = new javax.swing.JComboBox<>();
+        jLabelSongType = new javax.swing.JLabel();
+        jComboBoxSongType = new javax.swing.JComboBox<>();
+        jLabelNoteCount = new javax.swing.JLabel();
+        jSpinnerNoteCount = new javax.swing.JSpinner();
+        jLabelTime = new javax.swing.JLabel();
+        jSpinnerTime = new javax.swing.JSpinner();
+        jLabelPerfect = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jLabelStep2 = new javax.swing.JLabel();
+        jButtonCalculate = new javax.swing.JButton();
+        jRadioButtonAverage = new javax.swing.JRadioButton();
+        jRadioButtonAbsolute = new javax.swing.JRadioButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,24 +133,24 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(450, 400));
         setSize(new java.awt.Dimension(950, 400));
 
-        jLabelCardID1.setText("Card 1 ID");
+        jLabelCard1.setText("Card 1");
 
-        jLabelCardID2.setText("Card 2 ID");
+        jLabelCard2.setText("Card 2");
 
-        jLabelCardID3.setText("Card 3 ID");
+        jLabelCard3.setText("Card 3");
 
-        jLabelCardID4.setText("Card 4 ID");
+        jLabelCard4.setText("Card 4");
 
-        jLabelCardID5.setText("Card 5 ID");
+        jLabelCard5.setText("Card 5");
 
-        jLabelCardID6.setText("Card 6 ID");
+        jLabelCard6.setText("Card 6");
 
-        jLabelCardID7.setText("Card 7 ID");
+        jLabelCard7.setText("Card 7");
 
-        jLabelCardID8.setText("Card 8 ID");
+        jLabelCard8.setText("Card 8");
 
-        jLabelCardID9.setText("Card 9 ID");
-        jLabelCardID9.setToolTipText("");
+        jLabelCard9.setText("Card 9");
+        jLabelCard9.setToolTipText("");
 
         jSpinnerCardID1.setEditor(new javax.swing.JSpinner.NumberEditor(jSpinnerCardID1, "####"));
         jSpinnerCardID1.setMinimumSize(new java.awt.Dimension(25, 25));
@@ -179,149 +222,437 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jLabelSuccess.setText("Data successfully obtained!");
         jLabelSuccess.setToolTipText("");
 
+        jLabelCardSkill.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelCardSkill.setText("Skill Level");
+
+        jSpinnerCardSkill1.setValue(1);
+        jSpinnerCardSkill1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerCardSkill1StateChanged(evt);
+            }
+        });
+
+        jSpinnerCardSkill2.setValue(1);
+        jSpinnerCardSkill2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerCardSkill2StateChanged(evt);
+            }
+        });
+
+        jSpinnerCardSkill3.setValue(1);
+        jSpinnerCardSkill3.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerCardSkill3StateChanged(evt);
+            }
+        });
+
+        jSpinnerCardSkill4.setValue(1);
+        jSpinnerCardSkill4.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerCardSkill4StateChanged(evt);
+            }
+        });
+
+        jSpinnerCardSkill5.setValue(1);
+        jSpinnerCardSkill5.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerCardSkill5StateChanged(evt);
+            }
+        });
+
+        jSpinnerCardSkill6.setValue(1);
+        jSpinnerCardSkill6.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerCardSkill6StateChanged(evt);
+            }
+        });
+
+        jSpinnerCardSkill7.setValue(1);
+        jSpinnerCardSkill7.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerCardSkill7StateChanged(evt);
+            }
+        });
+
+        jSpinnerCardSkill8.setValue(1);
+        jSpinnerCardSkill8.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerCardSkill8StateChanged(evt);
+            }
+        });
+
+        jSpinnerCardSkill9.setValue(1);
+        jSpinnerCardSkill9.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerCardSkill9StateChanged(evt);
+            }
+        });
+
+        jLabelSIS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelSIS.setText("SIS Configuration");
+
+        jLabelCardID.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelCardID.setText("Card ID");
+
+        jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+
+        jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+
+        jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+
+        jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+
+        jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+
+        jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+
+        jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+
+        jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+
+        jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+
+        jLabelCenterSkill.setText("Center Skill");
+
+        jComboBoxCenterSkill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0% None", "3% Smile", "3% Pure", "3% Cool", "6% Smile", "6% Pure", "6% Cool", "7% Smile", "7% Pure", "7% Cool", "9% Smile", "9% Pure", "9% Cool", "12% Smile Based on Pure", "12% Smile Based on Cool", "12% Pure Based on Smile", "12% Pure Based on Cool", "12% Cool Based on Smile", "12% Cool Based on Pure" }));
+
+        jLabelAttribute.setText("Attribute");
+
+        jComboBoxAttribute.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Smile", "Pure", "Cool" }));
+
+        jLabelSubSkill.setText("Sub Skill");
+
+        jComboBoxSubSkill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabelSongType.setText("Song Type");
+
+        jComboBoxSongType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "μ's", "Aqours" }));
+
+        jLabelNoteCount.setText("Note Count");
+
+        jSpinnerNoteCount.setValue(50);
+
+        jLabelTime.setText("Time (s)");
+
+        jSpinnerTime.setValue(120);
+
+        jLabelPerfect.setText("Perfect %");
+
+        jSpinner1.setValue(75);
+
+        jLabelStep2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelStep2.setText("Step 2:");
+
+        jButtonCalculate.setText("Calculate");
+
+        jRadioButtonAverage.setSelected(true);
+        jRadioButtonAverage.setText("Average");
+        jRadioButtonAverage.setToolTipText("");
+
+        jRadioButtonAbsolute.setText("Absolute");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelCardID1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinnerCardID1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBoxIdolized1))
+                        .addGap(62, 62, 62)
+                        .addComponent(jLabelCardID)
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabelCardSkill))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelCardID2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinnerCardID2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBoxIdolized2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelCardID3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinnerCardID3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBoxIdolized3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelCardID4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinnerCardID4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBoxIdolized4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelCardID5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinnerCardID5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBoxIdolized5))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelCardID6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinnerCardID6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBoxIdolized6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelCardID7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinnerCardID7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBoxIdolized7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelCardID8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinnerCardID8, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBoxIdolized8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelCardID9)
-                            .addComponent(jLabelStep1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSpinnerCardID9, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelStep1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBoxIdolized9))
-                            .addComponent(jButtonGetCardData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelSuccess, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(510, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonGetCardData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelSuccess, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelCard1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSpinnerCardID1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jCheckBoxIdolized1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelCard2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSpinnerCardID2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jCheckBoxIdolized2))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelCard3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSpinnerCardID3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jCheckBoxIdolized3))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelCard4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSpinnerCardID4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jCheckBoxIdolized4))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelCard5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSpinnerCardID5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jCheckBoxIdolized5))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelCard6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSpinnerCardID6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jCheckBoxIdolized6))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelCard7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSpinnerCardID7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jCheckBoxIdolized7))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelCard8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSpinnerCardID8, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jCheckBoxIdolized8))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelCard9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSpinnerCardID9, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jCheckBoxIdolized9)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSpinnerCardSkill9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerCardSkill8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerCardSkill7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerCardSkill6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerCardSkill5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerCardSkill4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerCardSkill3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerCardSkill2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerCardSkill1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelSIS)
+                    .addComponent(jComboBoxSIS4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSIS7, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSIS8, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBoxSIS9, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButtonAverage)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButtonAbsolute))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jComboBoxSIS5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelCenterSkill)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jComboBoxSIS6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelStep2)
+                                            .addComponent(jLabelSubSkill))
+                                        .addGap(25, 25, 25)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBoxCenterSkill, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxSubSkill, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonCalculate)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jComboBoxSIS3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPerfect)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSpinner1))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jComboBoxSIS1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jLabelAttribute)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jComboBoxAttribute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jComboBoxSIS2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jLabelNoteCount)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jSpinnerNoteCount, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelTime)
+                                    .addComponent(jLabelSongType))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBoxSongType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSpinnerTime))))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCardID1)
+                    .addComponent(jLabelCardID)
+                    .addComponent(jLabelCardSkill)
+                    .addComponent(jLabelSIS))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCard1)
                     .addComponent(jSpinnerCardID1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxIdolized1))
+                    .addComponent(jCheckBoxIdolized1)
+                    .addComponent(jSpinnerCardSkill1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSIS1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelAttribute)
+                    .addComponent(jComboBoxAttribute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelSongType)
+                    .addComponent(jComboBoxSongType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCardID2)
+                    .addComponent(jLabelCard2)
                     .addComponent(jSpinnerCardID2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxIdolized2))
+                    .addComponent(jCheckBoxIdolized2)
+                    .addComponent(jSpinnerCardSkill2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSIS2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNoteCount)
+                    .addComponent(jSpinnerNoteCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTime)
+                    .addComponent(jSpinnerTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCardID3)
+                    .addComponent(jLabelCard3)
                     .addComponent(jSpinnerCardID3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxIdolized3))
+                    .addComponent(jCheckBoxIdolized3)
+                    .addComponent(jSpinnerCardSkill3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSIS3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPerfect)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCardID4)
+                    .addComponent(jLabelCard4)
                     .addComponent(jSpinnerCardID4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxIdolized4))
+                    .addComponent(jCheckBoxIdolized4)
+                    .addComponent(jSpinnerCardSkill4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSIS4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCardID5)
+                    .addComponent(jLabelCard5)
                     .addComponent(jSpinnerCardID5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxIdolized5))
+                    .addComponent(jCheckBoxIdolized5)
+                    .addComponent(jSpinnerCardSkill5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSIS5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCenterSkill)
+                    .addComponent(jComboBoxCenterSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCardID6)
+                    .addComponent(jLabelCard6)
                     .addComponent(jSpinnerCardID6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxIdolized6))
+                    .addComponent(jCheckBoxIdolized6)
+                    .addComponent(jSpinnerCardSkill6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSIS6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelSubSkill)
+                    .addComponent(jComboBoxSubSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCardID7)
+                    .addComponent(jLabelCard7)
                     .addComponent(jSpinnerCardID7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxIdolized7))
+                    .addComponent(jCheckBoxIdolized7)
+                    .addComponent(jSpinnerCardSkill7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSIS7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCardID8)
+                    .addComponent(jLabelCard8)
                     .addComponent(jSpinnerCardID8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxIdolized8))
+                    .addComponent(jCheckBoxIdolized8)
+                    .addComponent(jSpinnerCardSkill8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSIS8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCardID9)
+                    .addComponent(jLabelCard9)
                     .addComponent(jSpinnerCardID9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxIdolized9))
+                    .addComponent(jCheckBoxIdolized9)
+                    .addComponent(jSpinnerCardSkill9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSIS9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButtonAverage)
+                    .addComponent(jRadioButtonAbsolute))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGetCardData)
-                    .addComponent(jLabelStep1))
+                    .addComponent(jLabelStep1)
+                    .addComponent(jLabelStep2)
+                    .addComponent(jButtonCalculate))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelSuccess)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         jLabelSuccess.setVisible(false);
+        jLabelCardSkill.setVisible(false);
+        jSpinnerCardSkill1.setVisible(false);
+        jSpinnerCardSkill2.setVisible(false);
+        jSpinnerCardSkill3.setVisible(false);
+        jSpinnerCardSkill4.setVisible(false);
+        jSpinnerCardSkill5.setVisible(false);
+        jSpinnerCardSkill6.setVisible(false);
+        jSpinnerCardSkill7.setVisible(false);
+        jSpinnerCardSkill8.setVisible(false);
+        jSpinnerCardSkill9.setVisible(false);
+        jLabelSIS.setVisible(false);
 
-        setBounds(0, 0, 720, 437);
+        setBounds(0, 0, 720, 543);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGetCardDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetCardDataActionPerformed
         // TODO add your handling code here:
+        
+        UserInput userInput = new UserInput();
+        
+        userInput.setCard1ID(jSpinnerCardID1.getValue().toString());
+        userInput.setCard2ID(jSpinnerCardID2.getValue().toString());
+        userInput.setCard3ID(jSpinnerCardID3.getValue().toString());
+        userInput.setCard4ID(jSpinnerCardID4.getValue().toString());
+        userInput.setCard5ID(jSpinnerCardID5.getValue().toString());
+        userInput.setCard6ID(jSpinnerCardID6.getValue().toString());
+        userInput.setCard7ID(jSpinnerCardID7.getValue().toString());
+        userInput.setCard8ID(jSpinnerCardID8.getValue().toString());
+        userInput.setCard9ID(jSpinnerCardID9.getValue().toString());
+        
+        userInput.setCard1Idolized(jCheckBoxIdolized1.isSelected());
+        userInput.setCard2Idolized(jCheckBoxIdolized2.isSelected());
+        userInput.setCard3Idolized(jCheckBoxIdolized3.isSelected());
+        userInput.setCard4Idolized(jCheckBoxIdolized4.isSelected());
+        userInput.setCard5Idolized(jCheckBoxIdolized5.isSelected());
+        userInput.setCard6Idolized(jCheckBoxIdolized6.isSelected());
+        userInput.setCard7Idolized(jCheckBoxIdolized7.isSelected());
+        userInput.setCard8Idolized(jCheckBoxIdolized8.isSelected());
+        userInput.setCard9Idolized(jCheckBoxIdolized9.isSelected());
+        
 
-        int[] cardIDs = { (int) jSpinnerCardID1.getValue(), (int) jSpinnerCardID2.getValue(), (int) jSpinnerCardID3.getValue(),
-                          (int) jSpinnerCardID4.getValue(), (int) jSpinnerCardID5.getValue(), (int) jSpinnerCardID6.getValue(),
-                          (int) jSpinnerCardID7.getValue(), (int) jSpinnerCardID8.getValue(), (int) jSpinnerCardID9.getValue(),
+        int[] cardIDs = { Integer.parseInt(userInput.getCard1ID()), Integer.parseInt(userInput.getCard2ID()), Integer.parseInt(userInput.getCard3ID()),
+                          Integer.parseInt(userInput.getCard4ID()), Integer.parseInt(userInput.getCard5ID()), Integer.parseInt(userInput.getCard6ID()),
+                          Integer.parseInt(userInput.getCard7ID()), Integer.parseInt(userInput.getCard8ID()), Integer.parseInt(userInput.getCard9ID()),
         }; 
         
+        GetCardJSON cardJSON = new GetCardJSON();
+       
         
         try {
             for (int i = 0; i < 9; i++) {
                 if (cardIDs[i] > 0) {
+                    
                     String html = Jsoup.connect("https://sif.kirara.ca/card/" + Integer.toString(cardIDs[i])).get().html();
                     int indexBegin = html.indexOf("document.precalc");
                     int indexEnd = html.indexOf("document.cllite_ids");
@@ -518,10 +849,46 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                         
                     }
                     
-                }
-                else {
+                    
                     
                 }
+                
+            }
+            
+            if (SkillLevelCard1[0][0] != 0) {
+                jSpinnerCardSkill1.setVisible(true);
+            }
+            
+            if (SkillLevelCard2[0][0] != 0) {
+                jSpinnerCardSkill2.setVisible(true);
+            }
+            
+            if (SkillLevelCard3[0][0] != 0) {
+                jSpinnerCardSkill3.setVisible(true);
+            }
+            
+            if (SkillLevelCard4[0][0] != 0) {
+                jSpinnerCardSkill4.setVisible(true);
+            }
+            
+            if (SkillLevelCard5[0][0] != 0) {
+                jSpinnerCardSkill5.setVisible(true);
+            }
+            
+            if (SkillLevelCard6[0][0] != 0) {
+                jSpinnerCardSkill6.setVisible(true);
+            }
+            
+            if (SkillLevelCard7[0][0] != 0) {
+                jSpinnerCardSkill7.setVisible(true);
+            }
+            
+            if (SkillLevelCard8[0][0] != 0) {
+                jSpinnerCardSkill8.setVisible(true);
+            }
+            
+            if (SkillLevelCard9[0][0] != 0) {
+                jSpinnerCardSkill9.setVisible(true);
             }
             
             System.out.println("Done");
@@ -534,6 +901,96 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
          jLabelSuccess.setVisible(true);
         
     }//GEN-LAST:event_jButtonGetCardDataActionPerformed
+
+    private void jSpinnerCardSkill1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCardSkill1StateChanged
+        // TODO add your handling code here:
+        if ((int) jSpinnerCardSkill1.getValue() > 8) {
+            jSpinnerCardSkill1.setValue("8");
+        }
+        else if ((int) jSpinnerCardSkill1.getValue() < 1) {
+            jSpinnerCardSkill1.setValue("1");
+        }
+    }//GEN-LAST:event_jSpinnerCardSkill1StateChanged
+
+    private void jSpinnerCardSkill2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCardSkill2StateChanged
+        // TODO add your handling code here:
+        if ((int) jSpinnerCardSkill2.getValue() > 8) {
+            jSpinnerCardSkill2.setValue("8");
+        }
+        else if ((int) jSpinnerCardSkill2.getValue() < 1) {
+            jSpinnerCardSkill2.setValue("1");
+        }
+    }//GEN-LAST:event_jSpinnerCardSkill2StateChanged
+
+    private void jSpinnerCardSkill3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCardSkill3StateChanged
+        // TODO add your handling code here:
+        if ((int) jSpinnerCardSkill3.getValue() > 8) {
+            jSpinnerCardSkill3.setValue("8");
+        }
+        else if ((int) jSpinnerCardSkill3.getValue() < 1) {
+            jSpinnerCardSkill3.setValue("1");
+        }
+    }//GEN-LAST:event_jSpinnerCardSkill3StateChanged
+
+    private void jSpinnerCardSkill4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCardSkill4StateChanged
+        // TODO add your handling code here:
+        if ((int) jSpinnerCardSkill4.getValue() > 8) {
+            jSpinnerCardSkill4.setValue("8");
+        }
+        else if ((int) jSpinnerCardSkill4.getValue() < 1) {
+            jSpinnerCardSkill4.setValue("1");
+        }
+    }//GEN-LAST:event_jSpinnerCardSkill4StateChanged
+
+    private void jSpinnerCardSkill5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCardSkill5StateChanged
+        // TODO add your handling code here:
+        if ((int) jSpinnerCardSkill5.getValue() > 8) {
+            jSpinnerCardSkill5.setValue("8");
+        }
+        else if ((int) jSpinnerCardSkill5.getValue() < 1) {
+            jSpinnerCardSkill5.setValue("1");
+        }
+    }//GEN-LAST:event_jSpinnerCardSkill5StateChanged
+
+    private void jSpinnerCardSkill6StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCardSkill6StateChanged
+        // TODO add your handling code here:
+        if ((int) jSpinnerCardSkill6.getValue() > 8) {
+            jSpinnerCardSkill6.setValue("8");
+        }
+        else if ((int) jSpinnerCardSkill6.getValue() < 1) {
+            jSpinnerCardSkill6.setValue("1");
+        }
+    }//GEN-LAST:event_jSpinnerCardSkill6StateChanged
+
+    private void jSpinnerCardSkill7StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCardSkill7StateChanged
+        // TODO add your handling code here:
+        if ((int) jSpinnerCardSkill7.getValue() > 8) {
+            jSpinnerCardSkill7.setValue("8");
+        }
+        else if ((int) jSpinnerCardSkill7.getValue() < 1) {
+            jSpinnerCardSkill7.setValue("1");
+        }
+    }//GEN-LAST:event_jSpinnerCardSkill7StateChanged
+
+    private void jSpinnerCardSkill8StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCardSkill8StateChanged
+        // TODO add your handling code here:
+        if ((int) jSpinnerCardSkill8.getValue() > 8) {
+            jSpinnerCardSkill8.setValue("8");
+        }
+        else if ((int) jSpinnerCardSkill8.getValue() < 1) {
+            jSpinnerCardSkill8.setValue("1");
+        }
+    }//GEN-LAST:event_jSpinnerCardSkill8StateChanged
+
+    private void jSpinnerCardSkill9StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCardSkill9StateChanged
+        // TODO add your handling code here:
+        if ((int) jSpinnerCardSkill9.getValue() > 8) {
+            jSpinnerCardSkill9.setValue("8");
+        }
+        else if ((int) jSpinnerCardSkill9.getValue() < 1) {
+            jSpinnerCardSkill9.setValue("1");
+        }
+    }//GEN-LAST:event_jSpinnerCardSkill9StateChanged
 
     /**
      * @param args the command line arguments
@@ -572,6 +1029,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCalculate;
     private javax.swing.JButton jButtonGetCardData;
     private javax.swing.JCheckBox jCheckBoxIdolized1;
     private javax.swing.JCheckBox jCheckBoxIdolized2;
@@ -582,18 +1040,45 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBoxIdolized7;
     private javax.swing.JCheckBox jCheckBoxIdolized8;
     private javax.swing.JCheckBox jCheckBoxIdolized9;
-    private javax.swing.JLabel jLabelCardID1;
-    private javax.swing.JLabel jLabelCardID2;
-    private javax.swing.JLabel jLabelCardID3;
-    private javax.swing.JLabel jLabelCardID4;
-    private javax.swing.JLabel jLabelCardID5;
-    private javax.swing.JLabel jLabelCardID6;
-    private javax.swing.JLabel jLabelCardID7;
-    private javax.swing.JLabel jLabelCardID8;
-    private javax.swing.JLabel jLabelCardID9;
+    private javax.swing.JComboBox<String> jComboBoxAttribute;
+    private javax.swing.JComboBox<String> jComboBoxCenterSkill;
+    private javax.swing.JComboBox<String> jComboBoxSIS1;
+    private javax.swing.JComboBox<String> jComboBoxSIS2;
+    private javax.swing.JComboBox<String> jComboBoxSIS3;
+    private javax.swing.JComboBox<String> jComboBoxSIS4;
+    private javax.swing.JComboBox<String> jComboBoxSIS5;
+    private javax.swing.JComboBox<String> jComboBoxSIS6;
+    private javax.swing.JComboBox<String> jComboBoxSIS7;
+    private javax.swing.JComboBox<String> jComboBoxSIS8;
+    private javax.swing.JComboBox<String> jComboBoxSIS9;
+    private javax.swing.JComboBox<String> jComboBoxSongType;
+    private javax.swing.JComboBox<String> jComboBoxSubSkill;
+    private javax.swing.JLabel jLabelAttribute;
+    private javax.swing.JLabel jLabelCard1;
+    private javax.swing.JLabel jLabelCard2;
+    private javax.swing.JLabel jLabelCard3;
+    private javax.swing.JLabel jLabelCard4;
+    private javax.swing.JLabel jLabelCard5;
+    private javax.swing.JLabel jLabelCard6;
+    private javax.swing.JLabel jLabelCard7;
+    private javax.swing.JLabel jLabelCard8;
+    private javax.swing.JLabel jLabelCard9;
+    private javax.swing.JLabel jLabelCardID;
+    private javax.swing.JLabel jLabelCardSkill;
+    private javax.swing.JLabel jLabelCenterSkill;
+    private javax.swing.JLabel jLabelNoteCount;
+    private javax.swing.JLabel jLabelPerfect;
+    private javax.swing.JLabel jLabelSIS;
+    private javax.swing.JLabel jLabelSongType;
     private javax.swing.JLabel jLabelStep1;
+    private javax.swing.JLabel jLabelStep2;
+    private javax.swing.JLabel jLabelSubSkill;
     private javax.swing.JLabel jLabelSuccess;
+    private javax.swing.JLabel jLabelTime;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButtonAbsolute;
+    private javax.swing.JRadioButton jRadioButtonAverage;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinnerCardID1;
     private javax.swing.JSpinner jSpinnerCardID2;
     private javax.swing.JSpinner jSpinnerCardID3;
@@ -603,6 +1088,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinnerCardID7;
     private javax.swing.JSpinner jSpinnerCardID8;
     private javax.swing.JSpinner jSpinnerCardID9;
+    private javax.swing.JSpinner jSpinnerCardSkill1;
+    private javax.swing.JSpinner jSpinnerCardSkill2;
+    private javax.swing.JSpinner jSpinnerCardSkill3;
+    private javax.swing.JSpinner jSpinnerCardSkill4;
+    private javax.swing.JSpinner jSpinnerCardSkill5;
+    private javax.swing.JSpinner jSpinnerCardSkill6;
+    private javax.swing.JSpinner jSpinnerCardSkill7;
+    private javax.swing.JSpinner jSpinnerCardSkill8;
+    private javax.swing.JSpinner jSpinnerCardSkill9;
+    private javax.swing.JSpinner jSpinnerNoteCount;
+    private javax.swing.JSpinner jSpinnerTime;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -39,6 +39,8 @@ public class Card {
 
 	private String skillType;
 	private String skillDetails;
+        
+        private int[][] skillLevelTable;
 	
 
 	public Card(JSONArray cardJSON, UserInput userInput, int cardNumber) {
@@ -73,11 +75,8 @@ public class Card {
 			
 			SkillDetails(card);
 			
-			// For card 1
-			if (cardNumber == 1) {
-			
-				// If card 1 is idolized
-				if (userInput.getCard1Idolized() || this.promo) {
+				// If card is idolized
+				if (isIdolized(userInput, cardNumber) || this.promo) {
 					
 					this.baseStat = baseStatIdolized(userInput, card);
 					
@@ -87,7 +86,7 @@ public class Card {
 					
 				}
 				
-				// Else card 1 is not idolized
+				// Else card is not idolized
 				else {
 					
 					this.baseStat = baseStatNotIdolized(userInput, card);
@@ -97,73 +96,86 @@ public class Card {
 					this.bondPoints = bondPoints() / 2;
 					
 				}
-				
-			}
-			
-			// For card 2
-			else {
-				
-				// If card 2 is idolized
-				if (userInput.getCard2Idolized() || this.promo) {
-					
-					this.baseStat = baseStatIdolized(userInput, card);
-					
-					this.offStat = offStatIdolized(userInput, card);
-					
-					this.bondPoints = bondPoints();
-					
-				}
-				
-				// Else card 2 is not idolized
-				else {
-					
-					this.baseStat = baseStatNotIdolized(userInput, card);
-					
-					this.offStat = offStatNotIdolized(userInput, card);
-					
-					this.bondPoints = bondPoints() / 2;
-				}
-				
-			}
+
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+        
+        private boolean isIdolized(UserInput userInput, int cardNumber) {
+            
+            if (cardNumber == 1) {
+                return userInput.isCard1Idolized();
+            }
+            
+            else if (cardNumber == 2) {
+                return userInput.isCard2Idolized();
+            }
+            
+            else if (cardNumber == 3) {
+                return userInput.isCard3Idolized();
+            }
+            
+            else if (cardNumber == 4) {
+                return userInput.isCard4Idolized();
+            }        
+            
+            else if (cardNumber == 5) {
+                return userInput.isCard5Idolized();
+            }
+            
+            else if (cardNumber == 6) {
+                return userInput.isCard6Idolized();
+            }
+            
+            else if (cardNumber == 7) {
+                return userInput.isCard7Idolized();
+            }
+            
+            else if (cardNumber == 8) {
+                return userInput.isCard8Idolized();
+            }
+            
+            else  {
+                return userInput.isCard9Idolized();
+            }
+            
+        }
 
 	private void SkillDetails(JSONObject card) throws JSONException {
 		if (!"N".equals(this.rarity)) {
-			this.skillDetails = card.getString("skill_details");
+                    this.setSkillDetails(card.getString("skill_details"));
 			
-			if (this.skillDetails.contains("score")) {
-				this.skillType = "Score";
+			if (this.getSkillDetails().contains("score")) {
+                            this.setSkillType("Score");
 			}
 			
-			else if (this.skillDetails.contains("turning")) {
-				this.skillType = "Perfect Lock";
+			else if (this.getSkillDetails().contains("turning")) {
+                            this.setSkillType("Perfect Lock");
 			}
 			
 			else {
-				this.skillType = "Healer";
+                            this.setSkillType("Healer");
 			}
 		}
 		
 		else {
-			this.skillType = "";
+                    this.setSkillType("");
 		}
 	}
 
 	private void idolObject(JSONObject card) throws JSONException {
 		
 		JSONObject idol = card.getJSONObject("idol");
-		this.name = idol.getString("name");
-		this.year = idol.getString("year");
+                this.setName(idol.getString("name"));
+                this.setYear(idol.getString("year"));
 		
 		if (!"N".equals(this.rarity)) {
 			
-		this.mainUnit = idol.getString("main_unit");
-		this.subUnit = idol.getString("sub_unit");
+                    this.setMainUnit(idol.getString("main_unit"));
+                    this.setSubUnit(idol.getString("sub_unit"));
 		
 		}
 	}
@@ -171,17 +183,17 @@ public class Card {
 	private int baseStatIdolized(UserInput userInput, JSONObject obj) throws JSONException {
 		// GET base stat
 		if ("Smile".equals(userInput.getAttribute())) {
-			this.baseStatType = "Smile";
+                    this.setBaseStatType("Smile");
 			return obj.getInt("idolized_maximum_statistics_smile");
 		}
 		
 		else if ("Pure".equals(userInput.getAttribute())) {
-			this.baseStatType = "Pure";
+                    this.setBaseStatType("Pure");
 			return obj.getInt("idolized_maximum_statistics_pure");
 		}
 		
 		else if ("Cool".equals(userInput.getAttribute())) {
-			this.baseStatType = "Cool";
+                    this.setBaseStatType("Cool");
 			return obj.getInt("idolized_maximum_statistics_cool");
 		}
 		
@@ -193,17 +205,17 @@ public class Card {
 	private int baseStatNotIdolized(UserInput userInput, JSONObject obj) throws JSONException {
 		// GET not idolized base stats
 		if ("Smile".equals(userInput.getAttribute())) {
-			this.baseStatType = "Smile";
+                    this.setBaseStatType("Smile");
 			return obj.getInt("non_idolized_maximum_statistics_smile");
 		}
 		
 		else if ("Pure".equals(userInput.getAttribute())) {
-			this.baseStatType = "Pure";
+                    this.setBaseStatType("Pure");
 			return obj.getInt("non_idolized_maximum_statistics_pure");
 		}
 		
 		else if ("Cool".equals(userInput.getAttribute())) {
-			this.baseStatType = "Cool";
+                    this.setBaseStatType("Cool");
 			return obj.getInt("non_idolized_maximum_statistics_cool");
 		}
 		
@@ -229,7 +241,7 @@ public class Card {
 			
 			else {
 				// Set Off Stat to equal Base Stat
-				return this.baseStat;
+				return this.getBaseStat();
 				
 			}
 			
@@ -251,7 +263,7 @@ public class Card {
 			
 			else {
 				// Set Off Stat to equal Base Stat
-				return this.baseStat;
+				return this.getBaseStat();
 				
 			}
 			
@@ -273,7 +285,7 @@ public class Card {
 			
 			else {
 				// Set Off Stat to equal Base Stat
-				return this.baseStat;
+				return this.getBaseStat();
 				
 			}
 			
@@ -281,7 +293,7 @@ public class Card {
 		
 		else {
 			// Set Off Stat to equal Base Stat
-			return this.baseStat;
+			return this.getBaseStat();
 			
 		}
 	}
@@ -303,7 +315,7 @@ public class Card {
 			
 			else {
 				// Set Off Stat to equal Base Stat
-				return this.baseStat;
+				return this.getBaseStat();
 				
 			}
 			
@@ -325,7 +337,7 @@ public class Card {
 			
 			else {
 				// Set Off Stat to equal Base Stat
-				return this.baseStat;
+				return this.getBaseStat();
 				
 			}
 			
@@ -347,7 +359,7 @@ public class Card {
 			
 			else {
 				// Set Off Stat to equal Base Stat
-				return this.baseStat;
+				return this.getBaseStat();
 				
 			}
 			
@@ -355,38 +367,38 @@ public class Card {
 		
 		else {
 			// Set Off Stat to equal Base Stat
-			return this.baseStat;
+			return this.getBaseStat();
 			
 		}
 	}
 
 	private int bondPoints() {
 		// GET bond points
-		if ("N".equals(this.rarity)) {
+		if ("N".equals(this.getRarity())) {
 			
 			return 50;
 			
 		}
 		
-		else if ("R".equals(this.rarity)) {
+		else if ("R".equals(this.getRarity())) {
 			
 			return 200;
 			
 		}
 		
-		else if ("SR".equals(this.rarity)) {
+		else if ("SR".equals(this.getRarity())) {
 			
 			return 500;
 			
 		}
 		
-		else if ("SSR".equals(this.rarity)) {
+		else if ("SSR".equals(this.getRarity())) {
 			
 			return 750;
 			
 		}
 		
-		else if ("UR".equals(this.rarity)) {
+		else if ("UR".equals(this.getRarity())) {
 			
 			return 1000;
 			
@@ -405,7 +417,7 @@ public class Card {
 	}
 	
 	public boolean getSpecial() {
-		return special;
+		return isSpecial();
 	}
 	
 	public String getName() {
@@ -437,7 +449,7 @@ public class Card {
 	}
 	
 	public boolean getPromo() {
-		return promo;
+		return isPromo();
 	}
 	
 	public String getCollection() {
@@ -467,5 +479,152 @@ public class Card {
 	public String getSkillDetails() {
 		return skillDetails;
 	}
+
+    /**
+     * @param cardNumber the cardNumber to set
+     */
+    public void setCardNumber(int cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    /**
+     * @return the special
+     */
+    public boolean isSpecial() {
+        return special;
+    }
+
+    /**
+     * @param special the special to set
+     */
+    public void setSpecial(boolean special) {
+        this.special = special;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @param year the year to set
+     */
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    /**
+     * @param mainUnit the mainUnit to set
+     */
+    public void setMainUnit(String mainUnit) {
+        this.mainUnit = mainUnit;
+    }
+
+    /**
+     * @param subUnit the subUnit to set
+     */
+    public void setSubUnit(String subUnit) {
+        this.subUnit = subUnit;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @param cardAttribute the cardAttribute to set
+     */
+    public void setCardAttribute(String cardAttribute) {
+        this.cardAttribute = cardAttribute;
+    }
+
+    /**
+     * @param rarity the rarity to set
+     */
+    public void setRarity(String rarity) {
+        this.rarity = rarity;
+    }
+
+    /**
+     * @return the promo
+     */
+    public boolean isPromo() {
+        return promo;
+    }
+
+    /**
+     * @param promo the promo to set
+     */
+    public void setPromo(boolean promo) {
+        this.promo = promo;
+    }
+
+    /**
+     * @param collection the collection to set
+     */
+    public void setCollection(String collection) {
+        this.collection = collection;
+    }
+
+    /**
+     * @param baseStatType the baseStatType to set
+     */
+    public void setBaseStatType(String baseStatType) {
+        this.baseStatType = baseStatType;
+    }
+
+    /**
+     * @param baseStat the baseStat to set
+     */
+    public void setBaseStat(int baseStat) {
+        this.baseStat = baseStat;
+    }
+
+    /**
+     * @param offStat the offStat to set
+     */
+    public void setOffStat(int offStat) {
+        this.offStat = offStat;
+    }
+
+    /**
+     * @param bondPoints the bondPoints to set
+     */
+    public void setBondPoints(int bondPoints) {
+        this.bondPoints = bondPoints;
+    }
+
+    /**
+     * @param skillType the skillType to set
+     */
+    public void setSkillType(String skillType) {
+        this.skillType = skillType;
+    }
+
+    /**
+     * @param skillDetails the skillDetails to set
+     */
+    public void setSkillDetails(String skillDetails) {
+        this.skillDetails = skillDetails;
+    }
+
+    /**
+     * @return the skillLevelTable
+     */
+    public int[][] getSkillLevelTable() {
+        return skillLevelTable;
+    }
+
+    /**
+     * @param skillLevelTable the skillLevelTable to set
+     */
+    public void setSkillLevelTable(int[][] skillLevelTable) {
+        this.skillLevelTable = skillLevelTable;
+    }
     
 }

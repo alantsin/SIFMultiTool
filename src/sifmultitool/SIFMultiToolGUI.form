@@ -32,7 +32,7 @@
     </Property>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-75,0,0,2,-48"/>
+    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,31,0,0,2,-48"/>
     <SyntheticProperty name="formPosition" type="java.awt.Point" value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,97,119,116,46,80,111,105,110,116,-74,-60,-118,114,52,126,-56,38,2,0,2,73,0,1,120,73,0,1,121,120,112,0,0,0,0,0,0,0,0"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="0"/>
     <SyntheticProperty name="generatePosition" type="boolean" value="true"/>
@@ -55,82 +55,186 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabelCardID1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jSpinnerCardID1" min="-2" pref="59" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jCheckBoxIdolized1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                      <Component id="jLabelCardID" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="jLabelCardSkill" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabelCardID2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jSpinnerCardID2" min="-2" pref="59" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jCheckBoxIdolized2" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabelCardID3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jSpinnerCardID3" min="-2" pref="59" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jCheckBoxIdolized3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabelCardID4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jSpinnerCardID4" min="-2" pref="59" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jCheckBoxIdolized4" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabelCardID5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jSpinnerCardID5" min="-2" pref="59" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jCheckBoxIdolized5" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabelCardID6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jSpinnerCardID6" min="-2" pref="59" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jCheckBoxIdolized6" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabelCardID7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jSpinnerCardID7" min="-2" pref="59" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jCheckBoxIdolized7" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabelCardID8" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jSpinnerCardID8" min="-2" pref="59" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jCheckBoxIdolized8" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabelCardID9" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelStep1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jSpinnerCardID9" min="-2" pref="59" max="-2" attributes="0"/>
+                              <Component id="jLabelStep1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jCheckBoxIdolized9" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jButtonGetCardData" max="32767" attributes="0"/>
+                                  <Component id="jLabelSuccess" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="jButtonGetCardData" max="32767" attributes="0"/>
-                          <Component id="jLabelSuccess" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabelCard1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jSpinnerCardID1" min="-2" pref="59" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jCheckBoxIdolized1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabelCard2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jSpinnerCardID2" min="-2" pref="59" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jCheckBoxIdolized2" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabelCard3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jSpinnerCardID3" min="-2" pref="59" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jCheckBoxIdolized3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabelCard4" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jSpinnerCardID4" min="-2" pref="59" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jCheckBoxIdolized4" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabelCard5" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jSpinnerCardID5" min="-2" pref="59" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jCheckBoxIdolized5" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabelCard6" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jSpinnerCardID6" min="-2" pref="59" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jCheckBoxIdolized6" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabelCard7" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jSpinnerCardID7" min="-2" pref="59" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jCheckBoxIdolized7" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabelCard8" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jSpinnerCardID8" min="-2" pref="59" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jCheckBoxIdolized8" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabelCard9" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jSpinnerCardID9" min="-2" pref="59" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jCheckBoxIdolized9" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jSpinnerCardSkill9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jSpinnerCardSkill8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jSpinnerCardSkill7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jSpinnerCardSkill6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jSpinnerCardSkill5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jSpinnerCardSkill4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jSpinnerCardSkill3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jSpinnerCardSkill2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jSpinnerCardSkill1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="510" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabelSIS" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxSIS4" min="-2" pref="106" max="-2" attributes="0"/>
+                  <Component id="jComboBoxSIS7" min="-2" pref="106" max="-2" attributes="0"/>
+                  <Component id="jComboBoxSIS8" min="-2" pref="106" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jComboBoxSIS9" min="-2" pref="106" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jRadioButtonAverage" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jRadioButtonAbsolute" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jComboBoxSIS5" min="-2" pref="106" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabelCenterSkill" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jComboBoxSIS6" min="-2" pref="106" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabelStep2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelSubSkill" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jComboBoxCenterSkill" max="32767" attributes="0"/>
+                                  <Component id="jComboBoxSubSkill" max="32767" attributes="0"/>
+                                  <Component id="jButtonCalculate" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jComboBoxSIS3" min="-2" pref="106" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabelPerfect" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jSpinner1" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jComboBoxSIS1" min="-2" pref="106" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jLabelAttribute" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxAttribute" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jComboBoxSIS2" min="-2" pref="106" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jLabelNoteCount" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jSpinnerNoteCount" min="-2" pref="59" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="41" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabelTime" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelSongType" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jComboBoxSongType" max="32767" attributes="0"/>
+                          <Component id="jSpinnerTime" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="54" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -139,114 +243,156 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelCardID1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelCardID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelCardSkill" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelSIS" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabelCard1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jSpinnerCardID1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jCheckBoxIdolized1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinnerCardSkill1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxSIS1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelAttribute" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxAttribute" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelSongType" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxSongType" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelCardID2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelCard2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jSpinnerCardID2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jCheckBoxIdolized2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinnerCardSkill2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxSIS2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelNoteCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinnerNoteCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinnerTime" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelCardID3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelCard3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jSpinnerCardID3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jCheckBoxIdolized3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinnerCardSkill3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxSIS3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelPerfect" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelCardID4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelCard4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jSpinnerCardID4" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jCheckBoxIdolized4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinnerCardSkill4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxSIS4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelCardID5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelCard5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jSpinnerCardID5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jCheckBoxIdolized5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinnerCardSkill5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxSIS5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelCenterSkill" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxCenterSkill" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelCardID6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelCard6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jSpinnerCardID6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jCheckBoxIdolized6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinnerCardSkill6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxSIS6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelSubSkill" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxSubSkill" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelCardID7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelCard7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jSpinnerCardID7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jCheckBoxIdolized7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinnerCardSkill7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxSIS7" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelCardID8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelCard8" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jSpinnerCardID8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jCheckBoxIdolized8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinnerCardSkill8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxSIS8" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelCardID9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelCard9" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jSpinnerCardID9" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jCheckBoxIdolized9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinnerCardSkill9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxSIS9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jRadioButtonAverage" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jRadioButtonAbsolute" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonGetCardData" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelStep1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelStep2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonCalculate" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabelSuccess" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="92" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabelCardID1">
+    <Component class="javax.swing.JLabel" name="jLabelCard1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Card 1 ID"/>
+        <Property name="text" type="java.lang.String" value="Card 1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelCardID2">
+    <Component class="javax.swing.JLabel" name="jLabelCard2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Card 2 ID"/>
+        <Property name="text" type="java.lang.String" value="Card 2"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelCardID3">
+    <Component class="javax.swing.JLabel" name="jLabelCard3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Card 3 ID"/>
+        <Property name="text" type="java.lang.String" value="Card 3"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelCardID4">
+    <Component class="javax.swing.JLabel" name="jLabelCard4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Card 4 ID"/>
+        <Property name="text" type="java.lang.String" value="Card 4"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelCardID5">
+    <Component class="javax.swing.JLabel" name="jLabelCard5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Card 5 ID"/>
+        <Property name="text" type="java.lang.String" value="Card 5"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelCardID6">
+    <Component class="javax.swing.JLabel" name="jLabelCard6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Card 6 ID"/>
+        <Property name="text" type="java.lang.String" value="Card 6"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelCardID7">
+    <Component class="javax.swing.JLabel" name="jLabelCard7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Card 7 ID"/>
+        <Property name="text" type="java.lang.String" value="Card 7"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelCardID8">
+    <Component class="javax.swing.JLabel" name="jLabelCard8">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Card 8 ID"/>
+        <Property name="text" type="java.lang.String" value="Card 8"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelCardID9">
+    <Component class="javax.swing.JLabel" name="jLabelCard9">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Card 9 ID"/>
+        <Property name="text" type="java.lang.String" value="Card 9"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
@@ -441,6 +587,423 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jLabelSuccess.setVisible(false);"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelCardSkill">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Skill Level"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jLabelCardSkill.setVisible(false);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinnerCardSkill1">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="1" type="code"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinnerCardSkill1StateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jSpinnerCardSkill1.setVisible(false);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinnerCardSkill2">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="1" type="code"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinnerCardSkill2StateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jSpinnerCardSkill2.setVisible(false);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinnerCardSkill3">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="1" type="code"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinnerCardSkill3StateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jSpinnerCardSkill3.setVisible(false);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinnerCardSkill4">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="1" type="code"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinnerCardSkill4StateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jSpinnerCardSkill4.setVisible(false);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinnerCardSkill5">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="1" type="code"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinnerCardSkill5StateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jSpinnerCardSkill5.setVisible(false);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinnerCardSkill6">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="1" type="code"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinnerCardSkill6StateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jSpinnerCardSkill6.setVisible(false);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinnerCardSkill7">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="1" type="code"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinnerCardSkill7StateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jSpinnerCardSkill7.setVisible(false);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinnerCardSkill8">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="1" type="code"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinnerCardSkill8StateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jSpinnerCardSkill8.setVisible(false);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinnerCardSkill9">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="1" type="code"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinnerCardSkill9StateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jSpinnerCardSkill9.setVisible(false);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelSIS">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="SIS Configuration"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jLabelSIS.setVisible(false);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelCardID">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Card ID"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxSIS1">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Kiss"/>
+            <StringItem index="1" value="Perfume"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxSIS2">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Kiss"/>
+            <StringItem index="1" value="Perfume"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxSIS3">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Kiss"/>
+            <StringItem index="1" value="Perfume"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxSIS4">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Kiss"/>
+            <StringItem index="1" value="Perfume"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxSIS5">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Kiss"/>
+            <StringItem index="1" value="Perfume"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxSIS6">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Kiss"/>
+            <StringItem index="1" value="Perfume"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxSIS7">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Kiss"/>
+            <StringItem index="1" value="Perfume"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxSIS8">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Kiss"/>
+            <StringItem index="1" value="Perfume"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxSIS9">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Kiss"/>
+            <StringItem index="1" value="Perfume"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelCenterSkill">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Center Skill"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxCenterSkill">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="19">
+            <StringItem index="0" value="0% None"/>
+            <StringItem index="1" value="3% Smile"/>
+            <StringItem index="2" value="3% Pure"/>
+            <StringItem index="3" value="3% Cool"/>
+            <StringItem index="4" value="6% Smile"/>
+            <StringItem index="5" value="6% Pure"/>
+            <StringItem index="6" value="6% Cool"/>
+            <StringItem index="7" value="7% Smile"/>
+            <StringItem index="8" value="7% Pure"/>
+            <StringItem index="9" value="7% Cool"/>
+            <StringItem index="10" value="9% Smile"/>
+            <StringItem index="11" value="9% Pure"/>
+            <StringItem index="12" value="9% Cool"/>
+            <StringItem index="13" value="12% Smile Based on Pure"/>
+            <StringItem index="14" value="12% Smile Based on Cool"/>
+            <StringItem index="15" value="12% Pure Based on Smile"/>
+            <StringItem index="16" value="12% Pure Based on Cool"/>
+            <StringItem index="17" value="12% Cool Based on Smile"/>
+            <StringItem index="18" value="12% Cool Based on Pure"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelAttribute">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Attribute"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxAttribute">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="Smile"/>
+            <StringItem index="1" value="Pure"/>
+            <StringItem index="2" value="Cool"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelSubSkill">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sub Skill"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxSubSkill">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelSongType">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Song Type"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxSongType">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="&#x3bc;&apos;s"/>
+            <StringItem index="1" value="Aqours"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelNoteCount">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Note Count"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinnerNoteCount">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="50" type="code"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelTime">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Time (s)"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinnerTime">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="120" type="code"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelPerfect">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Perfect %"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinner1">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="75" type="code"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelStep2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Step 2:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonCalculate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Calculate"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRadioButtonAverage">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="Average"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRadioButtonAbsolute">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Absolute"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
