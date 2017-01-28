@@ -19,6 +19,9 @@ import org.json.JSONObject;
  */
 public class SIFMultiToolGUI extends javax.swing.JFrame {
     
+    int[] specialCards = { 83, 146, 147, 148, 379, 380, 381, 382, 383, 384, 385, 386, 
+                           387, 388, 389, 390, 629, 1022, 1048, 1070, 1083};
+    
     Card card1;
     Card card2;
     Card card3;
@@ -58,6 +61,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
 
         jFrame1 = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
+        buttonGroupCalculate = new javax.swing.ButtonGroup();
         jLabelCard1 = new javax.swing.JLabel();
         jLabelCard2 = new javax.swing.JLabel();
         jLabelCard3 = new javax.swing.JLabel();
@@ -127,6 +131,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jRadioButtonAverage = new javax.swing.JRadioButton();
         jRadioButtonAbsolute = new javax.swing.JRadioButton();
         jComboBoxSIS5 = new javax.swing.JComboBox<>();
+        jLabelBasedOn = new javax.swing.JLabel();
+        jComboBoxBasedOn = new javax.swing.JComboBox<>();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jFrame1.setTitle("Test");
@@ -318,30 +324,35 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jLabelCardID.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelCardID.setText("Card ID");
 
-        jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+        jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
 
-        jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+        jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
         jComboBoxSIS2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxSIS2ActionPerformed(evt);
             }
         });
 
-        jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+        jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
 
-        jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+        jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
 
-        jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+        jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
 
-        jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+        jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
 
-        jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+        jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
 
-        jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume" }));
+        jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
 
         jLabelCenterSkill.setText("Center Skill");
 
-        jComboBoxCenterSkill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0% None", "3% Smile", "3% Pure", "3% Cool", "6% Smile", "6% Pure", "6% Cool", "7% Smile", "7% Pure", "7% Cool", "9% Smile", "9% Pure", "9% Cool", "12% Smile Based on Pure", "12% Smile Based on Cool", "12% Pure Based on Smile", "12% Pure Based on Cool", "12% Cool Based on Smile", "12% Cool Based on Pure" }));
+        jComboBoxCenterSkill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0%", "3%", "6%", "7%", "9%", "12%" }));
+        jComboBoxCenterSkill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCenterSkillActionPerformed(evt);
+            }
+        });
 
         jLabelAttribute.setText("Attribute");
 
@@ -354,7 +365,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
 
         jLabelSubSkill.setText("Sub Skill");
 
-        jComboBoxSubSkill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSubSkill.setMaximumRowCount(20);
+        jComboBoxSubSkill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3% μ's", "3% Aqours", "6% First-Year", "6% Second-Year", "6% Third-Year", "6% CYaRon!", "6% AZALEA", "6% Guilty Kiss" }));
 
         jLabelSongType.setText("Song Type");
 
@@ -377,13 +389,24 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
 
         jButtonCalculate.setText("Calculate");
 
+        buttonGroupCalculate.add(jRadioButtonAverage);
         jRadioButtonAverage.setSelected(true);
         jRadioButtonAverage.setText("Average");
         jRadioButtonAverage.setToolTipText("");
 
+        buttonGroupCalculate.add(jRadioButtonAbsolute);
         jRadioButtonAbsolute.setText("Absolute");
 
-        jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kiss", "Perfume", "Kiss + Perfume" }));
+        jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
+
+        jLabelBasedOn.setText("Based On");
+
+        jComboBoxBasedOn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Smile", "Pure", "Cool" }));
+        jComboBoxBasedOn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxBasedOnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -404,7 +427,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButtonGetCardData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabelSuccess, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabelSuccess, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -477,7 +501,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     .addComponent(jLabelSIS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jComboBoxSIS5, javax.swing.GroupLayout.Alignment.LEADING, 0, 100, Short.MAX_VALUE)
+                            .addComponent(jComboBoxSIS5, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBoxSIS4, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBoxSIS3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBoxSIS2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -485,47 +509,57 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             .addComponent(jComboBoxSIS6, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBoxSIS7, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBoxSIS8, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxSIS9, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jComboBoxSIS9, javax.swing.GroupLayout.Alignment.LEADING, 0, 100, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButtonAverage)
-                                    .addComponent(jLabelStep2))
+                                .addComponent(jRadioButtonAverage)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonCalculate)
-                                    .addComponent(jRadioButtonAbsolute)))
+                                .addComponent(jRadioButtonAbsolute))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelSubSkill)
-                                .addGap(25, 25, 25)
-                                .addComponent(jComboBoxSubSkill, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelPerfect)
-                                    .addComponent(jLabelNoteCount)
-                                    .addComponent(jLabelAttribute))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jSpinnerNoteCount, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                                        .addComponent(jSpinnerPerfect))
-                                    .addComponent(jComboBoxAttribute, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(36, 36, 36)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelSongType)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabelNoteCount)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBoxSongType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jSpinnerNoteCount))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabelAttribute)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jComboBoxAttribute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelTime)
-                                        .addGap(17, 17, 17)
-                                        .addComponent(jSpinnerTime, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelCenterSkill)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabelTime))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelSongType)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxCenterSkill, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 36, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxSongType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerTime, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabelPerfect)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jSpinnerPerfect, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabelCenterSkill)
+                                        .addComponent(jLabelSubSkill))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jComboBoxSubSkill, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jComboBoxCenterSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jLabelBasedOn)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jComboBoxBasedOn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelStep2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonCalculate)))
+                        .addGap(210, 210, 210)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -582,7 +616,9 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     .addComponent(jSpinnerCardSkill5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxSIS5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelCenterSkill)
-                    .addComponent(jComboBoxCenterSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxCenterSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelBasedOn)
+                    .addComponent(jComboBoxBasedOn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCard6)
@@ -614,16 +650,16 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     .addComponent(jSpinnerCardID9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBoxIdolized9)
                     .addComponent(jSpinnerCardSkill9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxSIS9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelStep2)
-                    .addComponent(jButtonCalculate))
+                    .addComponent(jComboBoxSIS9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGetCardData)
-                    .addComponent(jLabelStep1))
+                    .addComponent(jLabelStep1)
+                    .addComponent(jLabelStep2)
+                    .addComponent(jButtonCalculate))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelSuccess)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabelSuccess.setVisible(false);
@@ -665,8 +701,10 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jRadioButtonAverage.setVisible(false);
         jRadioButtonAbsolute.setVisible(false);
         jComboBoxSIS5.setVisible(false);
+        jLabelBasedOn.setVisible(false);
+        jComboBoxBasedOn.setVisible(false);
 
-        setBounds(0, 0, 748, 543);
+        setBounds(0, 0, 678, 462);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGetCardDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetCardDataActionPerformed
@@ -709,7 +747,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             addSkillTables();
             
             addSIS();
-            
+           
             addCenterSkill();
             
             addTheRest();
@@ -721,11 +759,1252 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             e.printStackTrace();
 	}
         
-         jLabelSuccess.setText("Success!");
+         jLabelSuccess.setText("Data successfully obtained!");
          jLabelSuccess.setVisible(true);
         
     }//GEN-LAST:event_jButtonGetCardDataActionPerformed
 
+    private void generateSIS(int cardNo) {
+        
+        boolean idolized;
+        
+        if (cardNo == 1) {
+            
+            idolized = jCheckBoxIdolized1.isSelected();
+            
+            if (card1.getRarity().equals("N")) {
+                    jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS1.setSelectedItem("None");
+            }
+            
+            else if (card1.getRarity().equals("R")) {
+                
+                if (card1.isSpecial()) {
+                    jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS1.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS1.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS1.setSelectedItem("None");
+                }
+            }
+            
+            else if (card1.getRarity().equals("SR")) {
+                
+                if (card1.isSpecial()) {
+                    jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS1.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS1.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS1.setSelectedItem("None");
+                }
+            }
+            
+            else if (card1.getRarity().equals("SSR")) {
+                
+                if (card1.isSpecial()) {
+                    jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS1.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
+                    jComboBoxSIS1.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Ki+Pe", "Ki+Ri" }));
+                    jComboBoxSIS1.setSelectedItem("None");
+                }
+            }
+            
+            else if (card1.getRarity().equals("UR")) {
+                
+                if (card1.isSpecial()) {
+                    jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS1.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr",
+                                                                                                 "Au+Ch", "Au+He", "Au+Tr", "Au+Ve", "Cr+Ch", "Cr+He", "Cr+Tr", "Cr+Ve",
+                                                                                                 "Ki+Pe+Ch", "Ki+Pe+He", "Ki+Pe+Tr", "Ki+Pe+Ve", "Ki+Ri+Ch", "Ki+Ri+He", "Ki+Ri+Tr", "Ki+Ri+Ve", 
+                                                                                                 "Ch+Tr", "Ch+Ve", "He+Tr", "He+Ve", "Tr+Ve", 
+                                                                                                 "Ki+Au+Ch", "Ki+Au+He", "Ki+Au+Tr", "Ki+Au+Ve", "Ki+Cr+Ch", "Ki+Cr+He", "Ki+Cr+Tr", "Ki+Cr+Ve",
+                                                                                                 "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
+                                                                                                 "Pe+Au+Cr", "Ri+Au+Cr",
+                                                                                                 "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
+                    jComboBoxSIS1.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS1.setSelectedItem("None");
+                }
+            }
+            
+        }
+        
+        else if (cardNo == 2) {
+            idolized = jCheckBoxIdolized2.isSelected();
+            
+            if (card2.getRarity().equals("N")) {
+                    jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS2.setSelectedItem("None");
+            }
+            
+            else if (card2.getRarity().equals("R")) {
+                
+                if (card2.isSpecial()) {
+                    jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS2.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS2.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS2.setSelectedItem("None");
+                }
+            }
+            
+            else if (card2.getRarity().equals("SR")) {
+                
+                if (card2.isSpecial()) {
+                    jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS2.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS2.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS2.setSelectedItem("None");
+                }
+            }
+            
+            else if (card2.getRarity().equals("SSR")) {
+                
+                if (card2.isSpecial()) {
+                    jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS2.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
+                    jComboBoxSIS2.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Ki+Pe", "Ki+Ri" }));
+                    jComboBoxSIS2.setSelectedItem("None");
+                }
+            }
+            
+            else if (card2.getRarity().equals("UR")) {
+                
+                if (card2.isSpecial()) {
+                    jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS2.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr",
+                                                                                                 "Au+Ch", "Au+He", "Au+Tr", "Au+Ve", "Cr+Ch", "Cr+He", "Cr+Tr", "Cr+Ve",
+                                                                                                 "Ki+Pe+Ch", "Ki+Pe+He", "Ki+Pe+Tr", "Ki+Pe+Ve", "Ki+Ri+Ch", "Ki+Ri+He", "Ki+Ri+Tr", "Ki+Ri+Ve", 
+                                                                                                 "Ch+Tr", "Ch+Ve", "He+Tr", "He+Ve", "Tr+Ve", 
+                                                                                                 "Ki+Au+Ch", "Ki+Au+He", "Ki+Au+Tr", "Ki+Au+Ve", "Ki+Cr+Ch", "Ki+Cr+He", "Ki+Cr+Tr", "Ki+Cr+Ve",
+                                                                                                 "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
+                                                                                                 "Pe+Au+Cr", "Ri+Au+Cr",
+                                                                                                 "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
+                    jComboBoxSIS2.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS2.setSelectedItem("None");
+                }
+            }
+        }
+        
+        else if (cardNo == 3) {
+            idolized = jCheckBoxIdolized3.isSelected();
+            
+            if (card3.getRarity().equals("N")) {
+                    jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS3.setSelectedItem("None");
+            }
+            
+            else if (card3.getRarity().equals("R")) {
+                
+                if (card3.isSpecial()) {
+                    jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS3.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS3.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS3.setSelectedItem("None");
+                }
+            }
+            
+            else if (card3.getRarity().equals("SR")) {
+                
+                if (card3.isSpecial()) {
+                    jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS3.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS3.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS3.setSelectedItem("None");
+                }
+            }
+            
+            else if (card3.getRarity().equals("SSR")) {
+                
+                if (card3.isSpecial()) {
+                    jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS3.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
+                    jComboBoxSIS3.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Ki+Pe", "Ki+Ri" }));
+                    jComboBoxSIS3.setSelectedItem("None");
+                }
+            }
+            
+            else if (card3.getRarity().equals("UR")) {
+                
+                if (card3.isSpecial()) {
+                    jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS3.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr",
+                                                                                                 "Au+Ch", "Au+He", "Au+Tr", "Au+Ve", "Cr+Ch", "Cr+He", "Cr+Tr", "Cr+Ve",
+                                                                                                 "Ki+Pe+Ch", "Ki+Pe+He", "Ki+Pe+Tr", "Ki+Pe+Ve", "Ki+Ri+Ch", "Ki+Ri+He", "Ki+Ri+Tr", "Ki+Ri+Ve", 
+                                                                                                 "Ch+Tr", "Ch+Ve", "He+Tr", "He+Ve", "Tr+Ve", 
+                                                                                                 "Ki+Au+Ch", "Ki+Au+He", "Ki+Au+Tr", "Ki+Au+Ve", "Ki+Cr+Ch", "Ki+Cr+He", "Ki+Cr+Tr", "Ki+Cr+Ve",
+                                                                                                 "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
+                                                                                                 "Pe+Au+Cr", "Ri+Au+Cr",
+                                                                                                 "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
+                    jComboBoxSIS3.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS3.setSelectedItem("None");
+                }
+            }
+        }
+        
+        else if (cardNo == 4) {
+            idolized = jCheckBoxIdolized4.isSelected();
+            
+            if (card4.getRarity().equals("N")) {
+                    jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS4.setSelectedItem("None");
+            }
+            
+            else if (card4.getRarity().equals("R")) {
+                
+                if (card4.isSpecial()) {
+                    jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS4.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS4.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS4.setSelectedItem("None");
+                }
+            }
+            
+            else if (card4.getRarity().equals("SR")) {
+                
+                if (card4.isSpecial()) {
+                    jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS4.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS4.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS4.setSelectedItem("None");
+                }
+            }
+            
+            else if (card4.getRarity().equals("SSR")) {
+                
+                if (card4.isSpecial()) {
+                    jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS4.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
+                    jComboBoxSIS4.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Ki+Pe", "Ki+Ri" }));
+                    jComboBoxSIS4.setSelectedItem("None");
+                }
+            }
+            
+            else if (card4.getRarity().equals("UR")) {
+                
+                if (card4.isSpecial()) {
+                    jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS4.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr",
+                                                                                                 "Au+Ch", "Au+He", "Au+Tr", "Au+Ve", "Cr+Ch", "Cr+He", "Cr+Tr", "Cr+Ve",
+                                                                                                 "Ki+Pe+Ch", "Ki+Pe+He", "Ki+Pe+Tr", "Ki+Pe+Ve", "Ki+Ri+Ch", "Ki+Ri+He", "Ki+Ri+Tr", "Ki+Ri+Ve", 
+                                                                                                 "Ch+Tr", "Ch+Ve", "He+Tr", "He+Ve", "Tr+Ve", 
+                                                                                                 "Ki+Au+Ch", "Ki+Au+He", "Ki+Au+Tr", "Ki+Au+Ve", "Ki+Cr+Ch", "Ki+Cr+He", "Ki+Cr+Tr", "Ki+Cr+Ve",
+                                                                                                 "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
+                                                                                                 "Pe+Au+Cr", "Ri+Au+Cr",
+                                                                                                 "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
+                    jComboBoxSIS4.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS4.setSelectedItem("None");
+                }
+            }
+        }
+        
+        else if (cardNo == 5) {
+            idolized = jCheckBoxIdolized5.isSelected();
+            
+            if (card5.getRarity().equals("N")) {
+                    jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS5.setSelectedItem("None");
+            }
+            
+            else if (card5.getRarity().equals("R")) {
+                
+                if (card5.isSpecial()) {
+                    jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS5.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS5.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS5.setSelectedItem("None");
+                }
+            }
+            
+            else if (card5.getRarity().equals("SR")) {
+                
+                if (card5.isSpecial()) {
+                    jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS5.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS5.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS5.setSelectedItem("None");
+                }
+            }
+            
+            else if (card5.getRarity().equals("SSR")) {
+                
+                if (card5.isSpecial()) {
+                    jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS5.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
+                    jComboBoxSIS5.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Ki+Pe", "Ki+Ri" }));
+                    jComboBoxSIS5.setSelectedItem("None");
+                }
+            }
+            
+            else if (card5.getRarity().equals("UR")) {
+                
+                if (card5.isSpecial()) {
+                    jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS5.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr",
+                                                                                                 "Au+Ch", "Au+He", "Au+Tr", "Au+Ve", "Cr+Ch", "Cr+He", "Cr+Tr", "Cr+Ve",
+                                                                                                 "Ki+Pe+Ch", "Ki+Pe+He", "Ki+Pe+Tr", "Ki+Pe+Ve", "Ki+Ri+Ch", "Ki+Ri+He", "Ki+Ri+Tr", "Ki+Ri+Ve", 
+                                                                                                 "Ch+Tr", "Ch+Ve", "He+Tr", "He+Ve", "Tr+Ve", 
+                                                                                                 "Ki+Au+Ch", "Ki+Au+He", "Ki+Au+Tr", "Ki+Au+Ve", "Ki+Cr+Ch", "Ki+Cr+He", "Ki+Cr+Tr", "Ki+Cr+Ve",
+                                                                                                 "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
+                                                                                                 "Pe+Au+Cr", "Ri+Au+Cr",
+                                                                                                 "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
+                    jComboBoxSIS5.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS5.setSelectedItem("None");
+                }
+            }
+        }
+        
+        else if (cardNo == 6) {
+            idolized = jCheckBoxIdolized6.isSelected();
+            
+            if (card6.getRarity().equals("N")) {
+                    jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS6.setSelectedItem("None");
+            }
+            
+            else if (card6.getRarity().equals("R")) {
+                
+                if (card6.isSpecial()) {
+                    jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS6.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS6.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS6.setSelectedItem("None");
+                }
+            }
+            
+            else if (card6.getRarity().equals("SR")) {
+                
+                if (card6.isSpecial()) {
+                    jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS6.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS6.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS6.setSelectedItem("None");
+                }
+            }
+            
+            else if (card6.getRarity().equals("SSR")) {
+                
+                if (card6.isSpecial()) {
+                    jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS6.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
+                    jComboBoxSIS6.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Ki+Pe", "Ki+Ri" }));
+                    jComboBoxSIS6.setSelectedItem("None");
+                }
+            }
+            
+            else if (card6.getRarity().equals("UR")) {
+                
+                if (card6.isSpecial()) {
+                    jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS6.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr",
+                                                                                                 "Au+Ch", "Au+He", "Au+Tr", "Au+Ve", "Cr+Ch", "Cr+He", "Cr+Tr", "Cr+Ve",
+                                                                                                 "Ki+Pe+Ch", "Ki+Pe+He", "Ki+Pe+Tr", "Ki+Pe+Ve", "Ki+Ri+Ch", "Ki+Ri+He", "Ki+Ri+Tr", "Ki+Ri+Ve", 
+                                                                                                 "Ch+Tr", "Ch+Ve", "He+Tr", "He+Ve", "Tr+Ve", 
+                                                                                                 "Ki+Au+Ch", "Ki+Au+He", "Ki+Au+Tr", "Ki+Au+Ve", "Ki+Cr+Ch", "Ki+Cr+He", "Ki+Cr+Tr", "Ki+Cr+Ve",
+                                                                                                 "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
+                                                                                                 "Pe+Au+Cr", "Ri+Au+Cr",
+                                                                                                 "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
+                    jComboBoxSIS6.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS6.setSelectedItem("None");
+                }
+            }
+        }
+        
+        else if (cardNo == 7) {
+            idolized = jCheckBoxIdolized7.isSelected();
+
+            if (card7.getRarity().equals("N")) {
+                    jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS7.setSelectedItem("None");
+            }
+            
+            else if (card7.getRarity().equals("R")) {
+                
+                if (card7.isSpecial()) {
+                    jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS7.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS7.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS7.setSelectedItem("None");
+                }
+            }
+            
+            else if (card7.getRarity().equals("SR")) {
+                
+                if (card7.isSpecial()) {
+                    jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS7.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS7.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS7.setSelectedItem("None");
+                }
+            }
+            
+            else if (card7.getRarity().equals("SSR")) {
+                
+                if (card7.isSpecial()) {
+                    jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS7.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
+                    jComboBoxSIS7.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Ki+Pe", "Ki+Ri" }));
+                    jComboBoxSIS7.setSelectedItem("None");
+                }
+            }
+            
+            else if (card7.getRarity().equals("UR")) {
+                
+                if (card7.isSpecial()) {
+                    jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS7.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr",
+                                                                                                 "Au+Ch", "Au+He", "Au+Tr", "Au+Ve", "Cr+Ch", "Cr+He", "Cr+Tr", "Cr+Ve",
+                                                                                                 "Ki+Pe+Ch", "Ki+Pe+He", "Ki+Pe+Tr", "Ki+Pe+Ve", "Ki+Ri+Ch", "Ki+Ri+He", "Ki+Ri+Tr", "Ki+Ri+Ve", 
+                                                                                                 "Ch+Tr", "Ch+Ve", "He+Tr", "He+Ve", "Tr+Ve", 
+                                                                                                 "Ki+Au+Ch", "Ki+Au+He", "Ki+Au+Tr", "Ki+Au+Ve", "Ki+Cr+Ch", "Ki+Cr+He", "Ki+Cr+Tr", "Ki+Cr+Ve",
+                                                                                                 "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
+                                                                                                 "Pe+Au+Cr", "Ri+Au+Cr",
+                                                                                                 "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
+                    jComboBoxSIS7.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS7.setSelectedItem("None");
+                }
+            }
+        }
+        
+        else if (cardNo == 8) {
+            idolized = jCheckBoxIdolized8.isSelected();
+
+            if (card8.getRarity().equals("N")) {
+                    jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS8.setSelectedItem("None");
+            }
+            
+            else if (card8.getRarity().equals("R")) {
+                
+                if (card8.isSpecial()) {
+                    jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS8.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS8.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS8.setSelectedItem("None");
+                }
+            }
+            
+            else if (card8.getRarity().equals("SR")) {
+                
+                if (card8.isSpecial()) {
+                    jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS8.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS8.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS8.setSelectedItem("None");
+                }
+            }
+            
+            else if (card8.getRarity().equals("SSR")) {
+                
+                if (card8.isSpecial()) {
+                    jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS8.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
+                    jComboBoxSIS8.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Ki+Pe", "Ki+Ri" }));
+                    jComboBoxSIS8.setSelectedItem("None");
+                }
+            }
+            
+            else if (card8.getRarity().equals("UR")) {
+                
+                if (card8.isSpecial()) {
+                    jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS8.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr",
+                                                                                                 "Au+Ch", "Au+He", "Au+Tr", "Au+Ve", "Cr+Ch", "Cr+He", "Cr+Tr", "Cr+Ve",
+                                                                                                 "Ki+Pe+Ch", "Ki+Pe+He", "Ki+Pe+Tr", "Ki+Pe+Ve", "Ki+Ri+Ch", "Ki+Ri+He", "Ki+Ri+Tr", "Ki+Ri+Ve", 
+                                                                                                 "Ch+Tr", "Ch+Ve", "He+Tr", "He+Ve", "Tr+Ve", 
+                                                                                                 "Ki+Au+Ch", "Ki+Au+He", "Ki+Au+Tr", "Ki+Au+Ve", "Ki+Cr+Ch", "Ki+Cr+He", "Ki+Cr+Tr", "Ki+Cr+Ve",
+                                                                                                 "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
+                                                                                                 "Pe+Au+Cr", "Ri+Au+Cr",
+                                                                                                 "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
+                    jComboBoxSIS8.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS8.setSelectedItem("None");
+                }
+            }
+        }
+        
+        else {
+            idolized = jCheckBoxIdolized9.isSelected();
+            
+            if (card9.getRarity().equals("N")) {
+                    jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS9.setSelectedItem("None");
+            }
+            
+            else if (card9.getRarity().equals("R")) {
+                
+                if (card9.isSpecial()) {
+                    jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS9.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS9.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS9.setSelectedItem("None");
+                }
+            }
+            
+            else if (card9.getRarity().equals("SR")) {
+                
+                if (card9.isSpecial()) {
+                    jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS9.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS9.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS9.setSelectedItem("None");
+                }
+            }
+            
+            else if (card9.getRarity().equals("SSR")) {
+                
+                if (card9.isSpecial()) {
+                    jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss" }));
+                    jComboBoxSIS9.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
+                    jComboBoxSIS9.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Ki+Pe", "Ki+Ri" }));
+                    jComboBoxSIS9.setSelectedItem("None");
+                }
+            }
+            
+            else if (card9.getRarity().equals("UR")) {
+                
+                if (card9.isSpecial()) {
+                    jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring" }));
+                    jComboBoxSIS9.setSelectedItem("None");
+                }
+                
+                else if (idolized) {
+                    jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri", 
+                                                                                                 "Ki+Ch", "Ki+He", "Ki+Tr", "Ki+Ve", 
+                                                                                                 "Pe+Au", "Pe+Cr", "Ri+Au", "Ri+Cr",
+                                                                                                 "Ki+Pe+Ri",
+                                                                                                 "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
+                                                                                                 "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr",
+                                                                                                 "Au+Ch", "Au+He", "Au+Tr", "Au+Ve", "Cr+Ch", "Cr+He", "Cr+Tr", "Cr+Ve",
+                                                                                                 "Ki+Pe+Ch", "Ki+Pe+He", "Ki+Pe+Tr", "Ki+Pe+Ve", "Ki+Ri+Ch", "Ki+Ri+He", "Ki+Ri+Tr", "Ki+Ri+Ve", 
+                                                                                                 "Ch+Tr", "Ch+Ve", "He+Tr", "He+Ve", "Tr+Ve", 
+                                                                                                 "Ki+Au+Ch", "Ki+Au+He", "Ki+Au+Tr", "Ki+Au+Ve", "Ki+Cr+Ch", "Ki+Cr+He", "Ki+Cr+Tr", "Ki+Cr+Ve",
+                                                                                                 "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
+                                                                                                 "Pe+Au+Cr", "Ri+Au+Cr",
+                                                                                                 "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
+                    jComboBoxSIS9.setSelectedItem("None");
+                }
+                
+                else {
+                    jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
+                                                                                                 "Kiss", 
+                                                                                                 "Perfume", "Ring", 
+                                                                                                 "Aura", "Cross", 
+                                                                                                 "Charm", "Heal", "Trick", "Veil",
+                                                                                                 "Ki+Pe", "Ki+Ri",
+                                                                                                 "Ki+Au", "Ki+Cr", "Pe+Ri" }));
+                    jComboBoxSIS9.setSelectedItem("None");
+                }
+            }
+        }
+        
+    }
+    
     private void addTheRest() {
         jLabelAttribute.setVisible(true);
         jComboBoxAttribute.setVisible(true);
@@ -753,8 +2032,20 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jLabelCenterSkill.setVisible(true);
         jComboBoxCenterSkill.setVisible(true);
         
-        jLabelSubSkill.setVisible(true);
-        jComboBoxSubSkill.setVisible(true);
+        if (jComboBoxCenterSkill.getSelectedItem().toString().contains("7%") ||
+            jComboBoxCenterSkill.getSelectedItem().toString().contains("9%") ||
+            jComboBoxCenterSkill.getSelectedItem().toString().contains("12%")) {
+            
+            jLabelSubSkill.setVisible(true);
+            jComboBoxSubSkill.setVisible(true);
+            
+            if (jComboBoxCenterSkill.getSelectedItem().toString().contains("12%")) {
+                jLabelBasedOn.setVisible(true);
+                jComboBoxBasedOn.setVisible(true);
+            }
+            
+        }
+        
     }
 
     private void addSIS() {
@@ -778,10 +2069,18 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             allZero = false;
         }
         
+        else {
+            jSpinnerCardSkill1.setVisible(false);
+        }
+        
         if (SkillLevelCard2[0][0] != 0) {
             card2.setSkillLevelTable(SkillLevelCard2);
             jSpinnerCardSkill2.setVisible(true);
             allZero = false;
+        }
+        
+        else {
+            jSpinnerCardSkill2.setVisible(false);
         }
         
         if (SkillLevelCard3[0][0] != 0) {
@@ -790,10 +2089,18 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             allZero = false;
         }
         
+        else {
+            jSpinnerCardSkill3.setVisible(false);
+        }
+        
         if (SkillLevelCard4[0][0] != 0) {
             card4.setSkillLevelTable(SkillLevelCard4);
             jSpinnerCardSkill4.setVisible(true);
             allZero = false;
+        }
+        
+        else {
+            jSpinnerCardSkill4.setVisible(false);
         }
         
         if (SkillLevelCard5[0][0] != 0) {
@@ -802,10 +2109,18 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             allZero = false;
         }
         
+        else {
+            jSpinnerCardSkill5.setVisible(false);
+        }
+        
         if (SkillLevelCard6[0][0] != 0) {
             card6.setSkillLevelTable(SkillLevelCard6);
             jSpinnerCardSkill6.setVisible(true);
             allZero = false;
+        }
+        
+        else {
+            jSpinnerCardSkill6.setVisible(false);
         }
         
         if (SkillLevelCard7[0][0] != 0) {
@@ -814,10 +2129,18 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             allZero = false;
         }
         
+        else {
+            jSpinnerCardSkill7.setVisible(false);
+        }
+        
         if (SkillLevelCard8[0][0] != 0) {
             card8.setSkillLevelTable(SkillLevelCard8);
             jSpinnerCardSkill8.setVisible(true);
             allZero = false;
+        }
+        
+        else {
+            jSpinnerCardSkill8.setVisible(false);
         }
         
         if (SkillLevelCard9[0][0] != 0) {
@@ -826,25 +2149,48 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             allZero = false;
         }
         
+        else {
+            jSpinnerCardSkill9.setVisible(false);
+        }
+        
         if (!allZero) {
             jLabelCardSkill.setVisible(true);
+        }
+        
+        else {
+            jLabelCardSkill.setVisible(false);
         }
 
     }
 
     private void generateSkillTables(int[] cardIDs) throws NumberFormatException, IOException {
+        
+        SkillLevelCard1[0][0] = 0;
+        SkillLevelCard2[0][0] = 0;
+        SkillLevelCard3[0][0] = 0;
+        SkillLevelCard4[0][0] = 0;
+        SkillLevelCard5[0][0] = 0;
+        SkillLevelCard6[0][0] = 0;
+        SkillLevelCard7[0][0] = 0;
+        SkillLevelCard8[0][0] = 0;
+        SkillLevelCard9[0][0] = 0;
+        
         for (int i = 0; i < 9; i++) {
             if (cardIDs[i] > 0) {
                 
                 String html = Jsoup.connect("https://sif.kirara.ca/card/" + Integer.toString(cardIDs[i])).get().html();
+                
+                if (i == 4) {
+                    parseCenterSkill(html);
+                }
                 int indexBegin = html.indexOf("document.precalc");
                 int indexEnd = html.indexOf("document.cllite_ids");
-             //   System.out.println(html.substring(indexBegin, indexEnd));
+            //    System.out.println(html.substring(indexBegin, indexEnd));
                 
                 html = html.substring(indexBegin, indexEnd);
                 indexBegin = html.indexOf("skill");
                 indexEnd = html.indexOf("cid");
-             //   System.out.println(html.substring(indexBegin, indexEnd));
+            //    System.out.println(html.substring(indexBegin, indexEnd));
                 
                 html = html.substring(indexBegin, indexEnd);
                 
@@ -857,7 +2203,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     
                     for (int j = 0; j < 8; j++) {
                         
-                        if (i == 0) {
+                        if (i == 0 && !card1.isSpecial()) {
                             
                             indexEnd = html.indexOf(",");
                             temp = html.substring(0, indexEnd);
@@ -876,7 +2222,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             
                         }
                         
-                        else if (i == 1) {
+                        else if (i == 1 && !card2.isSpecial()) {
                             
                             indexEnd = html.indexOf(",");
                             temp = html.substring(0, indexEnd);
@@ -895,7 +2241,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             
                         }
                         
-                        else if (i == 2) {
+                        else if (i == 2  && !card3.isSpecial()) {
                             
                             indexEnd = html.indexOf(",");
                             temp = html.substring(0, indexEnd);
@@ -914,7 +2260,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             
                         }
                         
-                        else if (i == 3) {
+                        else if (i == 3  && !card4.isSpecial()) {
                             
                             indexEnd = html.indexOf(",");
                             temp = html.substring(0, indexEnd);
@@ -933,7 +2279,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             
                         }
                         
-                        else if (i == 4) {
+                        else if (i == 4  && !card5.isSpecial()) {
                             
                             indexEnd = html.indexOf(",");
                             temp = html.substring(0, indexEnd);
@@ -952,7 +2298,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             
                         }
                         
-                        else if (i == 5) {
+                        else if (i == 5  && !card6.isSpecial()) {
                             
                             indexEnd = html.indexOf(",");
                             temp = html.substring(0, indexEnd);
@@ -971,7 +2317,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             
                         }
                         
-                        else if (i == 6) {
+                        else if (i == 6  && !card7.isSpecial()) {
                             
                             indexEnd = html.indexOf(",");
                             temp = html.substring(0, indexEnd);
@@ -990,7 +2336,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             
                         }
                         
-                        else if (i == 7) {
+                        else if (i == 7  && !card8.isSpecial()) {
                             
                             indexEnd = html.indexOf(",");
                             temp = html.substring(0, indexEnd);
@@ -1009,7 +2355,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             
                         }
                         
-                        else {
+                        else if (i == 8  && !card9.isSpecial()) {
                             
                             indexEnd = html.indexOf(",");
                             temp = html.substring(0, indexEnd);
@@ -1039,50 +2385,247 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         }
     }
 
+    private void parseCenterSkill(String html) {
+        
+        int indexBegin = html.indexOf("Leader Skill");
+        
+        if (indexBegin == -1) {
+            jComboBoxCenterSkill.setSelectedItem("0%");
+            jLabelSubSkill.setVisible(false);
+            jComboBoxSubSkill.setVisible(false);
+            return;
+        }
+        
+        int indexEnd = html.indexOf("<div class=\"cross-refs box\">");
+      //  System.out.println(html.substring(indexBegin, indexEnd));
+        html = html.substring(indexBegin, indexEnd);
+        
+        if (html.contains("パワー")) {
+            jComboBoxCenterSkill.setSelectedItem("3%");
+        }
+        
+        else if (html.contains("ハート")) {
+            jComboBoxCenterSkill.setSelectedItem("6%");
+        }
+        
+        else if (html.contains("スター")) {
+            jComboBoxCenterSkill.setSelectedItem("7%");
+            parseSubSkill(html, false);
+        }
+        
+        else if (html.contains("プリンセス") || html.contains("エンジェル") || html.contains("エンプレス")) {
+            
+            if (html.contains("9")) {
+                jComboBoxCenterSkill.setSelectedItem("9%");
+            }
+            
+            else {
+                jComboBoxCenterSkill.setSelectedItem("12%");
+                if (html.contains("of its Smile")) {
+                    jComboBoxBasedOn.setSelectedItem("Smile");
+                }
+                else if (html.contains("of its Pure")) {
+                    jComboBoxBasedOn.setSelectedItem("Pure");
+                }
+                else {
+                    jComboBoxBasedOn.setSelectedItem("Cool");
+                }
+            }
+            
+            parseSubSkill(html, true);
+        }
+        
+    }
+    
+    private void parseSubSkill(String html, boolean ur) {
+        
+        if (html.contains("μ")) {
+            
+            if (ur) {
+                jComboBoxSubSkill.setSelectedItem("3% μ's");
+            }
+            
+            else {
+                jComboBoxSubSkill.setSelectedItem("1% μ's");
+            }
+            
+        }
+        
+        else if (html.contains("Aqours")) {
+            
+            if (ur) {
+                jComboBoxSubSkill.setSelectedItem("3% Aqours");
+            }
+            
+            else {
+                jComboBoxSubSkill.setSelectedItem("1% Aqours");
+            }
+            
+        }
+        
+        else if (html.contains("first")) {
+            
+            if (ur) {
+                jComboBoxSubSkill.setSelectedItem("6% First-Year");
+            }
+            
+            else {
+                jComboBoxSubSkill.setSelectedItem("2% First-Year");
+            }
+            
+        }
+        
+        else if (html.contains("second")) {
+            
+            if (ur) {
+                jComboBoxSubSkill.setSelectedItem("6% Second-Year");
+            }
+            
+            else {
+                jComboBoxSubSkill.setSelectedItem("2% Second-Year");
+            }
+            
+        }
+        
+        else if (html.contains("third")) {
+            
+            if (ur) {
+                jComboBoxSubSkill.setSelectedItem("6% Third-Year");
+            }
+            
+            else {
+                jComboBoxSubSkill.setSelectedItem("2% Third-Year");
+            }
+            
+        }
+        
+        else if (html.contains("Printemps")) {
+            
+            if (ur) {
+                jComboBoxSubSkill.setSelectedItem("6% Printemps");
+            }
+            
+            else {
+                jComboBoxSubSkill.setSelectedItem("2% Printemps");
+            }
+            
+        }
+        
+        else if (html.contains("lily")) {
+            
+            if (ur) {
+                jComboBoxSubSkill.setSelectedItem("6% Lily White");
+            }
+            
+            else {
+                jComboBoxSubSkill.setSelectedItem("2% Lily White");
+            }
+            
+        }
+        
+        else if (html.contains("BiBi")) {
+            
+            if (ur) {
+                jComboBoxSubSkill.setSelectedItem("6% BiBi");
+            }
+            
+            else {
+                jComboBoxSubSkill.setSelectedItem("2% BiBi");
+            }
+            
+        }
+        
+        else if (html.contains("CYaRon")) {
+            
+            if (ur) {
+                jComboBoxSubSkill.setSelectedItem("6% CYaRon!");
+            }
+            
+            else {
+                jComboBoxSubSkill.setSelectedItem("2% CYaRon!");
+            }
+            
+        }
+        
+        else if (html.contains("AZALEA")) {
+            
+            if (ur) {
+                jComboBoxSubSkill.setSelectedItem("6% AZALEA");
+            }
+            
+            else {
+                jComboBoxSubSkill.setSelectedItem("2% AZALEA");
+            }
+            
+        }
+        
+        else if (html.contains("Guilty")) {
+            
+            if (ur) {
+                jComboBoxSubSkill.setSelectedItem("6% Guilty Kiss");
+            }
+            
+            else {
+                jComboBoxSubSkill.setSelectedItem("2% Guilty Kiss");
+            }
+            
+        }
+        
+    }
+
     private void createCards(int[] cardIDs, GetCardJSON cardJSON, UserInput userInput) throws IOException {
         if (cardIDs[0] > 0) {
             output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[0]));
             card1 = new Card(output, userInput, 1);
+            generateSIS(1);
         }
         
         if (cardIDs[1] > 0) {
             output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[1]));
             card2 = new Card(output, userInput, 2);
+            generateSIS(2);
         }
         
         if (cardIDs[2] > 0) {
             output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[2]));
             card3 = new Card(output, userInput, 3);
+            generateSIS(3);
         }
         
         if (cardIDs[3] > 0) {
             output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[3]));
             card4 = new Card(output, userInput, 4);
+            generateSIS(4);
         }
         
         if (cardIDs[4] > 0) {
             output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[4]));
             card5 = new Card(output, userInput, 5);
+            generateSIS(5);
         }
         
         if (cardIDs[5] > 0) {
             output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[5]));
             card6 = new Card(output, userInput, 6);
+            generateSIS(6);
         }
         
         if (cardIDs[6] > 0) {
             output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[6]));
             card7 = new Card(output, userInput, 7);
+            generateSIS(7);
         }
         
         if (cardIDs[7] > 0) {
             output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[7]));
             card8 = new Card(output, userInput, 8);
+            generateSIS(8);
         }
         
         if (cardIDs[8] > 0) {
             output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[8]));
             card9 = new Card(output, userInput, 9);
+            generateSIS(9);
         }
     }
 
@@ -1101,7 +2644,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 Integer.parseInt(userInput.getCard6ID()) > cardTotalObject.getInt("count") || 
                 Integer.parseInt(userInput.getCard7ID()) > cardTotalObject.getInt("count") ||
                 Integer.parseInt(userInput.getCard8ID()) > cardTotalObject.getInt("count") ||    
-                Integer.parseInt(userInput.getCard9ID()) > cardTotalObject.getInt("count")) 
+                Integer.parseInt(userInput.getCard9ID()) > cardTotalObject.getInt("count") || 
+                Integer.parseInt(userInput.getCard1ID()) < 0 ||
+                Integer.parseInt(userInput.getCard2ID()) < 0 ||
+                Integer.parseInt(userInput.getCard3ID()) < 0 ||    
+                Integer.parseInt(userInput.getCard4ID()) < 0 ||    
+                Integer.parseInt(userInput.getCard5ID()) < 0 ||    
+                Integer.parseInt(userInput.getCard6ID()) < 0 || 
+                Integer.parseInt(userInput.getCard7ID()) < 0 ||
+                Integer.parseInt(userInput.getCard8ID()) < 0 ||    
+                Integer.parseInt(userInput.getCard9ID()) < 0);
+                
                 {
                     return false;
                 }
@@ -1232,7 +2785,78 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
 
     private void jComboBoxAttributeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAttributeActionPerformed
         // TODO add your handling code here:
+        changeBasedOn();
     }//GEN-LAST:event_jComboBoxAttributeActionPerformed
+
+    private void jComboBoxBasedOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxBasedOnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxBasedOnActionPerformed
+
+    private void jComboBoxCenterSkillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCenterSkillActionPerformed
+        // TODO add your handling code here:
+        
+        if (jComboBoxCenterSkill.getSelectedItem().toString().contains("7%")) {
+            jComboBoxSubSkill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1% μ's", "1% Aqours", 
+                                                                                             "2% First-Year", "2% Second-Year", "2% Third-Year", 
+                                                                                             "2% Printemps", "2% Lily White", "2% BiBi",
+                                                                                             "2% CYaRon!", "2% AZALEA", "2% Guilty Kiss"}));
+            jLabelBasedOn.setVisible(false);
+            jComboBoxBasedOn.setVisible(false);
+            jLabelSubSkill.setVisible(true);
+            jComboBoxSubSkill.setVisible(true);
+            
+        }
+        
+        else if (jComboBoxCenterSkill.getSelectedItem().toString().contains("9%")) {
+            jComboBoxSubSkill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3% μ's", "3% Aqours", 
+                                                                                             "6% First-Year", "6% Second-Year", "6% Third-Year", 
+                                                                                             "6% Printemps", "6% Lily White", "6% BiBi",
+                                                                                             "6% CYaRon!", "6% AZALEA", "6% Guilty Kiss"}));
+            jLabelBasedOn.setVisible(false);
+            jComboBoxBasedOn.setVisible(false);
+            jLabelSubSkill.setVisible(true);
+            jComboBoxSubSkill.setVisible(true);
+        }
+        
+        else if (jComboBoxCenterSkill.getSelectedItem().toString().contains("12%")) {
+            
+            jComboBoxSubSkill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3% μ's", "3% Aqours", 
+                                                                                             "6% First-Year", "6% Second-Year", "6% Third-Year", 
+                                                                                             "6% Printemps", "6% Lily White", "6% BiBi",
+                                                                                             "6% CYaRon!", "6% AZALEA", "6% Guilty Kiss"}));
+            jLabelSubSkill.setVisible(true);
+            jComboBoxSubSkill.setVisible(true);
+            
+            changeBasedOn();
+            
+        }
+        
+        else {
+            jLabelBasedOn.setVisible(false);
+            jComboBoxBasedOn.setVisible(false);
+            jLabelSubSkill.setVisible(false);
+            jComboBoxSubSkill.setVisible(false);
+        }
+    }//GEN-LAST:event_jComboBoxCenterSkillActionPerformed
+
+    private void changeBasedOn() {
+        
+        if (jComboBoxAttribute.getSelectedItem().toString().contains("Smile")) {
+            jComboBoxBasedOn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pure", "Cool" }));
+        }
+        
+        else if (jComboBoxAttribute.getSelectedItem().toString().contains("Pure")) {
+            jComboBoxBasedOn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Smile", "Cool" }));
+        }
+        
+        else {
+            jComboBoxBasedOn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Smile", "Pure" }));
+        }
+        
+        jLabelBasedOn.setVisible(true);
+        jComboBoxBasedOn.setVisible(true);
+        
+    }
 
     /**
      * @param args the command line arguments
@@ -1271,6 +2895,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroupCalculate;
     private javax.swing.JButton jButtonCalculate;
     private javax.swing.JButton jButtonGetCardData;
     private javax.swing.JCheckBox jCheckBoxIdolized1;
@@ -1283,6 +2908,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBoxIdolized8;
     private javax.swing.JCheckBox jCheckBoxIdolized9;
     private javax.swing.JComboBox<String> jComboBoxAttribute;
+    private javax.swing.JComboBox<String> jComboBoxBasedOn;
     private javax.swing.JComboBox<String> jComboBoxCenterSkill;
     private javax.swing.JComboBox<String> jComboBoxSIS1;
     private javax.swing.JComboBox<String> jComboBoxSIS2;
@@ -1298,6 +2924,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAttribute;
+    private javax.swing.JLabel jLabelBasedOn;
     private javax.swing.JLabel jLabelCard1;
     private javax.swing.JLabel jLabelCard2;
     private javax.swing.JLabel jLabelCard3;
