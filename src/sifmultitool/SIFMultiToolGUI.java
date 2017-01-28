@@ -2653,8 +2653,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 Integer.parseInt(userInput.getCard6ID()) < 0 || 
                 Integer.parseInt(userInput.getCard7ID()) < 0 ||
                 Integer.parseInt(userInput.getCard8ID()) < 0 ||    
-                Integer.parseInt(userInput.getCard9ID()) < 0);
-                
+                Integer.parseInt(userInput.getCard9ID()) < 0) 
                 {
                     return false;
                 }
