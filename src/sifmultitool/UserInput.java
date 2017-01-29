@@ -43,6 +43,7 @@ public class UserInput {
 	private int starNotes;
 	
 	private String centerSkill;
+        private String basedOn;
 	
 	private String subSkill;
 	
@@ -83,7 +84,7 @@ public class UserInput {
 	}
 
 	public boolean isCard2Idolized() {
-		return card1Idolized;
+		return card2Idolized;
 	}
 
 	public void setCard2Idolized(boolean card2Idolized) {
@@ -478,6 +479,20 @@ public class UserInput {
      */
     public void setCard9SIS(String card9SIS) {
         this.card9SIS = card9SIS;
+    }
+
+    /**
+     * @return the basedOn
+     */
+    public String getBasedOn() {
+        return basedOn;
+    }
+
+    /**
+     * @param basedOn the basedOn to set
+     */
+    public void setBasedOn(String basedOn) {
+        this.basedOn = basedOn;
     }
     
 }

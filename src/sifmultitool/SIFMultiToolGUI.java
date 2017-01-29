@@ -33,6 +33,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     Card card9;
     JSONArray output;
     
+    UserInput userInput;
+    
     int[][] SkillLevelCard1 = new int[8][2];
     int[][] SkillLevelCard2 = new int[8][2];
     int[][] SkillLevelCard3 = new int[8][2];
@@ -59,7 +61,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFrame1 = new javax.swing.JFrame();
+        jFrameResult = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
         buttonGroupCalculate = new javax.swing.ButtonGroup();
         jLabelCard1 = new javax.swing.JLabel();
@@ -134,27 +136,29 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jLabelBasedOn = new javax.swing.JLabel();
         jComboBoxBasedOn = new javax.swing.JComboBox<>();
 
-        jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        jFrame1.setTitle("Test");
-        jFrame1.setName("frame2"); // NOI18N
+        jFrameResult.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jFrameResult.setTitle("Result");
+        jFrameResult.setName("frame2"); // NOI18N
+        jFrameResult.setPreferredSize(new java.awt.Dimension(750, 400));
+        jFrameResult.setSize(new java.awt.Dimension(750, 400));
 
         jLabel1.setText("jLabel1");
 
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jFrame1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jFrameResultLayout = new javax.swing.GroupLayout(jFrameResult.getContentPane());
+        jFrameResult.getContentPane().setLayout(jFrameResultLayout);
+        jFrameResultLayout.setHorizontalGroup(
+            jFrameResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrameResultLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(356, Short.MAX_VALUE))
+                .addContainerGap(577, Short.MAX_VALUE))
         );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jFrame1Layout.createSequentialGroup()
+        jFrameResultLayout.setVerticalGroup(
+            jFrameResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrameResultLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addContainerGap(375, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -185,6 +189,11 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jSpinnerCardID1.setEditor(new javax.swing.JSpinner.NumberEditor(jSpinnerCardID1, "####"));
         jSpinnerCardID1.setMinimumSize(new java.awt.Dimension(25, 25));
         jSpinnerCardID1.setPreferredSize(new java.awt.Dimension(25, 20));
+        jSpinnerCardID1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerCardID1StateChanged(evt);
+            }
+        });
 
         jSpinnerCardID2.setEditor(new javax.swing.JSpinner.NumberEditor(jSpinnerCardID2, "####"));
         jSpinnerCardID2.setMinimumSize(new java.awt.Dimension(25, 25));
@@ -375,19 +384,39 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jLabelNoteCount.setText("Note Count");
 
         jSpinnerNoteCount.setValue(50);
+        jSpinnerNoteCount.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerNoteCountStateChanged(evt);
+            }
+        });
 
         jLabelTime.setText("Time (s)");
 
         jSpinnerTime.setValue(120);
+        jSpinnerTime.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerTimeStateChanged(evt);
+            }
+        });
 
         jLabelPerfect.setText("Perfect %");
 
         jSpinnerPerfect.setValue(75);
+        jSpinnerPerfect.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerPerfectStateChanged(evt);
+            }
+        });
 
         jLabelStep2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelStep2.setText("Step 2:");
 
         jButtonCalculate.setText("Calculate");
+        jButtonCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCalculateActionPerformed(evt);
+            }
+        });
 
         buttonGroupCalculate.add(jRadioButtonAverage);
         jRadioButtonAverage.setSelected(true);
@@ -710,9 +739,10 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private void jButtonGetCardDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetCardDataActionPerformed
         // TODO add your handling code here:
         
-        UserInput userInput = new UserInput();
+        userInput = new UserInput();
         
         setCardID(userInput);
+        setIdolized(userInput);
         
         // Check for valid card ID
         try {
@@ -724,8 +754,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         } catch (IOException e) {
                 e.printStackTrace();
         }
-        
-        setIdolized(userInput);
         
 
         int[] cardIDs = { Integer.parseInt(userInput.getCard1ID()), Integer.parseInt(userInput.getCard2ID()), Integer.parseInt(userInput.getCard3ID()),
@@ -775,7 +803,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             if (card1.getRarity().equals("N")) {
                     jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS1.setSelectedItem("None");
             }
             
             else if (card1.getRarity().equals("R")) {
@@ -783,20 +810,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card1.isSpecial()) {
                     jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS1.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
                     jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS1.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS1.setSelectedItem("None");
                 }
             }
             
@@ -805,7 +829,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card1.isSpecial()) {
                     jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS1.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -816,14 +839,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS1.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS1.setSelectedItem("None");
                 }
             }
             
@@ -832,7 +853,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card1.isSpecial()) {
                     jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS1.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -848,7 +868,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Ki+Pe+Ri",
                                                                                                  "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
                                                                                                  "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
-                    jComboBoxSIS1.setSelectedItem("None");
                 }
                 
                 else {
@@ -857,7 +876,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Perfume", "Ring", 
                                                                                                  "Aura", "Cross", 
                                                                                                  "Ki+Pe", "Ki+Ri" }));
-                    jComboBoxSIS1.setSelectedItem("None");
                 }
             }
             
@@ -867,7 +885,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     jComboBoxSIS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS1.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -890,7 +907,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
                                                                                                  "Pe+Au+Cr", "Ri+Au+Cr",
                                                                                                  "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
-                    jComboBoxSIS1.setSelectedItem("None");
                 }
                 
                 else {
@@ -901,7 +917,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS1.setSelectedItem("None");
                 }
             }
             
@@ -913,7 +928,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             if (card2.getRarity().equals("N")) {
                     jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS2.setSelectedItem("None");
             }
             
             else if (card2.getRarity().equals("R")) {
@@ -921,20 +935,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card2.isSpecial()) {
                     jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS2.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
                     jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS2.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS2.setSelectedItem("None");
                 }
             }
             
@@ -943,7 +954,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card2.isSpecial()) {
                     jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS2.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -954,14 +964,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS2.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS2.setSelectedItem("None");
                 }
             }
             
@@ -970,7 +978,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card2.isSpecial()) {
                     jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS2.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -986,7 +993,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Ki+Pe+Ri",
                                                                                                  "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
                                                                                                  "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
-                    jComboBoxSIS2.setSelectedItem("None");
                 }
                 
                 else {
@@ -995,7 +1001,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Perfume", "Ring", 
                                                                                                  "Aura", "Cross", 
                                                                                                  "Ki+Pe", "Ki+Ri" }));
-                    jComboBoxSIS2.setSelectedItem("None");
                 }
             }
             
@@ -1005,7 +1010,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     jComboBoxSIS2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS2.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1028,7 +1032,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
                                                                                                  "Pe+Au+Cr", "Ri+Au+Cr",
                                                                                                  "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
-                    jComboBoxSIS2.setSelectedItem("None");
                 }
                 
                 else {
@@ -1039,7 +1042,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS2.setSelectedItem("None");
                 }
             }
         }
@@ -1050,7 +1052,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             if (card3.getRarity().equals("N")) {
                     jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS3.setSelectedItem("None");
             }
             
             else if (card3.getRarity().equals("R")) {
@@ -1058,20 +1059,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card3.isSpecial()) {
                     jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS3.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
                     jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS3.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS3.setSelectedItem("None");
                 }
             }
             
@@ -1080,7 +1078,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card3.isSpecial()) {
                     jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS3.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1091,14 +1088,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS3.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS3.setSelectedItem("None");
                 }
             }
             
@@ -1107,7 +1102,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card3.isSpecial()) {
                     jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS3.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1123,7 +1117,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Ki+Pe+Ri",
                                                                                                  "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
                                                                                                  "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
-                    jComboBoxSIS3.setSelectedItem("None");
                 }
                 
                 else {
@@ -1132,7 +1125,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Perfume", "Ring", 
                                                                                                  "Aura", "Cross", 
                                                                                                  "Ki+Pe", "Ki+Ri" }));
-                    jComboBoxSIS3.setSelectedItem("None");
                 }
             }
             
@@ -1142,7 +1134,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     jComboBoxSIS3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS3.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1165,7 +1156,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
                                                                                                  "Pe+Au+Cr", "Ri+Au+Cr",
                                                                                                  "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
-                    jComboBoxSIS3.setSelectedItem("None");
                 }
                 
                 else {
@@ -1176,7 +1166,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS3.setSelectedItem("None");
                 }
             }
         }
@@ -1187,7 +1176,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             if (card4.getRarity().equals("N")) {
                     jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS4.setSelectedItem("None");
             }
             
             else if (card4.getRarity().equals("R")) {
@@ -1195,20 +1183,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card4.isSpecial()) {
                     jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS4.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
                     jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS4.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS4.setSelectedItem("None");
                 }
             }
             
@@ -1217,7 +1202,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card4.isSpecial()) {
                     jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS4.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1228,14 +1212,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS4.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS4.setSelectedItem("None");
                 }
             }
             
@@ -1244,7 +1226,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card4.isSpecial()) {
                     jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS4.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1260,7 +1241,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Ki+Pe+Ri",
                                                                                                  "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
                                                                                                  "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
-                    jComboBoxSIS4.setSelectedItem("None");
                 }
                 
                 else {
@@ -1269,7 +1249,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Perfume", "Ring", 
                                                                                                  "Aura", "Cross", 
                                                                                                  "Ki+Pe", "Ki+Ri" }));
-                    jComboBoxSIS4.setSelectedItem("None");
                 }
             }
             
@@ -1279,7 +1258,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     jComboBoxSIS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS4.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1302,7 +1280,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
                                                                                                  "Pe+Au+Cr", "Ri+Au+Cr",
                                                                                                  "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
-                    jComboBoxSIS4.setSelectedItem("None");
                 }
                 
                 else {
@@ -1313,7 +1290,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS4.setSelectedItem("None");
                 }
             }
         }
@@ -1324,7 +1300,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             if (card5.getRarity().equals("N")) {
                     jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS5.setSelectedItem("None");
             }
             
             else if (card5.getRarity().equals("R")) {
@@ -1332,20 +1307,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card5.isSpecial()) {
                     jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS5.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
                     jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS5.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS5.setSelectedItem("None");
                 }
             }
             
@@ -1354,7 +1326,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card5.isSpecial()) {
                     jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS5.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1365,14 +1336,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS5.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS5.setSelectedItem("None");
                 }
             }
             
@@ -1381,7 +1350,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card5.isSpecial()) {
                     jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS5.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1397,7 +1365,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Ki+Pe+Ri",
                                                                                                  "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
                                                                                                  "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
-                    jComboBoxSIS5.setSelectedItem("None");
                 }
                 
                 else {
@@ -1406,7 +1373,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Perfume", "Ring", 
                                                                                                  "Aura", "Cross", 
                                                                                                  "Ki+Pe", "Ki+Ri" }));
-                    jComboBoxSIS5.setSelectedItem("None");
                 }
             }
             
@@ -1416,7 +1382,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     jComboBoxSIS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS5.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1439,7 +1404,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
                                                                                                  "Pe+Au+Cr", "Ri+Au+Cr",
                                                                                                  "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
-                    jComboBoxSIS5.setSelectedItem("None");
                 }
                 
                 else {
@@ -1450,7 +1414,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS5.setSelectedItem("None");
                 }
             }
         }
@@ -1461,7 +1424,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             if (card6.getRarity().equals("N")) {
                     jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS6.setSelectedItem("None");
             }
             
             else if (card6.getRarity().equals("R")) {
@@ -1469,20 +1431,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card6.isSpecial()) {
                     jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS6.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
                     jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS6.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS6.setSelectedItem("None");
                 }
             }
             
@@ -1491,7 +1450,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card6.isSpecial()) {
                     jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS6.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1502,14 +1460,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS6.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS6.setSelectedItem("None");
                 }
             }
             
@@ -1518,7 +1474,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card6.isSpecial()) {
                     jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS6.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1534,7 +1489,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Ki+Pe+Ri",
                                                                                                  "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
                                                                                                  "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
-                    jComboBoxSIS6.setSelectedItem("None");
                 }
                 
                 else {
@@ -1543,7 +1497,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Perfume", "Ring", 
                                                                                                  "Aura", "Cross", 
                                                                                                  "Ki+Pe", "Ki+Ri" }));
-                    jComboBoxSIS6.setSelectedItem("None");
                 }
             }
             
@@ -1553,7 +1506,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     jComboBoxSIS6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS6.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1576,7 +1528,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
                                                                                                  "Pe+Au+Cr", "Ri+Au+Cr",
                                                                                                  "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
-                    jComboBoxSIS6.setSelectedItem("None");
                 }
                 
                 else {
@@ -1587,7 +1538,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS6.setSelectedItem("None");
                 }
             }
         }
@@ -1598,7 +1548,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             if (card7.getRarity().equals("N")) {
                     jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS7.setSelectedItem("None");
             }
             
             else if (card7.getRarity().equals("R")) {
@@ -1606,20 +1555,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card7.isSpecial()) {
                     jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS7.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
                     jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS7.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS7.setSelectedItem("None");
                 }
             }
             
@@ -1628,7 +1574,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card7.isSpecial()) {
                     jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS7.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1639,14 +1584,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS7.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS7.setSelectedItem("None");
                 }
             }
             
@@ -1655,7 +1598,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card7.isSpecial()) {
                     jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS7.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1671,7 +1613,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Ki+Pe+Ri",
                                                                                                  "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
                                                                                                  "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
-                    jComboBoxSIS7.setSelectedItem("None");
                 }
                 
                 else {
@@ -1680,7 +1621,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Perfume", "Ring", 
                                                                                                  "Aura", "Cross", 
                                                                                                  "Ki+Pe", "Ki+Ri" }));
-                    jComboBoxSIS7.setSelectedItem("None");
                 }
             }
             
@@ -1690,7 +1630,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     jComboBoxSIS7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS7.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1713,7 +1652,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
                                                                                                  "Pe+Au+Cr", "Ri+Au+Cr",
                                                                                                  "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
-                    jComboBoxSIS7.setSelectedItem("None");
                 }
                 
                 else {
@@ -1724,7 +1662,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS7.setSelectedItem("None");
                 }
             }
         }
@@ -1735,7 +1672,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             if (card8.getRarity().equals("N")) {
                     jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS8.setSelectedItem("None");
             }
             
             else if (card8.getRarity().equals("R")) {
@@ -1743,20 +1679,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card8.isSpecial()) {
                     jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS8.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
                     jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS8.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS8.setSelectedItem("None");
                 }
             }
             
@@ -1765,7 +1698,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card8.isSpecial()) {
                     jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS8.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1776,14 +1708,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS8.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS8.setSelectedItem("None");
                 }
             }
             
@@ -1792,7 +1722,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card8.isSpecial()) {
                     jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS8.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1808,7 +1737,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Ki+Pe+Ri",
                                                                                                  "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
                                                                                                  "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
-                    jComboBoxSIS8.setSelectedItem("None");
                 }
                 
                 else {
@@ -1817,7 +1745,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Perfume", "Ring", 
                                                                                                  "Aura", "Cross", 
                                                                                                  "Ki+Pe", "Ki+Ri" }));
-                    jComboBoxSIS8.setSelectedItem("None");
                 }
             }
             
@@ -1827,7 +1754,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     jComboBoxSIS8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS8.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1850,7 +1776,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
                                                                                                  "Pe+Au+Cr", "Ri+Au+Cr",
                                                                                                  "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
-                    jComboBoxSIS8.setSelectedItem("None");
                 }
                 
                 else {
@@ -1861,7 +1786,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS8.setSelectedItem("None");
                 }
             }
         }
@@ -1872,7 +1796,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             if (card9.getRarity().equals("N")) {
                     jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS9.setSelectedItem("None");
             }
             
             else if (card9.getRarity().equals("R")) {
@@ -1880,20 +1803,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card9.isSpecial()) {
                     jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS9.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
                     jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS9.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS9.setSelectedItem("None");
                 }
             }
             
@@ -1902,7 +1822,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card9.isSpecial()) {
                     jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS9.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1913,14 +1832,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS9.setSelectedItem("None");
                 }
                 
                 else {
                     jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS9.setSelectedItem("None");
                 }
             }
             
@@ -1929,7 +1846,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 if (card9.isSpecial()) {
                     jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss" }));
-                    jComboBoxSIS9.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1945,7 +1861,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Ki+Pe+Ri",
                                                                                                  "Pe+Ch", "Pe+He", "Pe+Tr", "Pe+Ve", "Ri+Ch", "Ri+He", "Ri+Tr", "Ri+Ve", "Au+Cr",
                                                                                                  "Ki+Pe+Au", "Ki+Pe+Cr", "Ki+Ri+Au", "Ki+Ri+Cr" }));
-                    jComboBoxSIS9.setSelectedItem("None");
                 }
                 
                 else {
@@ -1954,7 +1869,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Perfume", "Ring", 
                                                                                                  "Aura", "Cross", 
                                                                                                  "Ki+Pe", "Ki+Ri" }));
-                    jComboBoxSIS9.setSelectedItem("None");
                 }
             }
             
@@ -1964,7 +1878,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     jComboBoxSIS9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", 
                                                                                                  "Kiss", 
                                                                                                  "Perfume", "Ring" }));
-                    jComboBoxSIS9.setSelectedItem("None");
                 }
                 
                 else if (idolized) {
@@ -1987,7 +1900,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Pe+Ri+Ch", "Pe+Ri+He", "Pe+Ri+Tr", "Pe+Ri+Ve", 
                                                                                                  "Pe+Au+Cr", "Ri+Au+Cr",
                                                                                                  "Ki+Pe+Ri+Au", "Ki+Pe+Ri+Cr" }));
-                    jComboBoxSIS9.setSelectedItem("None");
                 }
                 
                 else {
@@ -1998,7 +1910,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                                                                  "Charm", "Heal", "Trick", "Veil",
                                                                                                  "Ki+Pe", "Ki+Ri",
                                                                                                  "Ki+Au", "Ki+Cr", "Pe+Ri" }));
-                    jComboBoxSIS9.setSelectedItem("None");
                 }
             }
         }
@@ -2578,6 +2489,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             output = cardJSON.readJSONFromURL(Integer.toString(cardIDs[0]));
             card1 = new Card(output, userInput, 1);
             generateSIS(1);
+            
         }
         
         if (cardIDs[1] > 0) {
@@ -2838,7 +2750,132 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBoxCenterSkillActionPerformed
 
+    private void jButtonCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalculateActionPerformed
+        // TODO add your handling code here:
+        
+        setUserInput();
+        
+        int teamSum = 0;
+        int centerBoost = 0;
+        
+        if ((int) jSpinnerCardID1.getValue() > 0) {
+            BaseStatsCalculator base1 = new BaseStatsCalculator(card1, userInput);
+            teamSum = teamSum + base1.getFinalBaseStats();
+            centerBoost = centerBoost + base1.getCenterBoostAmount();
+        }
+        
+        if ((int) jSpinnerCardID2.getValue() > 0) {
+            BaseStatsCalculator base2 = new BaseStatsCalculator(card2, userInput);
+            teamSum = teamSum + base2.getFinalBaseStats();
+            centerBoost = centerBoost + base2.getCenterBoostAmount();
+        }
+                
+        if ((int) jSpinnerCardID3.getValue() > 0) {
+            BaseStatsCalculator base3 = new BaseStatsCalculator(card3, userInput);
+            teamSum = teamSum + base3.getFinalBaseStats();
+            centerBoost = centerBoost + base3.getCenterBoostAmount();
+        }
+        
+        if ((int) jSpinnerCardID4.getValue() > 0) {
+            BaseStatsCalculator base4 = new BaseStatsCalculator(card4, userInput);
+            teamSum = teamSum + base4.getFinalBaseStats();
+            centerBoost = centerBoost + base4.getCenterBoostAmount();
+        }
+        if ((int) jSpinnerCardID5.getValue() > 0) {
+            BaseStatsCalculator base5 = new BaseStatsCalculator(card5, userInput);
+            teamSum = teamSum + base5.getFinalBaseStats();
+            centerBoost = centerBoost + base5.getCenterBoostAmount();
+        }
+        if ((int) jSpinnerCardID6.getValue() > 0) {
+            BaseStatsCalculator base6 = new BaseStatsCalculator(card6, userInput);
+            teamSum = teamSum + base6.getFinalBaseStats();
+            centerBoost = centerBoost + base6.getCenterBoostAmount();
+        }
+        if ((int) jSpinnerCardID7.getValue() > 0) {
+            BaseStatsCalculator base7 = new BaseStatsCalculator(card7, userInput);
+            teamSum = teamSum + base7.getFinalBaseStats();
+            centerBoost = centerBoost + base7.getCenterBoostAmount();
+        }
+        if ((int) jSpinnerCardID8.getValue() > 0) {
+            BaseStatsCalculator base8 = new BaseStatsCalculator(card8, userInput);
+            teamSum = teamSum + base8.getFinalBaseStats();
+            centerBoost = centerBoost + base8.getCenterBoostAmount();
+        }
+        if ((int) jSpinnerCardID9.getValue() > 0) {
+            BaseStatsCalculator base9 = new BaseStatsCalculator(card9, userInput);
+            teamSum = teamSum + base9.getFinalBaseStats();
+            centerBoost = centerBoost + base9.getCenterBoostAmount();
+        }
+        
+        System.out.println(teamSum + " (+" + centerBoost + ")");
+        
+        
+        jFrameResult.setVisible(true);
+    }//GEN-LAST:event_jButtonCalculateActionPerformed
+
+    private void jSpinnerCardID1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCardID1StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSpinnerCardID1StateChanged
+
+    private void jSpinnerNoteCountStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerNoteCountStateChanged
+        // TODO add your handling code here:
+        if ((int) jSpinnerNoteCount.getValue() < 1) {
+            jSpinnerNoteCount.setValue(1);
+        }
+    }//GEN-LAST:event_jSpinnerNoteCountStateChanged
+
+    private void jSpinnerTimeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerTimeStateChanged
+        // TODO add your handling code here:
+        if ((int) jSpinnerTime.getValue() < 1) {
+            jSpinnerNoteCount.setValue(1);
+        }       
+    }//GEN-LAST:event_jSpinnerTimeStateChanged
+
+    private void jSpinnerPerfectStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerPerfectStateChanged
+        // TODO add your handling code here:
+        if ((int) jSpinnerPerfect.getValue() < 0) {
+            jSpinnerNoteCount.setValue(0);
+        }
+        
+        else if ((int) jSpinnerPerfect.getValue() > 100) {
+            jSpinnerNoteCount.setValue(100);
+        }
+    }//GEN-LAST:event_jSpinnerPerfectStateChanged
+
+    private void setUserInput() {
+        
+        userInput.setCard1SIS(jComboBoxSIS1.getSelectedItem().toString());
+        userInput.setCard2SIS(jComboBoxSIS2.getSelectedItem().toString());
+        userInput.setCard3SIS(jComboBoxSIS3.getSelectedItem().toString());
+        userInput.setCard4SIS(jComboBoxSIS4.getSelectedItem().toString());
+        userInput.setCard5SIS(jComboBoxSIS5.getSelectedItem().toString());
+        userInput.setCard6SIS(jComboBoxSIS6.getSelectedItem().toString());
+        userInput.setCard7SIS(jComboBoxSIS7.getSelectedItem().toString());
+        userInput.setCard8SIS(jComboBoxSIS8.getSelectedItem().toString());
+        userInput.setCard9SIS(jComboBoxSIS9.getSelectedItem().toString());
+        
+        userInput.setAttribute(jComboBoxAttribute.getSelectedItem().toString());
+        userInput.setSong(jComboBoxSongType.getSelectedItem().toString());
+        userInput.setNoteCount((int) jSpinnerNoteCount.getValue());
+        userInput.setTime((int) jSpinnerTime.getValue());
+        userInput.setPerfectPercent((int) jSpinnerPerfect.getValue());
+        userInput.setCenterSkill(jComboBoxCenterSkill.getSelectedItem().toString());
+        userInput.setBasedOn(jComboBoxBasedOn.getSelectedItem().toString());
+        userInput.setSubSkill(jComboBoxSubSkill.getSelectedItem().toString());
+        
+        if (jRadioButtonAverage.isSelected()) {
+            userInput.setCalculationMethod("Average");
+        }
+        
+        else {
+            userInput.setCalculationMethod("Absolute");
+        }
+        
+    }
+    
     private void changeBasedOn() {
+        
+        if (jComboBoxCenterSkill.getSelectedItem().toString().contains("12%")) {
         
         if (jComboBoxAttribute.getSelectedItem().toString().contains("Smile")) {
             jComboBoxBasedOn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pure", "Cool" }));
@@ -2854,6 +2891,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         
         jLabelBasedOn.setVisible(true);
         jComboBoxBasedOn.setVisible(true);
+        
+        }
         
     }
 
@@ -2920,7 +2959,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxSIS9;
     private javax.swing.JComboBox<String> jComboBoxSongType;
     private javax.swing.JComboBox<String> jComboBoxSubSkill;
-    private javax.swing.JFrame jFrame1;
+    private javax.swing.JFrame jFrameResult;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAttribute;
     private javax.swing.JLabel jLabelBasedOn;

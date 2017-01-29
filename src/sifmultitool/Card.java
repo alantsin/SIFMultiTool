@@ -8,6 +8,10 @@ package sifmultitool;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.io.*;
+import java.net.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  *
@@ -16,8 +20,6 @@ import org.json.JSONObject;
 public class Card {
     
     private int cardNumber;
-    private JSONArray cardJSON;
-    private UserInput userInput;
     private JSONObject card;
 	
 	private boolean special;
@@ -33,10 +35,10 @@ public class Card {
 	private String rarity;
 	private boolean promo;
 	private String collection;
-	
-	private String baseStatType;
-	private int baseStat;
-	private int offStat;
+        
+        private int smilePoints;
+        private int purePoints;
+        private int coolPoints;
 	
 	private int bondPoints;
 
@@ -49,8 +51,6 @@ public class Card {
 	public Card(JSONArray cardJSON, UserInput userInput, int cardNumber) {
 		
 		this.cardNumber = cardNumber;
-                this.cardJSON = cardJSON;
-                this.userInput = userInput;
 		
 		try {
 			card = cardJSON.getJSONObject(0);
@@ -68,6 +68,30 @@ public class Card {
 			this.promo = card.getBoolean("is_promo");
 			
 			this.collection = card.getString("translated_collection");
+                        
+                        if (cardNumber == 1 && userInput.isCard1Idolized() ||
+                            cardNumber == 2 && userInput.isCard2Idolized() ||
+                            cardNumber == 3 && userInput.isCard3Idolized() ||
+                            cardNumber == 4 && userInput.isCard4Idolized() ||
+                            cardNumber == 5 && userInput.isCard5Idolized() ||
+                            cardNumber == 6 && userInput.isCard6Idolized() ||
+                            cardNumber == 7 && userInput.isCard7Idolized() ||
+                            cardNumber == 8 && userInput.isCard8Idolized() ||
+                            cardNumber == 9 && userInput.isCard9Idolized()) 
+                        {
+                            this.smilePoints = Integer.parseInt(card.getString("idolized_maximum_statistics_smile"));
+                            this.purePoints = Integer.parseInt(card.getString("idolized_maximum_statistics_pure"));
+                            this.coolPoints = Integer.parseInt(card.getString("idolized_maximum_statistics_cool"));
+                            this.bondPoints = bondPoints();
+                            
+                        }
+                        
+                        else {
+                            this.smilePoints = Integer.parseInt(card.getString("non_idolized_maximum_statistics_smile"));
+                            this.purePoints = Integer.parseInt(card.getString("non_idolized_maximum_statistics_pure"));
+                            this.coolPoints = Integer.parseInt(card.getString("non_idolized_maximum_statistics_cool"));
+                            this.bondPoints = bondPoints() / 2;
+                        }
 			
 			// GET idol information
 			
@@ -246,18 +270,6 @@ public class Card {
 		return collection;
 	}
 	
-	public String getBaseStatType() {
-		return baseStatType;
-	}
-
-	public int getBaseStat() {
-		return baseStat;
-	}
-	
-	public int getOffStat() {
-		return offStat;
-	}
-
 	public int getBondPoints() {
 		return bondPoints;
 	}
@@ -362,27 +374,6 @@ public class Card {
     }
 
     /**
-     * @param baseStatType the baseStatType to set
-     */
-    public void setBaseStatType(String baseStatType) {
-        this.baseStatType = baseStatType;
-    }
-
-    /**
-     * @param baseStat the baseStat to set
-     */
-    public void setBaseStat(int baseStat) {
-        this.baseStat = baseStat;
-    }
-
-    /**
-     * @param offStat the offStat to set
-     */
-    public void setOffStat(int offStat) {
-        this.offStat = offStat;
-    }
-
-    /**
      * @param bondPoints the bondPoints to set
      */
     public void setBondPoints(int bondPoints) {
@@ -415,6 +406,48 @@ public class Card {
      */
     public void setSkillLevelTable(int[][] skillLevelTable) {
         this.skillLevelTable = skillLevelTable;
+    }
+
+    /**
+     * @return the smilePoints
+     */
+    public int getSmilePoints() {
+        return smilePoints;
+    }
+
+    /**
+     * @param smilePoints the smilePoints to set
+     */
+    public void setSmilePoints(int smilePoints) {
+        this.smilePoints = smilePoints;
+    }
+
+    /**
+     * @return the purePoints
+     */
+    public int getPurePoints() {
+        return purePoints;
+    }
+
+    /**
+     * @param purePoints the purePoints to set
+     */
+    public void setPurePoints(int purePoints) {
+        this.purePoints = purePoints;
+    }
+
+    /**
+     * @return the coolPoints
+     */
+    public int getCoolPoints() {
+        return coolPoints;
+    }
+
+    /**
+     * @param coolPoints the coolPoints to set
+     */
+    public void setCoolPoints(int coolPoints) {
+        this.coolPoints = coolPoints;
     }
     
 }
