@@ -2096,12 +2096,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 }
                 int indexBegin = html.indexOf("document.precalc");
                 int indexEnd = html.indexOf("document.cllite_ids");
-            //    System.out.println(html.substring(indexBegin, indexEnd));
+             //   System.out.println(html.substring(indexBegin, indexEnd));
                 
                 html = html.substring(indexBegin, indexEnd);
                 indexBegin = html.indexOf("skill");
-                indexEnd = html.indexOf("cid");
-            //    System.out.println(html.substring(indexBegin, indexEnd));
+                indexEnd = html.indexOf("level_max");
+             //   System.out.println(html.substring(indexBegin, indexEnd));
                 
                 html = html.substring(indexBegin, indexEnd);
                 
