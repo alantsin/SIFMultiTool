@@ -7,7 +7,7 @@ package sifmultitool;
 
 /**
  *
- * @author Alan
+ * @author Umidah
  */
 public class UserInput {
     

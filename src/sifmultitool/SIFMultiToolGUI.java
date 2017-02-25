@@ -56,7 +56,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jFrameResult = new javax.swing.JFrame();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableResults = new javax.swing.JTable();
         buttonGroupCalculate = new javax.swing.ButtonGroup();
         jLabelCard1 = new javax.swing.JLabel();
         jLabelCard2 = new javax.swing.JLabel();
@@ -120,7 +121,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jSpinnerNoteCount = new javax.swing.JSpinner();
         jLabelTime = new javax.swing.JLabel();
         jSpinnerTime = new javax.swing.JSpinner();
-        jLabelPerfect = new javax.swing.JLabel();
         jLabelStep2 = new javax.swing.JLabel();
         jButtonCalculate = new javax.swing.JButton();
         jRadioButtonAverage = new javax.swing.JRadioButton();
@@ -132,6 +132,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jLabelStarNotes = new javax.swing.JLabel();
         jSpinnerStarNotes = new javax.swing.JSpinner();
         jCheckBoxNormalizeSong = new javax.swing.JCheckBox();
+        jCheckBoxAllIdolized = new javax.swing.JCheckBox();
+        jLabelPerfect = new javax.swing.JLabel();
         jSpinnerPerfect = new javax.swing.JSpinner();
 
         jFrameResult.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -139,7 +141,32 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jFrameResult.setName("frame2"); // NOI18N
         jFrameResult.setSize(new java.awt.Dimension(750, 400));
 
-        jLabel1.setText("jLabel1");
+        jTableResults.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Card 1", null, null, null, null, null, null, null},
+                {"Card 2", null, null, null, null, null, null, null},
+                {"Card 3", null, null, null, null, null, null, null},
+                {"Card 4", null, null, null, null, null, null, null},
+                {"Card 5", null, null, null, null, null, null, null},
+                {"Card 6", null, null, null, null, null, null, null},
+                {"Card 7", null, null, null, null, null, null, null},
+                {"Card 8", null, null, null, null, null, null, null},
+                {"Card 9", null, null, null, null, null, null, null},
+                {"Final Total", null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Results", "Card Name", "Collection", "Initial Stat", "Final Stat", "Note Score", "Skill Score", "Final Score"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableResults);
 
         javax.swing.GroupLayout jFrameResultLayout = new javax.swing.GroupLayout(jFrameResult.getContentPane());
         jFrameResult.getContentPane().setLayout(jFrameResultLayout);
@@ -147,15 +174,15 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             jFrameResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jFrameResultLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(706, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jFrameResultLayout.setVerticalGroup(
             jFrameResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jFrameResultLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(375, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -186,6 +213,11 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jSpinnerCardID1.setEditor(new javax.swing.JSpinner.NumberEditor(jSpinnerCardID1, "####"));
         jSpinnerCardID1.setMinimumSize(new java.awt.Dimension(25, 25));
         jSpinnerCardID1.setPreferredSize(new java.awt.Dimension(25, 20));
+        jSpinnerCardID1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerCardID1StateChanged(evt);
+            }
+        });
 
         jSpinnerCardID2.setEditor(new javax.swing.JSpinner.NumberEditor(jSpinnerCardID2, "####"));
         jSpinnerCardID2.setMinimumSize(new java.awt.Dimension(25, 25));
@@ -369,7 +401,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jComboBoxSubSkill.setMaximumRowCount(20);
         jComboBoxSubSkill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3% μ's", "3% Aqours", "6% First-Year", "6% Second-Year", "6% Third-Year", "6% CYaRon!", "6% AZALEA", "6% Guilty Kiss" }));
 
-        jLabelSongType.setText("Song Type");
+        jLabelSongType.setText("Song");
 
         jComboBoxSongType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "μ's", "Aqours" }));
 
@@ -390,8 +422,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 jSpinnerTimeStateChanged(evt);
             }
         });
-
-        jLabelPerfect.setText("Perfect %");
 
         jLabelStep2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelStep2.setText("Step 2:");
@@ -434,6 +464,15 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         });
 
         jCheckBoxNormalizeSong.setText("Normalize Song");
+
+        jCheckBoxAllIdolized.setText("All Idolized");
+        jCheckBoxAllIdolized.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCheckBoxAllIdolizedStateChanged(evt);
+            }
+        });
+
+        jLabelPerfect.setText("Perfect %");
 
         jSpinnerPerfect.setValue(50);
         jSpinnerPerfect.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -516,9 +555,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabelCard9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jSpinnerCardID9, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jCheckBoxIdolized9)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jCheckBoxAllIdolized)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jSpinnerCardID9, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jCheckBoxIdolized9)))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jSpinnerCardSkill1)
@@ -548,59 +590,67 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelAttribute)
-                                            .addComponent(jLabelNoteCount))
-                                        .addGap(16, 16, 16)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jComboBoxAttribute, 0, 57, Short.MAX_VALUE)
-                                            .addComponent(jSpinnerNoteCount))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(jRadioButtonAverage)
+                                                .addGap(3, 3, 3)
+                                                .addComponent(jRadioButtonAbsolute))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelSongType)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jComboBoxSongType, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jLabelCenterSkill)
+                                                        .addGap(18, 18, 18))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jLabelSubSkill)
+                                                        .addGap(33, 33, 33)))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jComboBoxSubSkill, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jComboBoxCenterSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(jLabelBasedOn)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jComboBoxBasedOn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(jLabelStep2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jButtonCalculate)))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabelAttribute)
+                                                    .addComponent(jLabelNoteCount))
+                                                .addGap(16, 16, 16)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jComboBoxAttribute, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jSpinnerNoteCount, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabelPerfect)
+                                                .addGap(22, 22, 22)
+                                                .addComponent(jSpinnerPerfect)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabelStarNotes)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jSpinnerStarNotes))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelStep2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButtonCalculate))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelPerfect)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jSpinnerPerfect)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jLabelTime)
-                                        .addGap(23, 23, 23)
-                                        .addComponent(jSpinnerTime, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jRadioButtonAverage)
-                                            .addGap(3, 3, 3)
-                                            .addComponent(jRadioButtonAbsolute))
-                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jSpinnerStarNotes))
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabelCenterSkill)
-                                                .addComponent(jLabelSubSkill))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jComboBoxSubSkill, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jComboBoxCenterSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabelTime)
+                                                    .addGap(23, 23, 23)
+                                                    .addComponent(jSpinnerTime))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabelSongType)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(jLabelBasedOn)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jComboBoxBasedOn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                                .addGap(208, 208, 208))
+                                                    .addComponent(jComboBoxSongType, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGap(187, 187, 187))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBoxMatchingFriendCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBoxNormalizeSong, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jCheckBoxMatchingFriendCenter, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                                    .addComponent(jCheckBoxNormalizeSong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -641,9 +691,9 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     .addComponent(jCheckBoxIdolized3)
                     .addComponent(jSpinnerCardSkill3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxSIS3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelPerfect)
                     .addComponent(jLabelTime)
                     .addComponent(jSpinnerTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPerfect)
                     .addComponent(jSpinnerPerfect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -698,6 +748,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     .addComponent(jRadioButtonAverage)
                     .addComponent(jRadioButtonAbsolute))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBoxAllIdolized)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGetCardData)
                     .addComponent(jLabelStep1)
@@ -705,7 +757,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     .addComponent(jButtonCalculate))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelSuccess)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jLabelSuccess.setVisible(false);
@@ -740,7 +792,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jSpinnerNoteCount.setVisible(false);
         jLabelTime.setVisible(false);
         jSpinnerTime.setVisible(false);
-        jLabelPerfect.setVisible(false);
         jLabelStep2.setVisible(false);
         jButtonCalculate.setVisible(false);
         jRadioButtonAverage.setVisible(false);
@@ -752,9 +803,10 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jLabelStarNotes.setVisible(false);
         jSpinnerStarNotes.setVisible(false);
         jCheckBoxNormalizeSong.setVisible(false);
+        jLabelPerfect.setVisible(false);
         jSpinnerPerfect.setVisible(false);
 
-        setBounds(0, 0, 678, 462);
+        setBounds(0, 0, 678, 512);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGetCardDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetCardDataActionPerformed
@@ -2816,65 +2868,206 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBoxCenterSkillActionPerformed
 
+    
     private void jButtonCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalculateActionPerformed
         // TODO add your handling code here:
         
         setUserInput();
         
+        int initialSum = 0;
         int teamSum = 0;
         int centerBoost = 0;
         
+        CardCalculationResults result1 = new CardCalculationResults();
+        CardCalculationResults result2 = new CardCalculationResults();
+        CardCalculationResults result3 = new CardCalculationResults();
+        CardCalculationResults result4 = new CardCalculationResults();
+        CardCalculationResults result5 = new CardCalculationResults();
+        CardCalculationResults result6 = new CardCalculationResults();
+        CardCalculationResults result7 = new CardCalculationResults();
+        CardCalculationResults result8 = new CardCalculationResults();
+        CardCalculationResults result9 = new CardCalculationResults();
+        
+        String[] tableModel1 = new String[] { "Card 1", "", "", "0", "0", "0", "0", "0" } ;
+        String[] tableModel2 = new String[] { "Card 2", "", "", "0", "0", "0", "0", "0" } ;
+        String[] tableModel3 = new String[] { "Card 3", "", "", "0", "0", "0", "0", "0" } ;
+        String[] tableModel4 = new String[] { "Card 4", "", "", "0", "0", "0", "0", "0" } ;
+        String[] tableModel5 = new String[] { "Card 5", "", "", "0", "0", "0", "0", "0" } ;
+        String[] tableModel6 = new String[] { "Card 6", "", "", "0", "0", "0", "0", "0" } ;
+        String[] tableModel7 = new String[] { "Card 7", "", "", "0", "0", "0", "0", "0" } ;
+        String[] tableModel8 = new String[] { "Card 8", "", "", "0", "0", "0", "0", "0" } ;
+        String[] tableModel9 = new String[] { "Card 9", "", "", "0", "0", "0", "0", "0" } ;
+        
         if ((int) jSpinnerCardID1.getValue() > 0) {
-            BaseStatsCalculator base1 = new BaseStatsCalculator(card1, userInput);
+            BaseStatsCalculator base1 = new BaseStatsCalculator(card1, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result1);
             teamSum = teamSum + base1.getFinalBaseStats();
             centerBoost = centerBoost + base1.getCenterBoostAmount();
+            
+            tableModel1[0] = "Card 1";
+            tableModel1[1] = card1.getName();
+            tableModel1[2] = card1.getCollection();
+            tableModel1[3] = Integer.toString(result1.getInitialBaseStat());
+            tableModel1[4] = Integer.toString(result1.getFinalBaseStat());
+            tableModel1[5] = "0";
+            tableModel1[6] = "0";
+            tableModel1[7] = "0";
+            
+            initialSum = initialSum + result1.getInitialBaseStat();
+
         }
         
         if ((int) jSpinnerCardID2.getValue() > 0) {
-            BaseStatsCalculator base2 = new BaseStatsCalculator(card2, userInput);
+            BaseStatsCalculator base2 = new BaseStatsCalculator(card2, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result2);
             teamSum = teamSum + base2.getFinalBaseStats();
             centerBoost = centerBoost + base2.getCenterBoostAmount();
+            
+            tableModel2[0] = "Card 2";
+            tableModel2[1] = card2.getName();
+            tableModel2[2] = card2.getCollection();
+            tableModel2[3] = Integer.toString(result2.getInitialBaseStat());
+            tableModel2[4] = Integer.toString(result2.getFinalBaseStat());
+            tableModel2[5] = "0";
+            tableModel2[6] = "0";
+            tableModel2[7] = "0";
+            
+            initialSum = initialSum + result2.getInitialBaseStat();
         }
                 
         if ((int) jSpinnerCardID3.getValue() > 0) {
-            BaseStatsCalculator base3 = new BaseStatsCalculator(card3, userInput);
+            BaseStatsCalculator base3 = new BaseStatsCalculator(card3, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result3);
             teamSum = teamSum + base3.getFinalBaseStats();
             centerBoost = centerBoost + base3.getCenterBoostAmount();
+            
+            tableModel3[0] = "Card 3";
+            tableModel3[1] = card3.getName();
+            tableModel3[2] = card3.getCollection();
+            tableModel3[3] = Integer.toString(result3.getInitialBaseStat());
+            tableModel3[4] = Integer.toString(result3.getFinalBaseStat());
+            tableModel3[5] = "0";
+            tableModel3[6] = "0";
+            tableModel3[7] = "0";
+            
+            initialSum = initialSum + result3.getInitialBaseStat();
         }
         
         if ((int) jSpinnerCardID4.getValue() > 0) {
-            BaseStatsCalculator base4 = new BaseStatsCalculator(card4, userInput);
+            BaseStatsCalculator base4 = new BaseStatsCalculator(card4, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result4);
             teamSum = teamSum + base4.getFinalBaseStats();
             centerBoost = centerBoost + base4.getCenterBoostAmount();
+            
+            tableModel4[0] = "Card 4";
+            tableModel4[1] = card4.getName();
+            tableModel4[2] = card4.getCollection();
+            tableModel4[3] = Integer.toString(result4.getInitialBaseStat());
+            tableModel4[4] = Integer.toString(result4.getFinalBaseStat());
+            tableModel4[5] = "0";
+            tableModel4[6] = "0";
+            tableModel4[7] = "0";
+            
+            initialSum = initialSum + result4.getInitialBaseStat();
         }
         if ((int) jSpinnerCardID5.getValue() > 0) {
-            BaseStatsCalculator base5 = new BaseStatsCalculator(card5, userInput);
+            BaseStatsCalculator base5 = new BaseStatsCalculator(card5, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result5);
             teamSum = teamSum + base5.getFinalBaseStats();
             centerBoost = centerBoost + base5.getCenterBoostAmount();
+            
+            tableModel5[0] = "Card 5";
+            tableModel5[1] = card5.getName();
+            tableModel5[2] = card5.getCollection();
+            tableModel5[3] = Integer.toString(result5.getInitialBaseStat());
+            tableModel5[4] = Integer.toString(result5.getFinalBaseStat());
+            tableModel5[5] = "0";
+            tableModel5[6] = "0";
+            tableModel5[7] = "0";
+            
+            initialSum = initialSum + result5.getInitialBaseStat();
         }
         if ((int) jSpinnerCardID6.getValue() > 0) {
-            BaseStatsCalculator base6 = new BaseStatsCalculator(card6, userInput);
+            BaseStatsCalculator base6 = new BaseStatsCalculator(card6, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result6);
             teamSum = teamSum + base6.getFinalBaseStats();
             centerBoost = centerBoost + base6.getCenterBoostAmount();
+            
+            tableModel6[0] = "Card 6";
+            tableModel6[1] = card6.getName();
+            tableModel6[2] = card6.getCollection();
+            tableModel6[3] = Integer.toString(result6.getInitialBaseStat());
+            tableModel6[4] = Integer.toString(result6.getFinalBaseStat());
+            tableModel6[5] = "0";
+            tableModel6[6] = "0";
+            tableModel6[7] = "0";
+            
+            initialSum = initialSum + result6.getInitialBaseStat();
         }
         if ((int) jSpinnerCardID7.getValue() > 0) {
-            BaseStatsCalculator base7 = new BaseStatsCalculator(card7, userInput);
+            BaseStatsCalculator base7 = new BaseStatsCalculator(card7, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result7);
             teamSum = teamSum + base7.getFinalBaseStats();
             centerBoost = centerBoost + base7.getCenterBoostAmount();
+            
+            tableModel7[0] = "Card 7";
+            tableModel7[1] = card7.getName();
+            tableModel7[2] = card7.getCollection();
+            tableModel7[3] = Integer.toString(result7.getInitialBaseStat());
+            tableModel7[4] = Integer.toString(result7.getFinalBaseStat());
+            tableModel7[5] = "0";
+            tableModel7[6] = "0";
+            tableModel7[7] = "0";
+            
+            initialSum = initialSum + result7.getInitialBaseStat();
         }
         if ((int) jSpinnerCardID8.getValue() > 0) {
-            BaseStatsCalculator base8 = new BaseStatsCalculator(card8, userInput);
+            BaseStatsCalculator base8 = new BaseStatsCalculator(card8, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result8);
             teamSum = teamSum + base8.getFinalBaseStats();
             centerBoost = centerBoost + base8.getCenterBoostAmount();
+            
+            tableModel8[0] = "Card 8";
+            tableModel8[1] = card8.getName();
+            tableModel8[2] = card8.getCollection();
+            tableModel8[3] = Integer.toString(result8.getInitialBaseStat());
+            tableModel8[4] = Integer.toString(result8.getFinalBaseStat());
+            tableModel8[5] = "0";
+            tableModel8[6] = "0";
+            tableModel8[7] = "0";
+            
+            initialSum = initialSum + result8.getInitialBaseStat();
         }
         if ((int) jSpinnerCardID9.getValue() > 0) {
-            BaseStatsCalculator base9 = new BaseStatsCalculator(card9, userInput);
+            BaseStatsCalculator base9 = new BaseStatsCalculator(card9, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result9);
             teamSum = teamSum + base9.getFinalBaseStats();
             centerBoost = centerBoost + base9.getCenterBoostAmount();
+            
+            tableModel9[0] = "Card 9";
+            tableModel9[1] = card9.getName();
+            tableModel9[2] = card9.getCollection();
+            tableModel9[3] = Integer.toString(result9.getInitialBaseStat());
+            tableModel9[4] = Integer.toString(result9.getFinalBaseStat());
+            tableModel9[5] = "0";
+            tableModel9[6] = "0";
+            tableModel9[7] = "0";
+            
+            initialSum = initialSum + result9.getInitialBaseStat();
         }
         
-        System.out.println(teamSum + " (+" + centerBoost + ")");
+        int totalFinalBaseStat = teamSum + centerBoost;
         
+        jTableResults.setModel(new javax.swing.table.DefaultTableModel(
+                               new Object [][] {
+                               tableModel1,
+                               tableModel2,
+                               tableModel3,
+                               tableModel4,
+                               tableModel5,
+                               tableModel6,
+                               tableModel7,
+                               tableModel8,
+                               tableModel9,
+                               {"Final Total", null, null, initialSum, totalFinalBaseStat, null, null, null}
+                               },
+                               
+                               new String [] {
+                               "Results", "Card Name", "Collection", "Initial Stat", "Final Stat", "Note Score", "Skill Score", "Final Score"
+                               }
+        
+        ));
         
         jFrameResult.setVisible(true);
     }//GEN-LAST:event_jButtonCalculateActionPerformed
@@ -2904,16 +3097,36 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         }       
     }//GEN-LAST:event_jSpinnerTimeStateChanged
 	
-	private void jSpinnerPerfectStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerPerfectStateChanged
+    private void jCheckBoxAllIdolizedStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBoxAllIdolizedStateChanged
         // TODO add your handling code here:
-        if ((int) jSpinnerPerfect.getValue() < 0) {
-            jSpinnerNoteCount.setValue(0);
+        if (jCheckBoxAllIdolized.isSelected()) {
+            jCheckBoxIdolized1.setSelected(true);
+            jCheckBoxIdolized2.setSelected(true);
+            jCheckBoxIdolized3.setSelected(true);
+            jCheckBoxIdolized4.setSelected(true);
+            jCheckBoxIdolized5.setSelected(true);
+            jCheckBoxIdolized6.setSelected(true);
+            jCheckBoxIdolized7.setSelected(true);
+            jCheckBoxIdolized8.setSelected(true);
+            jCheckBoxIdolized9.setSelected(true);
         }
         
-        else if ((int) jSpinnerPerfect.getValue() > 100) {
-            jSpinnerNoteCount.setValue(100);
+        else {
+            jCheckBoxIdolized1.setSelected(false);
+            jCheckBoxIdolized2.setSelected(false);
+            jCheckBoxIdolized3.setSelected(false);
+            jCheckBoxIdolized4.setSelected(false);
+            jCheckBoxIdolized5.setSelected(false);
+            jCheckBoxIdolized6.setSelected(false);
+            jCheckBoxIdolized7.setSelected(false);
+            jCheckBoxIdolized8.setSelected(false);
+            jCheckBoxIdolized9.setSelected(false);
         }
-	}//GEN-LAST:event_jSpinnerPerfectStateChanged
+    }//GEN-LAST:event_jCheckBoxAllIdolizedStateChanged
+
+    private void jSpinnerPerfectStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerPerfectStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSpinnerPerfectStateChanged
 
     private void setUserInput() {
         
@@ -3009,6 +3222,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroupCalculate;
     private javax.swing.JButton jButtonCalculate;
     private javax.swing.JButton jButtonGetCardData;
+    private javax.swing.JCheckBox jCheckBoxAllIdolized;
     private javax.swing.JCheckBox jCheckBoxIdolized1;
     private javax.swing.JCheckBox jCheckBoxIdolized2;
     private javax.swing.JCheckBox jCheckBoxIdolized3;
@@ -3035,7 +3249,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxSongType;
     private javax.swing.JComboBox<String> jComboBoxSubSkill;
     private javax.swing.JFrame jFrameResult;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAttribute;
     private javax.swing.JLabel jLabelBasedOn;
     private javax.swing.JLabel jLabelCard1;
@@ -3062,6 +3275,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTime;
     private javax.swing.JRadioButton jRadioButtonAbsolute;
     private javax.swing.JRadioButton jRadioButtonAverage;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinnerCardID1;
     private javax.swing.JSpinner jSpinnerCardID2;
     private javax.swing.JSpinner jSpinnerCardID3;
@@ -3084,6 +3298,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinnerPerfect;
     private javax.swing.JSpinner jSpinnerStarNotes;
     private javax.swing.JSpinner jSpinnerTime;
+    private javax.swing.JTable jTableResults;
     // End of variables declaration//GEN-END:variables
 
 }

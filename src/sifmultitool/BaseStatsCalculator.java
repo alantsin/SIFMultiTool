@@ -7,14 +7,14 @@ package sifmultitool;
 
 /**
  *
- * @author Alan
+ * @author Umidah
  */
 public class BaseStatsCalculator {
     
     private int finalBaseStats;
     private int centerBoostAmount;
 	
-	public BaseStatsCalculator(Card card, UserInput userInput) {
+	public BaseStatsCalculator(Card card, UserInput userInput, boolean friendCenter, CardCalculationResults result) {
 		
                 int initialStat;
             
@@ -44,6 +44,8 @@ public class BaseStatsCalculator {
                     
                 }
                 
+                result.setInitialBaseStat(initialStat);
+                
             //    System.out.println(initialStat);
 		
 		int modifiedBase = calculateTeamBoost(initialStat, userInput);
@@ -56,9 +58,15 @@ public class BaseStatsCalculator {
                 
                 centerBoostAmount = calculateCenterBoost(modifiedBase, userInput, card) + calculateSubBoost(modifiedBase, userInput, card);
                 
-                finalBaseStats = modifiedBase + centerBoostAmount;
+                if (friendCenter) {
+                    centerBoostAmount = centerBoostAmount * 2;
+                }
                 
-                System.out.println(finalBaseStats);   
+            //  System.out.println(finalBaseStats);   
+                
+            finalBaseStats = modifiedBase + centerBoostAmount;
+            
+            result.setFinalBaseStat(finalBaseStats);
 		
 	}
         
