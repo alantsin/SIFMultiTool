@@ -2429,6 +2429,18 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
       //  System.out.println(html.substring(indexBegin, indexEnd));
         html = html.substring(indexBegin, indexEnd);
         
+        if (html.contains("スマイル")) {
+            jComboBoxAttribute.setSelectedItem("Smile");
+        }
+        
+        else if (html.contains("ピュア")) {
+            jComboBoxAttribute.setSelectedItem("Pure");
+        }
+        
+        else if (html.contains("クール")) {
+            jComboBoxAttribute.setSelectedItem("Cool");
+        }
+        
         if (html.contains("パワー")) {
             jComboBoxCenterSkill.setSelectedItem("3%");
         }
