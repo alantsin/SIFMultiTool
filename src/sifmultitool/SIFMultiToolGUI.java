@@ -471,6 +471,11 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 jCheckBoxAllIdolizedStateChanged(evt);
             }
         });
+        jCheckBoxAllIdolized.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxAllIdolizedActionPerformed(evt);
+            }
+        });
 
         jLabelPerfect.setText("Perfect %");
 
@@ -637,15 +642,14 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                 .addComponent(jLabelStarNotes)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jSpinnerStarNotes))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jLabelTime)
-                                                    .addGap(23, 23, 23)
-                                                    .addComponent(jSpinnerTime))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jLabelSongType)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(jComboBoxSongType, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabelTime)
+                                                .addGap(23, 23, 23)
+                                                .addComponent(jSpinnerTime))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabelSongType)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jComboBoxSongType, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(187, 187, 187))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -3059,7 +3063,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             initialSum = initialSum + result9.getInitialBaseStat();
         }
         
-        int totalFinalBaseStat = teamSum + centerBoost;
+        int totalFinalBaseStat = teamSum;
         
         jTableResults.setModel(new javax.swing.table.DefaultTableModel(
                                new Object [][] {
@@ -3111,7 +3115,15 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
 	
     private void jCheckBoxAllIdolizedStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBoxAllIdolizedStateChanged
         // TODO add your handling code here:
-        if (jCheckBoxAllIdolized.isSelected()) {
+    }//GEN-LAST:event_jCheckBoxAllIdolizedStateChanged
+
+    private void jSpinnerPerfectStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerPerfectStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSpinnerPerfectStateChanged
+
+    private void jCheckBoxAllIdolizedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxAllIdolizedActionPerformed
+        // TODO add your handling code here:
+                if (jCheckBoxAllIdolized.isSelected()) {
             jCheckBoxIdolized1.setSelected(true);
             jCheckBoxIdolized2.setSelected(true);
             jCheckBoxIdolized3.setSelected(true);
@@ -3134,11 +3146,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             jCheckBoxIdolized8.setSelected(false);
             jCheckBoxIdolized9.setSelected(false);
         }
-    }//GEN-LAST:event_jCheckBoxAllIdolizedStateChanged
-
-    private void jSpinnerPerfectStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerPerfectStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jSpinnerPerfectStateChanged
+    }//GEN-LAST:event_jCheckBoxAllIdolizedActionPerformed
 
     private void setUserInput() {
         
