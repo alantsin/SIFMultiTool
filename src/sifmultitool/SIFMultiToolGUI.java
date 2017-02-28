@@ -464,6 +464,11 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         });
 
         jCheckBoxNormalizeSong.setText("Normalize Song");
+        jCheckBoxNormalizeSong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxNormalizeSongActionPerformed(evt);
+            }
+        });
 
         jCheckBoxAllIdolized.setText("All Idolized");
         jCheckBoxAllIdolized.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -2892,7 +2897,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         
         int initialSum = 0;
         int teamSum = 0;
-        int centerBoost = 0;
         
         CardCalculationResults result1 = new CardCalculationResults();
         CardCalculationResults result2 = new CardCalculationResults();
@@ -2915,16 +2919,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         String[] tableModel9 = new String[] { "Card 9", "", "", "0", "0", "0", "0", "0" } ;
         
         if ((int) jSpinnerCardID1.getValue() > 0) {
-            BaseStatsCalculator base1 = new BaseStatsCalculator(card1, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result1);
+            BaseStatsCalculator base1 = new BaseStatsCalculator(card1, userInput, result1);
+            ScoreCalculator score1 = new ScoreCalculator(card1, userInput, base1.getFinalBaseStats());
+            
             teamSum = teamSum + base1.getFinalBaseStats();
-            centerBoost = centerBoost + base1.getCenterBoostAmount();
             
             tableModel1[0] = "Card 1";
             tableModel1[1] = card1.getName();
             tableModel1[2] = card1.getCollection();
             tableModel1[3] = Integer.toString(result1.getInitialBaseStat());
             tableModel1[4] = Integer.toString(result1.getFinalBaseStat());
-            tableModel1[5] = "0";
+            tableModel1[5] = Integer.toString(score1.getScoreContribution());
             tableModel1[6] = "0";
             tableModel1[7] = "0";
             
@@ -2933,16 +2938,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         }
         
         if ((int) jSpinnerCardID2.getValue() > 0) {
-            BaseStatsCalculator base2 = new BaseStatsCalculator(card2, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result2);
+            BaseStatsCalculator base2 = new BaseStatsCalculator(card2, userInput, result2);
+            ScoreCalculator score2 = new ScoreCalculator(card2, userInput, base2.getFinalBaseStats());
+            
             teamSum = teamSum + base2.getFinalBaseStats();
-            centerBoost = centerBoost + base2.getCenterBoostAmount();
             
             tableModel2[0] = "Card 2";
             tableModel2[1] = card2.getName();
             tableModel2[2] = card2.getCollection();
             tableModel2[3] = Integer.toString(result2.getInitialBaseStat());
             tableModel2[4] = Integer.toString(result2.getFinalBaseStat());
-            tableModel2[5] = "0";
+            tableModel2[5] = Integer.toString(score2.getScoreContribution());;
             tableModel2[6] = "0";
             tableModel2[7] = "0";
             
@@ -2950,16 +2956,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         }
                 
         if ((int) jSpinnerCardID3.getValue() > 0) {
-            BaseStatsCalculator base3 = new BaseStatsCalculator(card3, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result3);
+            BaseStatsCalculator base3 = new BaseStatsCalculator(card3, userInput, result3);
+            ScoreCalculator score3 = new ScoreCalculator(card3, userInput, base3.getFinalBaseStats());
+            
             teamSum = teamSum + base3.getFinalBaseStats();
-            centerBoost = centerBoost + base3.getCenterBoostAmount();
             
             tableModel3[0] = "Card 3";
             tableModel3[1] = card3.getName();
             tableModel3[2] = card3.getCollection();
             tableModel3[3] = Integer.toString(result3.getInitialBaseStat());
             tableModel3[4] = Integer.toString(result3.getFinalBaseStat());
-            tableModel3[5] = "0";
+            tableModel3[5] = Integer.toString(score3.getScoreContribution());;
             tableModel3[6] = "0";
             tableModel3[7] = "0";
             
@@ -2967,96 +2974,103 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         }
         
         if ((int) jSpinnerCardID4.getValue() > 0) {
-            BaseStatsCalculator base4 = new BaseStatsCalculator(card4, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result4);
+            BaseStatsCalculator base4 = new BaseStatsCalculator(card4, userInput, result4);
+            ScoreCalculator score4 = new ScoreCalculator(card4, userInput, base4.getFinalBaseStats());
+            
             teamSum = teamSum + base4.getFinalBaseStats();
-            centerBoost = centerBoost + base4.getCenterBoostAmount();
             
             tableModel4[0] = "Card 4";
             tableModel4[1] = card4.getName();
             tableModel4[2] = card4.getCollection();
             tableModel4[3] = Integer.toString(result4.getInitialBaseStat());
             tableModel4[4] = Integer.toString(result4.getFinalBaseStat());
-            tableModel4[5] = "0";
+            tableModel4[5] = Integer.toString(score4.getScoreContribution());;
             tableModel4[6] = "0";
             tableModel4[7] = "0";
             
             initialSum = initialSum + result4.getInitialBaseStat();
         }
+        
         if ((int) jSpinnerCardID5.getValue() > 0) {
-            BaseStatsCalculator base5 = new BaseStatsCalculator(card5, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result5);
+            BaseStatsCalculator base5 = new BaseStatsCalculator(card5, userInput, result5);
+            ScoreCalculator score5 = new ScoreCalculator(card5, userInput, base5.getFinalBaseStats());
+            
             teamSum = teamSum + base5.getFinalBaseStats();
-            centerBoost = centerBoost + base5.getCenterBoostAmount();
             
             tableModel5[0] = "Card 5";
             tableModel5[1] = card5.getName();
             tableModel5[2] = card5.getCollection();
             tableModel5[3] = Integer.toString(result5.getInitialBaseStat());
             tableModel5[4] = Integer.toString(result5.getFinalBaseStat());
-            tableModel5[5] = "0";
+            tableModel5[5] = Integer.toString(score5.getScoreContribution());;
             tableModel5[6] = "0";
             tableModel5[7] = "0";
             
             initialSum = initialSum + result5.getInitialBaseStat();
         }
         if ((int) jSpinnerCardID6.getValue() > 0) {
-            BaseStatsCalculator base6 = new BaseStatsCalculator(card6, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result6);
+            BaseStatsCalculator base6 = new BaseStatsCalculator(card6, userInput, result6);
+            ScoreCalculator score6 = new ScoreCalculator(card6, userInput, base6.getFinalBaseStats());
+            
             teamSum = teamSum + base6.getFinalBaseStats();
-            centerBoost = centerBoost + base6.getCenterBoostAmount();
             
             tableModel6[0] = "Card 6";
             tableModel6[1] = card6.getName();
             tableModel6[2] = card6.getCollection();
             tableModel6[3] = Integer.toString(result6.getInitialBaseStat());
             tableModel6[4] = Integer.toString(result6.getFinalBaseStat());
-            tableModel6[5] = "0";
+            tableModel6[5] = Integer.toString(score6.getScoreContribution());;
             tableModel6[6] = "0";
             tableModel6[7] = "0";
             
             initialSum = initialSum + result6.getInitialBaseStat();
         }
         if ((int) jSpinnerCardID7.getValue() > 0) {
-            BaseStatsCalculator base7 = new BaseStatsCalculator(card7, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result7);
+            BaseStatsCalculator base7 = new BaseStatsCalculator(card7, userInput, result7);
+            ScoreCalculator score7 = new ScoreCalculator(card7, userInput, base7.getFinalBaseStats());
+            
             teamSum = teamSum + base7.getFinalBaseStats();
-            centerBoost = centerBoost + base7.getCenterBoostAmount();
             
             tableModel7[0] = "Card 7";
             tableModel7[1] = card7.getName();
             tableModel7[2] = card7.getCollection();
             tableModel7[3] = Integer.toString(result7.getInitialBaseStat());
             tableModel7[4] = Integer.toString(result7.getFinalBaseStat());
-            tableModel7[5] = "0";
+            tableModel7[5] = Integer.toString(score7.getScoreContribution());;
             tableModel7[6] = "0";
             tableModel7[7] = "0";
             
             initialSum = initialSum + result7.getInitialBaseStat();
         }
         if ((int) jSpinnerCardID8.getValue() > 0) {
-            BaseStatsCalculator base8 = new BaseStatsCalculator(card8, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result8);
+            BaseStatsCalculator base8 = new BaseStatsCalculator(card8, userInput, result8);
+            ScoreCalculator score8 = new ScoreCalculator(card8, userInput, base8.getFinalBaseStats());
+            
             teamSum = teamSum + base8.getFinalBaseStats();
-            centerBoost = centerBoost + base8.getCenterBoostAmount();
             
             tableModel8[0] = "Card 8";
             tableModel8[1] = card8.getName();
             tableModel8[2] = card8.getCollection();
             tableModel8[3] = Integer.toString(result8.getInitialBaseStat());
             tableModel8[4] = Integer.toString(result8.getFinalBaseStat());
-            tableModel8[5] = "0";
+            tableModel8[5] = Integer.toString(score8.getScoreContribution());;
             tableModel8[6] = "0";
             tableModel8[7] = "0";
             
             initialSum = initialSum + result8.getInitialBaseStat();
         }
         if ((int) jSpinnerCardID9.getValue() > 0) {
-            BaseStatsCalculator base9 = new BaseStatsCalculator(card9, userInput, jCheckBoxMatchingFriendCenter.isSelected(), result9);
+            BaseStatsCalculator base9 = new BaseStatsCalculator(card9, userInput, result9);
+            ScoreCalculator score9 = new ScoreCalculator(card9, userInput, base9.getFinalBaseStats());
+            
             teamSum = teamSum + base9.getFinalBaseStats();
-            centerBoost = centerBoost + base9.getCenterBoostAmount();
             
             tableModel9[0] = "Card 9";
             tableModel9[1] = card9.getName();
             tableModel9[2] = card9.getCollection();
             tableModel9[3] = Integer.toString(result9.getInitialBaseStat());
             tableModel9[4] = Integer.toString(result9.getFinalBaseStat());
-            tableModel9[5] = "0";
+            tableModel9[5] = Integer.toString(score9.getScoreContribution());;
             tableModel9[6] = "0";
             tableModel9[7] = "0";
             
@@ -3080,7 +3094,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                },
                                
                                new String [] {
-                               "Results", "Card Name", "Collection", "Initial Stat", "Final Stat", "Note Score", "Skill Score", "Final Score"
+                               "Card Number", "Card Name", "Collection", "Initial Stat", "Final Stat", "Note Score", "Skill Score", "Final Score"
                                }
         
         ));
@@ -3148,6 +3162,23 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jCheckBoxAllIdolizedActionPerformed
 
+    private void jCheckBoxNormalizeSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxNormalizeSongActionPerformed
+        // TODO add your handling code here:
+        if (jCheckBoxNormalizeSong.isSelected()) {
+            jSpinnerNoteCount.setEnabled(false);
+            jSpinnerStarNotes.setEnabled(false);
+            jSpinnerPerfect.setEnabled(false);
+            jSpinnerTime.setEnabled(false);
+        }
+        
+        else {
+            jSpinnerNoteCount.setEnabled(true);
+            jSpinnerStarNotes.setEnabled(true);
+            jSpinnerPerfect.setEnabled(true);
+            jSpinnerTime.setEnabled(true);
+        }
+    }//GEN-LAST:event_jCheckBoxNormalizeSongActionPerformed
+
     private void setUserInput() {
         
         userInput.setCard1SIS(jComboBoxSIS1.getSelectedItem().toString());
@@ -3176,6 +3207,10 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         else {
             userInput.setCalculationMethod("Absolute");
         }
+        
+        userInput.setMatchingFriendCenter(jCheckBoxMatchingFriendCenter.isSelected());
+        
+        userInput.setNormalizeSong(jCheckBoxNormalizeSong.isSelected());
         
     }
     

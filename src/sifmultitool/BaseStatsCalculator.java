@@ -14,7 +14,7 @@ public class BaseStatsCalculator {
     private int finalBaseStats;
     private int centerBoostAmount;
 	
-	public BaseStatsCalculator(Card card, UserInput userInput, boolean friendCenter, CardCalculationResults result) {
+	public BaseStatsCalculator(Card card, UserInput userInput, CardCalculationResults result) {
 		
                 int initialStat;
             
@@ -58,7 +58,7 @@ public class BaseStatsCalculator {
                 
                 centerBoostAmount = calculateCenterBoost(modifiedBase, userInput, card) + calculateSubBoost(modifiedBase, userInput, card);
                 
-                if (friendCenter) {
+                if (userInput.isMatchingFriendCenter()) {
                     centerBoostAmount = centerBoostAmount * 2;
                 }
                 

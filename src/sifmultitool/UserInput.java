@@ -58,6 +58,10 @@ public class UserInput {
         private String card9SIS;
 	
 	private String calculationMethod;
+        
+        private boolean matchingFriendCenter;
+        
+        private boolean normalizeSong;
 
 	public String getCard1ID() {
 		return card1ID;
@@ -493,6 +497,34 @@ public class UserInput {
      */
     public void setBasedOn(String basedOn) {
         this.basedOn = basedOn;
+    }
+
+    /**
+     * @return the matchingFriendCenter
+     */
+    public boolean isMatchingFriendCenter() {
+        return matchingFriendCenter;
+    }
+
+    /**
+     * @param matchingFriendCenter the matchingFriendCenter to set
+     */
+    public void setMatchingFriendCenter(boolean matchingFriendCenter) {
+        this.matchingFriendCenter = matchingFriendCenter;
+    }
+
+    /**
+     * @return the normalizeSong
+     */
+    public boolean isNormalizeSong() {
+        return normalizeSong;
+    }
+
+    /**
+     * @param normalizeSong the normalizeSong to set
+     */
+    public void setNormalizeSong(boolean normalizeSong) {
+        this.normalizeSong = normalizeSong;
     }
     
 }
