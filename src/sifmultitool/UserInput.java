@@ -43,9 +43,13 @@ public class UserInput {
 	private int starNotes;
 	
 	private String centerSkill;
+        private String centerAttribute;
         private String basedOn;
-	
 	private String subSkill;
+        
+        private String centerSkillFriend;
+        private String basedOnFriend;
+	private String subSkillFriend;
 	
 	private String card1SIS;
 	private String card2SIS;
@@ -525,6 +529,62 @@ public class UserInput {
      */
     public void setNormalizeSong(boolean normalizeSong) {
         this.normalizeSong = normalizeSong;
+    }
+
+    /**
+     * @return the centerSkillFriend
+     */
+    public String getCenterSkillFriend() {
+        return centerSkillFriend;
+    }
+
+    /**
+     * @param centerSkillFriend the centerSkillFriend to set
+     */
+    public void setCenterSkillFriend(String centerSkillFriend) {
+        this.centerSkillFriend = centerSkillFriend;
+    }
+
+    /**
+     * @return the basedOnFriend
+     */
+    public String getBasedOnFriend() {
+        return basedOnFriend;
+    }
+
+    /**
+     * @param basedOnFriend the basedOnFriend to set
+     */
+    public void setBasedOnFriend(String basedOnFriend) {
+        this.basedOnFriend = basedOnFriend;
+    }
+
+    /**
+     * @return the subSkillFriend
+     */
+    public String getSubSkillFriend() {
+        return subSkillFriend;
+    }
+
+    /**
+     * @param subSkillFriend the subSkillFriend to set
+     */
+    public void setSubSkillFriend(String subSkillFriend) {
+        this.subSkillFriend = subSkillFriend;
+    }
+
+    /**
+     * @return the centerAttribute
+     */
+    public String getCenterAttribute() {
+        return centerAttribute;
+    }
+
+    /**
+     * @param centerAttribute the centerAttribute to set
+     */
+    public void setCenterAttribute(String centerAttribute) {
+        this.centerAttribute = centerAttribute;
     }
     
 }

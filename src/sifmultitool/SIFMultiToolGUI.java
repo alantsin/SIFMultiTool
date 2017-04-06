@@ -38,6 +38,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     int[][] SkillLevelCard7 = new int[8][2];
     int[][] SkillLevelCard8 = new int[8][2];
     int[][] SkillLevelCard9 = new int[8][2];
+    
+    String[] centerSkill = new String[4];
 
     /**
      * Creates new form SIFMultiToolGUI
@@ -452,7 +454,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             }
         });
 
-        jCheckBoxMatchingFriendCenter.setText("Matching Friend Center");
+        jCheckBoxMatchingFriendCenter.setText("Friend Center");
+        jCheckBoxMatchingFriendCenter.setToolTipText("");
 
         jLabelStarNotes.setText("Star Notes");
 
@@ -647,14 +650,15 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                 .addComponent(jLabelStarNotes)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jSpinnerStarNotes))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelTime)
-                                                .addGap(23, 23, 23)
-                                                .addComponent(jSpinnerTime))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelSongType)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jComboBoxSongType, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabelTime)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(jSpinnerTime))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabelSongType)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(jComboBoxSongType, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                                 .addGap(187, 187, 187))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -2428,6 +2432,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         int indexBegin = html.indexOf("Leader Skill");
         
         if (indexBegin == -1) {
+            centerSkill[0] = "0%";
             jComboBoxCenterSkill.setSelectedItem("0%");
             jLabelSubSkill.setVisible(false);
             jComboBoxSubSkill.setVisible(false);
@@ -2439,26 +2444,32 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         html = html.substring(indexBegin, indexEnd);
         
         if (html.contains("スマイル")) {
+            centerSkill[1] = "Smile";
             jComboBoxAttribute.setSelectedItem("Smile");
         }
         
         else if (html.contains("ピュア")) {
+            centerSkill[1] = "Pure";
             jComboBoxAttribute.setSelectedItem("Pure");
         }
         
         else if (html.contains("クール")) {
+            centerSkill[1] = "Cool";
             jComboBoxAttribute.setSelectedItem("Cool");
         }
         
         if (html.contains("パワー")) {
+            centerSkill[0] = "3%";
             jComboBoxCenterSkill.setSelectedItem("3%");
         }
         
         else if (html.contains("ハート")) {
+            centerSkill[0] = "6%";
             jComboBoxCenterSkill.setSelectedItem("6%");
         }
         
         else if (html.contains("スター")) {
+            centerSkill[0] = "7%";
             jComboBoxCenterSkill.setSelectedItem("7%");
             parseSubSkill(html, false);
         }
@@ -2466,20 +2477,27 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         else if (html.contains("プリンセス") || html.contains("エンジェル") || html.contains("エンプレス")) {
             
             if (html.contains("9")) {
+                centerSkill[0] = "9%";
                 jComboBoxCenterSkill.setSelectedItem("9%");
             }
             
             else {
+                centerSkill[0] = "12%";
                 jComboBoxCenterSkill.setSelectedItem("12%");
+                
                 if (html.contains("of its Smile")) {
+                    centerSkill[2] = "Smile";
                     jComboBoxBasedOn.setSelectedItem("Smile");
                 }
                 else if (html.contains("of its Pure")) {
                     jComboBoxBasedOn.setSelectedItem("Pure");
+                    centerSkill[2] = "Pure";
                 }
                 else {
                     jComboBoxBasedOn.setSelectedItem("Cool");
+                    centerSkill[2] = "Cool";
                 }
+                
             }
             
             parseSubSkill(html, true);
@@ -2492,10 +2510,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         if (html.contains("μ")) {
             
             if (ur) {
+                centerSkill[3] = "3% μ's";
                 jComboBoxSubSkill.setSelectedItem("3% μ's");
             }
             
             else {
+                centerSkill[3] = "1% μ's";
                 jComboBoxSubSkill.setSelectedItem("1% μ's");
             }
             
@@ -2504,10 +2524,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         else if (html.contains("Aqours")) {
             
             if (ur) {
+                centerSkill[3] = "3% Aqours";
                 jComboBoxSubSkill.setSelectedItem("3% Aqours");
             }
             
             else {
+                centerSkill[3] = "1% Aqours";
                 jComboBoxSubSkill.setSelectedItem("1% Aqours");
             }
             
@@ -2516,10 +2538,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         else if (html.contains("first")) {
             
             if (ur) {
+                centerSkill[3] = "6% First-Year";
                 jComboBoxSubSkill.setSelectedItem("6% First-Year");
             }
             
             else {
+                centerSkill[3] = "2% First-Year";
                 jComboBoxSubSkill.setSelectedItem("2% First-Year");
             }
             
@@ -2528,10 +2552,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         else if (html.contains("second")) {
             
             if (ur) {
+                centerSkill[3] = "6% Second-Year";
                 jComboBoxSubSkill.setSelectedItem("6% Second-Year");
             }
             
             else {
+                centerSkill[3] = "2% Second-Year";
                 jComboBoxSubSkill.setSelectedItem("2% Second-Year");
             }
             
@@ -2540,10 +2566,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         else if (html.contains("third")) {
             
             if (ur) {
+                centerSkill[3] = "6% Third-Year";
                 jComboBoxSubSkill.setSelectedItem("6% Third-Year");
             }
             
             else {
+                centerSkill[3] = "2% Third-Year";
                 jComboBoxSubSkill.setSelectedItem("2% Third-Year");
             }
             
@@ -2552,10 +2580,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         else if (html.contains("Printemps")) {
             
             if (ur) {
+                centerSkill[3] = "6% Printemps";
                 jComboBoxSubSkill.setSelectedItem("6% Printemps");
             }
             
             else {
+                centerSkill[3] = "2% Printemps";
                 jComboBoxSubSkill.setSelectedItem("2% Printemps");
             }
             
@@ -2564,10 +2594,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         else if (html.contains("lily")) {
             
             if (ur) {
+                centerSkill[3] = "6% Lily White";
                 jComboBoxSubSkill.setSelectedItem("6% Lily White");
             }
             
             else {
+                centerSkill[3] = "2% Lily White";
                 jComboBoxSubSkill.setSelectedItem("2% Lily White");
             }
             
@@ -2576,10 +2608,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         else if (html.contains("BiBi")) {
             
             if (ur) {
+                centerSkill[3] = "6% BiBi";
                 jComboBoxSubSkill.setSelectedItem("6% BiBi");
             }
             
             else {
+                centerSkill[3] = "2% BiBi";
                 jComboBoxSubSkill.setSelectedItem("2% BiBi");
             }
             
@@ -2588,10 +2622,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         else if (html.contains("CYaRon")) {
             
             if (ur) {
+                centerSkill[3] = "6% CYaRon!";
                 jComboBoxSubSkill.setSelectedItem("6% CYaRon!");
             }
             
             else {
+                centerSkill[3] = "2% CYaRon!";
                 jComboBoxSubSkill.setSelectedItem("2% CYaRon!");
             }
             
@@ -2600,10 +2636,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         else if (html.contains("AZALEA")) {
             
             if (ur) {
+                centerSkill[3] = "6% AZALEA";
                 jComboBoxSubSkill.setSelectedItem("6% AZALEA");
             }
             
             else {
+                centerSkill[3] = "2% AZALEA";
                 jComboBoxSubSkill.setSelectedItem("2% AZALEA");
             }
             
@@ -2612,10 +2650,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         else if (html.contains("Guilty")) {
             
             if (ur) {
+                centerSkill[3] = "6% Guilty Kiss";
                 jComboBoxSubSkill.setSelectedItem("6% Guilty Kiss");
             }
             
             else {
+                centerSkill[3] = "2% Guilty Kiss";
                 jComboBoxSubSkill.setSelectedItem("2% Guilty Kiss");
             }
             
@@ -3079,6 +3119,10 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         
         int totalFinalBaseStat = teamSum;
         
+        int totalNoteScore = Integer.parseInt(tableModel1[5]) + Integer.parseInt(tableModel2[5]) + Integer.parseInt(tableModel3[5]) + 
+                             Integer.parseInt(tableModel4[5]) + Integer.parseInt(tableModel5[5]) + Integer.parseInt(tableModel6[5]) +
+                             Integer.parseInt(tableModel7[5]) + Integer.parseInt(tableModel8[5]) + Integer.parseInt(tableModel9[5]); 
+        
         jTableResults.setModel(new javax.swing.table.DefaultTableModel(
                                new Object [][] {
                                tableModel1,
@@ -3090,7 +3134,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                tableModel7,
                                tableModel8,
                                tableModel9,
-                               {"Final Total", null, null, initialSum, totalFinalBaseStat, null, null, null}
+                               {"Final Total", null, null, initialSum, totalFinalBaseStat, totalNoteScore, null, null}
                                },
                                
                                new String [] {
@@ -3196,9 +3240,15 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         userInput.setNoteCount((int) jSpinnerNoteCount.getValue());
         userInput.setTime((int) jSpinnerTime.getValue());
         userInput.setPerfectPercent((int) jSpinnerPerfect.getValue());
-        userInput.setCenterSkill(jComboBoxCenterSkill.getSelectedItem().toString());
-        userInput.setBasedOn(jComboBoxBasedOn.getSelectedItem().toString());
-        userInput.setSubSkill(jComboBoxSubSkill.getSelectedItem().toString());
+        
+        userInput.setCenterSkill(centerSkill[0]);
+        userInput.setCenterAttribute(centerSkill[1]);
+        userInput.setBasedOn(centerSkill[2]);
+        userInput.setSubSkill(centerSkill[3]);
+        
+        userInput.setCenterSkillFriend(jComboBoxCenterSkill.getSelectedItem().toString());
+        userInput.setBasedOnFriend(jComboBoxBasedOn.getSelectedItem().toString());
+        userInput.setSubSkillFriend(jComboBoxSubSkill.getSelectedItem().toString());
         
         if (jRadioButtonAverage.isSelected()) {
             userInput.setCalculationMethod("Average");

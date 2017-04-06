@@ -11,8 +11,9 @@ package sifmultitool;
  */
 public class BaseStatsCalculator {
     
-    private int finalBaseStats;
-    private int centerBoostAmount;
+    private final int finalBaseStats;
+    private int centerBoostAmount = 0;
+    private int centerBoostAmountFriend = 0;
 	
 	public BaseStatsCalculator(Card card, UserInput userInput, CardCalculationResults result) {
 		
@@ -59,12 +60,12 @@ public class BaseStatsCalculator {
                 centerBoostAmount = calculateCenterBoost(modifiedBase, userInput, card) + calculateSubBoost(modifiedBase, userInput, card);
                 
                 if (userInput.isMatchingFriendCenter()) {
-                    centerBoostAmount = centerBoostAmount * 2;
+                    centerBoostAmountFriend = calculateCenterBoostFriend(modifiedBase, userInput, card) + calculateSubBoostFriend(modifiedBase, userInput, card);
                 }
                 
             //  System.out.println(finalBaseStats);   
                 
-            finalBaseStats = modifiedBase + centerBoostAmount;
+            finalBaseStats = modifiedBase + centerBoostAmount + centerBoostAmountFriend;
             
             result.setFinalBaseStat(finalBaseStats);
 		
@@ -108,6 +109,44 @@ public class BaseStatsCalculator {
             
         }
         
+        private int calculateCenterBoostFriend(int modifiedBase, UserInput userInput, Card card) {
+            
+            if (userInput.getCenterSkillFriend().contains("3")) {
+                return (int) Math.ceil(modifiedBase * 0.03);
+            }
+            
+            else if (userInput.getCenterSkillFriend().contains("6")) {
+                return (int) Math.ceil(modifiedBase * 0.06);
+            }
+            
+            else if (userInput.getCenterSkillFriend().contains("7")) {
+                return (int) Math.ceil(modifiedBase * 0.07);
+            }
+            
+            else if (userInput.getCenterSkillFriend().contains("9")) {
+                return (int) Math.ceil(modifiedBase * 0.09);
+            }
+            
+            else if (userInput.getCenterSkillFriend().contains("12")) {
+                
+                if (userInput.getBasedOnFriend().contains("Smile")) {
+                    return (int) Math.ceil(card.getSmilePoints() * 0.12);
+                }
+                
+                else if (userInput.getBasedOnFriend().contains("Pure")) {
+                    return (int) Math.ceil(card.getPurePoints() * 0.12);
+                }
+                
+                else if (userInput.getBasedOnFriend().contains("Cool")) {
+                    return (int) Math.ceil(card.getCoolPoints() * 0.12);
+                }
+                
+            }
+            
+            return 0;
+            
+        }
+        
         private int calculateSubBoost(int modifiedBase, UserInput userInput, Card card) {
             
             if (userInput.getCenterSkill().contains("7")) {
@@ -136,7 +175,7 @@ public class BaseStatsCalculator {
                     return (int) Math.ceil(modifiedBase * 0.02);
                 }
                 
-                else if (userInput.getSubSkill().contains("lily") && card.getSubUnit().contains("lily")) {
+                else if (userInput.getSubSkill().contains("Lily") && card.getSubUnit().contains("Lily")) {
                     return (int) Math.ceil(modifiedBase * 0.02);
                 }
                 
@@ -185,7 +224,7 @@ public class BaseStatsCalculator {
                     return (int) Math.ceil(modifiedBase * 0.06);
                 }
                 
-                else if (userInput.getSubSkill().contains("lily") && card.getSubUnit().contains("lily")) {
+                else if (userInput.getSubSkill().contains("Lily") && card.getSubUnit().contains("Lily")) {
                     return (int) Math.ceil(modifiedBase * 0.06);
                 }
                 
@@ -202,6 +241,109 @@ public class BaseStatsCalculator {
                 }
                 
                 else if (userInput.getSubSkill().contains("Guilty") && card.getSubUnit().contains("Guilty")) {
+                    return (int) Math.ceil(modifiedBase * 0.06);
+                }
+                
+            }
+            
+            return 0;
+            
+        }
+        
+        private int calculateSubBoostFriend(int modifiedBase, UserInput userInput, Card card) {
+            
+            if (userInput.getCenterSkillFriend().contains("7")) {
+                
+                if (userInput.getSubSkillFriend().contains("μ's") && card.getMainUnit().contains("μ's")) {
+                    return (int) Math.ceil(modifiedBase * 0.01);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("Aqours") && card.getMainUnit().contains("Aqours")) {
+                    return (int) Math.ceil(modifiedBase * 0.01);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("First") && card.getYear().contains("First")) {
+                    return (int) Math.ceil(modifiedBase * 0.02);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("Second") && card.getYear().contains("Second")) {
+                    return (int) Math.ceil(modifiedBase * 0.02);
+                }
+                
+                else if (userInput.getSubSkill().contains("Third") && card.getYear().contains("Third")) {
+                    return (int) Math.ceil(modifiedBase * 0.02);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("Printemps") && card.getSubUnit().contains("Printemps")) {
+                    return (int) Math.ceil(modifiedBase * 0.02);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("Lily") && card.getSubUnit().contains("Lily")) {
+                    return (int) Math.ceil(modifiedBase * 0.02);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("BiBi") && card.getSubUnit().contains("BiBi")) {
+                    return (int) Math.ceil(modifiedBase * 0.02);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("CYaRon") && card.getSubUnit().contains("CYaRon")) {
+                    return (int) Math.ceil(modifiedBase * 0.02);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("AZALEA") && card.getSubUnit().contains("AZALEA")) {
+                    return (int) Math.ceil(modifiedBase * 0.02);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("Guilty") && card.getSubUnit().contains("Guilty")) {
+                    return (int) Math.ceil(modifiedBase * 0.02);
+                }
+                
+            }
+            
+            else if (userInput.getCenterSkillFriend().contains("9") ||
+                     userInput.getCenterSkillFriend().contains("12")) {
+                
+                if (userInput.getSubSkillFriend().contains("μ's") && card.getMainUnit().contains("μ's")) {
+                    return (int) Math.ceil(modifiedBase * 0.03);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("Aqours") && card.getMainUnit().contains("Aqours")) {
+                    return (int) Math.ceil(modifiedBase * 0.03);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("First") && card.getYear().contains("First")) {
+                    return (int) Math.ceil(modifiedBase * 0.06);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("Second") && card.getYear().contains("Second")) {
+                    return (int) Math.ceil(modifiedBase * 0.06);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("Third") && card.getYear().contains("Third")) {
+                    return (int) Math.ceil(modifiedBase * 0.06);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("Printemps") && card.getSubUnit().contains("Printemps")) {
+                    return (int) Math.ceil(modifiedBase * 0.06);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("Lily") && card.getSubUnit().contains("Lily")) {
+                    return (int) Math.ceil(modifiedBase * 0.06);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("BiBi") && card.getSubUnit().contains("BiBi")) {
+                    return (int) Math.ceil(modifiedBase * 0.06);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("CYaRon") && card.getSubUnit().contains("CYaRon")) {
+                    return (int) Math.ceil(modifiedBase * 0.06);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("AZALEA") && card.getSubUnit().contains("AZALEA")) {
+                    return (int) Math.ceil(modifiedBase * 0.06);
+                }
+                
+                else if (userInput.getSubSkillFriend().contains("Guilty") && card.getSubUnit().contains("Guilty")) {
                     return (int) Math.ceil(modifiedBase * 0.06);
                 }
                 
@@ -481,15 +623,19 @@ public class BaseStatsCalculator {
             
         }
 	
-	public int getFinalBaseStats() {
-		return finalBaseStats;
-	}
+    public int getFinalBaseStats() {
+	return finalBaseStats;
+    }
 
     /**
      * @return the centerBoostAmount
      */
     public int getCenterBoostAmount() {
         return centerBoostAmount;
+    }
+    
+    public int getCenterBoostAmountFriend() {
+        return centerBoostAmountFriend;
     }
     
 }
