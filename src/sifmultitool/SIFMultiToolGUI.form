@@ -299,17 +299,15 @@
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="jSpinnerStarNotes" max="32767" attributes="0"/>
                                           </Group>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Component id="jLabelTime" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jSpinnerTime" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jLabelSongType" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jComboBoxSongType" min="-2" pref="80" max="-2" attributes="0"/>
-                                              </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabelTime" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="jSpinnerTime" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabelSongType" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="jComboBoxSongType" min="-2" pref="80" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -317,10 +315,7 @@
                               <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jCheckBoxMatchingFriendCenter" pref="243" max="32767" attributes="0"/>
-                                  <Component id="jCheckBoxNormalizeSong" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="jCheckBoxMatchingFriendCenter" min="-2" pref="243" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -421,7 +416,6 @@
                   <Component id="jCheckBoxIdolized8" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jSpinnerCardSkill8" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBoxSIS8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxNormalizeSong" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -1061,6 +1055,7 @@
     </Component>
     <Component class="javax.swing.JSpinner" name="jSpinnerNoteCount">
       <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Total number of notes in the song"/>
         <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="50" type="code"/>
         </Property>
@@ -1082,6 +1077,7 @@
     </Component>
     <Component class="javax.swing.JSpinner" name="jSpinnerTime">
       <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Total time of song; irrelevant if no timer-based skills"/>
         <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="120" type="code"/>
         </Property>
@@ -1180,9 +1176,13 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBoxMatchingFriendCenter">
       <Properties>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Friend Center"/>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="toolTipText" type="java.lang.String" value="Select to enable calculation with Friend Assist"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxMatchingFriendCenterActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jCheckBoxMatchingFriendCenter.setVisible(false);"/>
       </AuxValues>
@@ -1208,17 +1208,6 @@
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jSpinnerStarNotes.setVisible(false);"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBoxNormalizeSong">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Normalize Song"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxNormalizeSongActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jCheckBoxNormalizeSong.setVisible(false);"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBoxAllIdolized">
       <Properties>
         <Property name="text" type="java.lang.String" value="All Idolized"/>
@@ -1238,6 +1227,7 @@
     </Component>
     <Component class="javax.swing.JSpinner" name="jSpinnerPerfect">
       <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="The expected percentage of Perfect Notes"/>
         <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="50" type="code"/>
         </Property>

@@ -14,7 +14,7 @@ import org.json.JSONObject;
 public class SIFMultiToolGUI extends javax.swing.JFrame {
     
     int[] specialCards = { 83, 146, 147, 148, 379, 380, 381, 382, 383, 384, 385, 386, 
-                           387, 388, 389, 390, 629, 1022, 1048, 1070, 1083, 1136};
+                           387, 388, 389, 390, 629, 1022, 1048, 1070, 1083, 1136, 1166};
     
     Card card1;
     Card card2;
@@ -29,15 +29,15 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     
     UserInput userInput;
     
-    int[][] SkillLevelCard1 = new int[8][2];
-    int[][] SkillLevelCard2 = new int[8][2];
-    int[][] SkillLevelCard3 = new int[8][2];
-    int[][] SkillLevelCard4 = new int[8][2];
-    int[][] SkillLevelCard5 = new int[8][2];
-    int[][] SkillLevelCard6 = new int[8][2];
-    int[][] SkillLevelCard7 = new int[8][2];
-    int[][] SkillLevelCard8 = new int[8][2];
-    int[][] SkillLevelCard9 = new int[8][2];
+    double[][] SkillLevelCard1 = new double[8][2];
+    double[][] SkillLevelCard2 = new double[8][2];
+    double[][] SkillLevelCard3 = new double[8][2];
+    double[][] SkillLevelCard4 = new double[8][2];
+    double[][] SkillLevelCard5 = new double[8][2];
+    double[][] SkillLevelCard6 = new double[8][2];
+    double[][] SkillLevelCard7 = new double[8][2];
+    double[][] SkillLevelCard8 = new double[8][2];
+    double[][] SkillLevelCard9 = new double[8][2];
     
     String[] centerSkill = new String[4];
 
@@ -133,7 +133,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jCheckBoxMatchingFriendCenter = new javax.swing.JCheckBox();
         jLabelStarNotes = new javax.swing.JLabel();
         jSpinnerStarNotes = new javax.swing.JSpinner();
-        jCheckBoxNormalizeSong = new javax.swing.JCheckBox();
         jCheckBoxAllIdolized = new javax.swing.JCheckBox();
         jLabelPerfect = new javax.swing.JLabel();
         jSpinnerPerfect = new javax.swing.JSpinner();
@@ -409,6 +408,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
 
         jLabelNoteCount.setText("Notes");
 
+        jSpinnerNoteCount.setToolTipText("Total number of notes in the song");
         jSpinnerNoteCount.setValue(50);
         jSpinnerNoteCount.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -418,6 +418,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
 
         jLabelTime.setText("Time (s)");
 
+        jSpinnerTime.setToolTipText("Total time of song; irrelevant if no timer-based skills");
         jSpinnerTime.setValue(120);
         jSpinnerTime.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -454,8 +455,14 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             }
         });
 
+        jCheckBoxMatchingFriendCenter.setSelected(true);
         jCheckBoxMatchingFriendCenter.setText("Friend Center");
-        jCheckBoxMatchingFriendCenter.setToolTipText("");
+        jCheckBoxMatchingFriendCenter.setToolTipText("Select to enable calculation with Friend Assist");
+        jCheckBoxMatchingFriendCenter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMatchingFriendCenterActionPerformed(evt);
+            }
+        });
 
         jLabelStarNotes.setText("Star Notes");
 
@@ -463,13 +470,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jSpinnerStarNotes.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinnerStarNotesStateChanged(evt);
-            }
-        });
-
-        jCheckBoxNormalizeSong.setText("Normalize Song");
-        jCheckBoxNormalizeSong.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxNormalizeSongActionPerformed(evt);
             }
         });
 
@@ -487,6 +487,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
 
         jLabelPerfect.setText("Perfect %");
 
+        jSpinnerPerfect.setToolTipText("The expected percentage of Perfect Notes");
         jSpinnerPerfect.setValue(50);
         jSpinnerPerfect.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -650,20 +651,17 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                                 .addComponent(jLabelStarNotes)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jSpinnerStarNotes))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jLabelTime)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(jSpinnerTime))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jLabelSongType)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(jComboBoxSongType, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabelTime)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jSpinnerTime))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabelSongType)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jComboBoxSongType, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(187, 187, 187))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jCheckBoxMatchingFriendCenter, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                                    .addComponent(jCheckBoxNormalizeSong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jCheckBoxMatchingFriendCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -749,8 +747,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     .addComponent(jSpinnerCardID8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBoxIdolized8)
                     .addComponent(jSpinnerCardSkill8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxSIS8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxNormalizeSong))
+                    .addComponent(jComboBoxSIS8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCard9)
@@ -815,7 +812,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jCheckBoxMatchingFriendCenter.setVisible(false);
         jLabelStarNotes.setVisible(false);
         jSpinnerStarNotes.setVisible(false);
-        jCheckBoxNormalizeSong.setVisible(false);
         jLabelPerfect.setVisible(false);
         jSpinnerPerfect.setVisible(false);
 
@@ -2014,6 +2010,11 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             jSpinnerStarNotes.setVisible(true);
         }
         
+        else {
+            jLabelStarNotes.setVisible(false);
+            jSpinnerStarNotes.setVisible(false);
+        }
+        
     }
     
     private void addTheRest() {
@@ -2039,7 +2040,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jButtonCalculate.setVisible(true);
         
         jCheckBoxMatchingFriendCenter.setVisible(true);
-        jCheckBoxNormalizeSong.setVisible(true);
     }
 
     private void addCenterSkill() {
@@ -2428,7 +2428,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     }
     
     private void parseCenterSkill(String html) {
-        
+
         int indexBegin = html.indexOf("Leader Skill");
         
         if (indexBegin == -1) {
@@ -2961,6 +2961,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         if ((int) jSpinnerCardID1.getValue() > 0) {
             BaseStatsCalculator base1 = new BaseStatsCalculator(card1, userInput, result1);
             ScoreCalculator score1 = new ScoreCalculator(card1, userInput, base1.getFinalBaseStats());
+            SkillCalculator skill1 = new SkillCalculator(card1, userInput, card1.getSkillLevelTable(), userInput.getCard1SkillLevel());
             
             teamSum = teamSum + base1.getFinalBaseStats();
             
@@ -2970,8 +2971,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             tableModel1[3] = Integer.toString(result1.getInitialBaseStat());
             tableModel1[4] = Integer.toString(result1.getFinalBaseStat());
             tableModel1[5] = Integer.toString(score1.getScoreContribution());
-            tableModel1[6] = "0";
-            tableModel1[7] = "0";
+            tableModel1[6] = Integer.toString(skill1.getSkillContribution());
+            tableModel1[7] = Integer.toString(score1.getScoreContribution() + skill1.getSkillContribution());
             
             initialSum = initialSum + result1.getInitialBaseStat();
 
@@ -2980,6 +2981,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         if ((int) jSpinnerCardID2.getValue() > 0) {
             BaseStatsCalculator base2 = new BaseStatsCalculator(card2, userInput, result2);
             ScoreCalculator score2 = new ScoreCalculator(card2, userInput, base2.getFinalBaseStats());
+            SkillCalculator skill2 = new SkillCalculator(card2, userInput, card2.getSkillLevelTable(), userInput.getCard2SkillLevel());
             
             teamSum = teamSum + base2.getFinalBaseStats();
             
@@ -2989,8 +2991,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             tableModel2[3] = Integer.toString(result2.getInitialBaseStat());
             tableModel2[4] = Integer.toString(result2.getFinalBaseStat());
             tableModel2[5] = Integer.toString(score2.getScoreContribution());;
-            tableModel2[6] = "0";
-            tableModel2[7] = "0";
+            tableModel2[6] = Integer.toString(skill2.getSkillContribution());
+            tableModel2[7] = Integer.toString(score2.getScoreContribution() + skill2.getSkillContribution());
             
             initialSum = initialSum + result2.getInitialBaseStat();
         }
@@ -2998,6 +3000,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         if ((int) jSpinnerCardID3.getValue() > 0) {
             BaseStatsCalculator base3 = new BaseStatsCalculator(card3, userInput, result3);
             ScoreCalculator score3 = new ScoreCalculator(card3, userInput, base3.getFinalBaseStats());
+            SkillCalculator skill3 = new SkillCalculator(card3, userInput, card3.getSkillLevelTable(), userInput.getCard3SkillLevel());
             
             teamSum = teamSum + base3.getFinalBaseStats();
             
@@ -3007,8 +3010,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             tableModel3[3] = Integer.toString(result3.getInitialBaseStat());
             tableModel3[4] = Integer.toString(result3.getFinalBaseStat());
             tableModel3[5] = Integer.toString(score3.getScoreContribution());;
-            tableModel3[6] = "0";
-            tableModel3[7] = "0";
+            tableModel3[6] = Integer.toString(skill3.getSkillContribution());
+            tableModel3[7] = Integer.toString(score3.getScoreContribution() + skill3.getSkillContribution());
             
             initialSum = initialSum + result3.getInitialBaseStat();
         }
@@ -3016,6 +3019,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         if ((int) jSpinnerCardID4.getValue() > 0) {
             BaseStatsCalculator base4 = new BaseStatsCalculator(card4, userInput, result4);
             ScoreCalculator score4 = new ScoreCalculator(card4, userInput, base4.getFinalBaseStats());
+            SkillCalculator skill4 = new SkillCalculator(card4, userInput, card4.getSkillLevelTable(), userInput.getCard4SkillLevel());
             
             teamSum = teamSum + base4.getFinalBaseStats();
             
@@ -3025,8 +3029,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             tableModel4[3] = Integer.toString(result4.getInitialBaseStat());
             tableModel4[4] = Integer.toString(result4.getFinalBaseStat());
             tableModel4[5] = Integer.toString(score4.getScoreContribution());;
-            tableModel4[6] = "0";
-            tableModel4[7] = "0";
+            tableModel4[6] = Integer.toString(skill4.getSkillContribution());
+            tableModel4[7] = Integer.toString(score4.getScoreContribution() + skill4.getSkillContribution());
             
             initialSum = initialSum + result4.getInitialBaseStat();
         }
@@ -3034,6 +3038,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         if ((int) jSpinnerCardID5.getValue() > 0) {
             BaseStatsCalculator base5 = new BaseStatsCalculator(card5, userInput, result5);
             ScoreCalculator score5 = new ScoreCalculator(card5, userInput, base5.getFinalBaseStats());
+            SkillCalculator skill5 = new SkillCalculator(card5, userInput, card5.getSkillLevelTable(), userInput.getCard5SkillLevel());
             
             teamSum = teamSum + base5.getFinalBaseStats();
             
@@ -3043,14 +3048,15 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             tableModel5[3] = Integer.toString(result5.getInitialBaseStat());
             tableModel5[4] = Integer.toString(result5.getFinalBaseStat());
             tableModel5[5] = Integer.toString(score5.getScoreContribution());;
-            tableModel5[6] = "0";
-            tableModel5[7] = "0";
+            tableModel5[6] = Integer.toString(skill5.getSkillContribution());
+            tableModel5[7] = Integer.toString(score5.getScoreContribution() + skill5.getSkillContribution());
             
             initialSum = initialSum + result5.getInitialBaseStat();
         }
         if ((int) jSpinnerCardID6.getValue() > 0) {
             BaseStatsCalculator base6 = new BaseStatsCalculator(card6, userInput, result6);
             ScoreCalculator score6 = new ScoreCalculator(card6, userInput, base6.getFinalBaseStats());
+            SkillCalculator skill6 = new SkillCalculator(card6, userInput, card6.getSkillLevelTable(), userInput.getCard6SkillLevel());
             
             teamSum = teamSum + base6.getFinalBaseStats();
             
@@ -3060,14 +3066,15 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             tableModel6[3] = Integer.toString(result6.getInitialBaseStat());
             tableModel6[4] = Integer.toString(result6.getFinalBaseStat());
             tableModel6[5] = Integer.toString(score6.getScoreContribution());;
-            tableModel6[6] = "0";
-            tableModel6[7] = "0";
+            tableModel6[6] = Integer.toString(skill6.getSkillContribution());
+            tableModel6[7] = Integer.toString(score6.getScoreContribution() + skill6.getSkillContribution());
             
             initialSum = initialSum + result6.getInitialBaseStat();
         }
         if ((int) jSpinnerCardID7.getValue() > 0) {
             BaseStatsCalculator base7 = new BaseStatsCalculator(card7, userInput, result7);
             ScoreCalculator score7 = new ScoreCalculator(card7, userInput, base7.getFinalBaseStats());
+            SkillCalculator skill7 = new SkillCalculator(card7, userInput, card7.getSkillLevelTable(), userInput.getCard7SkillLevel());
             
             teamSum = teamSum + base7.getFinalBaseStats();
             
@@ -3077,14 +3084,15 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             tableModel7[3] = Integer.toString(result7.getInitialBaseStat());
             tableModel7[4] = Integer.toString(result7.getFinalBaseStat());
             tableModel7[5] = Integer.toString(score7.getScoreContribution());;
-            tableModel7[6] = "0";
-            tableModel7[7] = "0";
+            tableModel7[6] = Integer.toString(skill7.getSkillContribution());
+            tableModel7[7] = Integer.toString(score7.getScoreContribution() + skill7.getSkillContribution());
             
             initialSum = initialSum + result7.getInitialBaseStat();
         }
         if ((int) jSpinnerCardID8.getValue() > 0) {
             BaseStatsCalculator base8 = new BaseStatsCalculator(card8, userInput, result8);
             ScoreCalculator score8 = new ScoreCalculator(card8, userInput, base8.getFinalBaseStats());
+            SkillCalculator skill8 = new SkillCalculator(card8, userInput, card8.getSkillLevelTable(), userInput.getCard8SkillLevel());
             
             teamSum = teamSum + base8.getFinalBaseStats();
             
@@ -3094,14 +3102,15 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             tableModel8[3] = Integer.toString(result8.getInitialBaseStat());
             tableModel8[4] = Integer.toString(result8.getFinalBaseStat());
             tableModel8[5] = Integer.toString(score8.getScoreContribution());;
-            tableModel8[6] = "0";
-            tableModel8[7] = "0";
+            tableModel8[6] = Integer.toString(skill8.getSkillContribution());
+            tableModel8[7] = Integer.toString(score8.getScoreContribution() + skill8.getSkillContribution());
             
             initialSum = initialSum + result8.getInitialBaseStat();
         }
         if ((int) jSpinnerCardID9.getValue() > 0) {
             BaseStatsCalculator base9 = new BaseStatsCalculator(card9, userInput, result9);
             ScoreCalculator score9 = new ScoreCalculator(card9, userInput, base9.getFinalBaseStats());
+            SkillCalculator skill9 = new SkillCalculator(card9, userInput, card9.getSkillLevelTable(), userInput.getCard9SkillLevel());
             
             teamSum = teamSum + base9.getFinalBaseStats();
             
@@ -3111,8 +3120,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             tableModel9[3] = Integer.toString(result9.getInitialBaseStat());
             tableModel9[4] = Integer.toString(result9.getFinalBaseStat());
             tableModel9[5] = Integer.toString(score9.getScoreContribution());;
-            tableModel9[6] = "0";
-            tableModel9[7] = "0";
+            tableModel9[6] = Integer.toString(skill9.getSkillContribution());
+            tableModel9[7] = Integer.toString(score9.getScoreContribution() + skill9.getSkillContribution());
             
             initialSum = initialSum + result9.getInitialBaseStat();
         }
@@ -3122,6 +3131,14 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         int totalNoteScore = Integer.parseInt(tableModel1[5]) + Integer.parseInt(tableModel2[5]) + Integer.parseInt(tableModel3[5]) + 
                              Integer.parseInt(tableModel4[5]) + Integer.parseInt(tableModel5[5]) + Integer.parseInt(tableModel6[5]) +
                              Integer.parseInt(tableModel7[5]) + Integer.parseInt(tableModel8[5]) + Integer.parseInt(tableModel9[5]); 
+        
+        int totalSkillScore = Integer.parseInt(tableModel1[6]) + Integer.parseInt(tableModel2[6]) + Integer.parseInt(tableModel3[6]) + 
+                              Integer.parseInt(tableModel4[6]) + Integer.parseInt(tableModel5[6]) + Integer.parseInt(tableModel6[6]) +
+                              Integer.parseInt(tableModel7[6]) + Integer.parseInt(tableModel8[6]) + Integer.parseInt(tableModel9[6]); 
+        
+        int totalFinalScore = Integer.parseInt(tableModel1[7]) + Integer.parseInt(tableModel2[7]) + Integer.parseInt(tableModel3[7]) + 
+                              Integer.parseInt(tableModel4[7]) + Integer.parseInt(tableModel5[7]) + Integer.parseInt(tableModel6[7]) +
+                              Integer.parseInt(tableModel7[7]) + Integer.parseInt(tableModel8[7]) + Integer.parseInt(tableModel9[7]); 
         
         jTableResults.setModel(new javax.swing.table.DefaultTableModel(
                                new Object [][] {
@@ -3134,7 +3151,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                                tableModel7,
                                tableModel8,
                                tableModel9,
-                               {"Final Total", null, null, initialSum, totalFinalBaseStat, totalNoteScore, null, null}
+                               {"Final Total", null, null, initialSum, totalFinalBaseStat, totalNoteScore, totalSkillScore, totalFinalScore}
                                },
                                
                                new String [] {
@@ -3206,22 +3223,20 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jCheckBoxAllIdolizedActionPerformed
 
-    private void jCheckBoxNormalizeSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxNormalizeSongActionPerformed
+    private void jCheckBoxMatchingFriendCenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMatchingFriendCenterActionPerformed
         // TODO add your handling code here:
-        if (jCheckBoxNormalizeSong.isSelected()) {
-            jSpinnerNoteCount.setEnabled(false);
-            jSpinnerStarNotes.setEnabled(false);
-            jSpinnerPerfect.setEnabled(false);
-            jSpinnerTime.setEnabled(false);
+        if (jCheckBoxMatchingFriendCenter.isSelected()) {
+            jComboBoxCenterSkill.setEnabled(true);
+            jComboBoxBasedOn.setEnabled(true);
+            jComboBoxSubSkill.setEnabled(true);
         }
         
         else {
-            jSpinnerNoteCount.setEnabled(true);
-            jSpinnerStarNotes.setEnabled(true);
-            jSpinnerPerfect.setEnabled(true);
-            jSpinnerTime.setEnabled(true);
+            jComboBoxCenterSkill.setEnabled(false);
+            jComboBoxBasedOn.setEnabled(false);
+            jComboBoxSubSkill.setEnabled(false);
         }
-    }//GEN-LAST:event_jCheckBoxNormalizeSongActionPerformed
+    }//GEN-LAST:event_jCheckBoxMatchingFriendCenterActionPerformed
 
     private void setUserInput() {
         
@@ -3234,6 +3249,16 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         userInput.setCard7SIS(jComboBoxSIS7.getSelectedItem().toString());
         userInput.setCard8SIS(jComboBoxSIS8.getSelectedItem().toString());
         userInput.setCard9SIS(jComboBoxSIS9.getSelectedItem().toString());
+        
+        userInput.setCard1SkillLevel((int) jSpinnerCardSkill1.getValue());
+        userInput.setCard2SkillLevel((int) jSpinnerCardSkill2.getValue());
+        userInput.setCard3SkillLevel((int) jSpinnerCardSkill3.getValue());
+        userInput.setCard4SkillLevel((int) jSpinnerCardSkill4.getValue());
+        userInput.setCard5SkillLevel((int) jSpinnerCardSkill5.getValue());
+        userInput.setCard6SkillLevel((int) jSpinnerCardSkill6.getValue());
+        userInput.setCard7SkillLevel((int) jSpinnerCardSkill7.getValue());
+        userInput.setCard8SkillLevel((int) jSpinnerCardSkill8.getValue());
+        userInput.setCard9SkillLevel((int) jSpinnerCardSkill9.getValue());
         
         userInput.setAttribute(jComboBoxAttribute.getSelectedItem().toString());
         userInput.setSong(jComboBoxSongType.getSelectedItem().toString());
@@ -3259,8 +3284,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         }
         
         userInput.setMatchingFriendCenter(jCheckBoxMatchingFriendCenter.isSelected());
-        
-        userInput.setNormalizeSong(jCheckBoxNormalizeSong.isSelected());
         
     }
     
@@ -3338,7 +3361,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBoxIdolized8;
     private javax.swing.JCheckBox jCheckBoxIdolized9;
     private javax.swing.JCheckBox jCheckBoxMatchingFriendCenter;
-    private javax.swing.JCheckBox jCheckBoxNormalizeSong;
     private javax.swing.JComboBox<String> jComboBoxAttribute;
     private javax.swing.JComboBox<String> jComboBoxBasedOn;
     private javax.swing.JComboBox<String> jComboBoxCenterSkill;

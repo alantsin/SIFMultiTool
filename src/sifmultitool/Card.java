@@ -41,7 +41,7 @@ public class Card {
 	private String skillType;
 	private String skillDetails;
         
-        private int[][] skillLevelTable;
+        private double[][] skillLevelTable;
 	
 
 	public Card(JSONArray cardJSON, UserInput userInput, int cardNumber) {
@@ -105,46 +105,6 @@ public class Card {
 		}
 
 	}
-        
-        private boolean isIdolized(UserInput userInput, int cardNumber) {
-            
-            if (cardNumber == 1) {
-                return userInput.isCard1Idolized();
-            }
-            
-            else if (cardNumber == 2) {
-                return userInput.isCard2Idolized();
-            }
-            
-            else if (cardNumber == 3) {
-                return userInput.isCard3Idolized();
-            }
-            
-            else if (cardNumber == 4) {
-                return userInput.isCard4Idolized();
-            }        
-            
-            else if (cardNumber == 5) {
-                return userInput.isCard5Idolized();
-            }
-            
-            else if (cardNumber == 6) {
-                return userInput.isCard6Idolized();
-            }
-            
-            else if (cardNumber == 7) {
-                return userInput.isCard7Idolized();
-            }
-            
-            else if (cardNumber == 8) {
-                return userInput.isCard8Idolized();
-            }
-            
-            else  {
-                return userInput.isCard9Idolized();
-            }
-            
-        }
 
 	private void SkillDetails(JSONObject card) throws JSONException {
 		if (!"N".equals(this.rarity)) {
@@ -393,14 +353,14 @@ public class Card {
     /**
      * @return the skillLevelTable
      */
-    public int[][] getSkillLevelTable() {
+    public double[][] getSkillLevelTable() {
         return skillLevelTable;
     }
 
     /**
      * @param skillLevelTable the skillLevelTable to set
      */
-    public void setSkillLevelTable(int[][] skillLevelTable) {
+    public void setSkillLevelTable(double[][] skillLevelTable) {
         this.skillLevelTable = skillLevelTable;
     }
 

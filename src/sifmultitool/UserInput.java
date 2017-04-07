@@ -20,6 +20,16 @@ public class UserInput {
         private String card7ID;
         private String card8ID;
         private String card9ID;
+        
+        private int card1SkillLevel;
+        private int card2SkillLevel;
+        private int card3SkillLevel;
+        private int card4SkillLevel;
+        private int card5SkillLevel;
+        private int card6SkillLevel;
+        private int card7SkillLevel;
+        private int card8SkillLevel;
+        private int card9SkillLevel;
 	
 	private boolean card1Idolized;
 	private boolean card2Idolized;
@@ -585,6 +595,132 @@ public class UserInput {
      */
     public void setCenterAttribute(String centerAttribute) {
         this.centerAttribute = centerAttribute;
+    }
+
+    /**
+     * @return the card1SkillLevel
+     */
+    public int getCard1SkillLevel() {
+        return card1SkillLevel;
+    }
+
+    /**
+     * @param card1SkillLevel the card1SkillLevel to set
+     */
+    public void setCard1SkillLevel(int card1SkillLevel) {
+        this.card1SkillLevel = card1SkillLevel;
+    }
+
+    /**
+     * @return the card2SkillLevel
+     */
+    public int getCard2SkillLevel() {
+        return card2SkillLevel;
+    }
+
+    /**
+     * @param card2SkillLevel the card2SkillLevel to set
+     */
+    public void setCard2SkillLevel(int card2SkillLevel) {
+        this.card2SkillLevel = card2SkillLevel;
+    }
+
+    /**
+     * @return the card3SkillLevel
+     */
+    public int getCard3SkillLevel() {
+        return card3SkillLevel;
+    }
+
+    /**
+     * @param card3SkillLevel the card3SkillLevel to set
+     */
+    public void setCard3SkillLevel(int card3SkillLevel) {
+        this.card3SkillLevel = card3SkillLevel;
+    }
+
+    /**
+     * @return the card4SkillLevel
+     */
+    public int getCard4SkillLevel() {
+        return card4SkillLevel;
+    }
+
+    /**
+     * @param card4SkillLevel the card4SkillLevel to set
+     */
+    public void setCard4SkillLevel(int card4SkillLevel) {
+        this.card4SkillLevel = card4SkillLevel;
+    }
+
+    /**
+     * @return the card5SkillLevel
+     */
+    public int getCard5SkillLevel() {
+        return card5SkillLevel;
+    }
+
+    /**
+     * @param card5SkillLevel the card5SkillLevel to set
+     */
+    public void setCard5SkillLevel(int card5SkillLevel) {
+        this.card5SkillLevel = card5SkillLevel;
+    }
+
+    /**
+     * @return the card6SkillLevel
+     */
+    public int getCard6SkillLevel() {
+        return card6SkillLevel;
+    }
+
+    /**
+     * @param card6SkillLevel the card6SkillLevel to set
+     */
+    public void setCard6SkillLevel(int card6SkillLevel) {
+        this.card6SkillLevel = card6SkillLevel;
+    }
+
+    /**
+     * @return the card7SkillLevel
+     */
+    public int getCard7SkillLevel() {
+        return card7SkillLevel;
+    }
+
+    /**
+     * @param card7SkillLevel the card7SkillLevel to set
+     */
+    public void setCard7SkillLevel(int card7SkillLevel) {
+        this.card7SkillLevel = card7SkillLevel;
+    }
+
+    /**
+     * @return the card8SkillLevel
+     */
+    public int getCard8SkillLevel() {
+        return card8SkillLevel;
+    }
+
+    /**
+     * @param card8SkillLevel the card8SkillLevel to set
+     */
+    public void setCard8SkillLevel(int card8SkillLevel) {
+        this.card8SkillLevel = card8SkillLevel;
+    }
+
+    /**
+     * @return the card9SkillLevel
+     */
+    public int getCard9SkillLevel() {
+        return card9SkillLevel;
+    }
+
+    /**
+     * @param card9SkillLevel the card9SkillLevel to set
+     */
+    public void setCard9SkillLevel(int card9SkillLevel) {
+        this.card9SkillLevel = card9SkillLevel;
     }
     
 }

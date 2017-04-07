@@ -73,6 +73,10 @@ public class BaseStatsCalculator {
         
         private int calculateCenterBoost(int modifiedBase, UserInput userInput, Card card) {
             
+            if (userInput.getCenterSkill() == null) {
+                return 0;
+            }
+            
             if (userInput.getCenterSkill().contains("3")) {
                 return (int) Math.ceil(modifiedBase * 0.03);
             }
@@ -148,6 +152,10 @@ public class BaseStatsCalculator {
         }
         
         private int calculateSubBoost(int modifiedBase, UserInput userInput, Card card) {
+            
+            if (userInput.getSubSkill() == null) {
+                return 0;
+            }
             
             if (userInput.getCenterSkill().contains("7")) {
                 
