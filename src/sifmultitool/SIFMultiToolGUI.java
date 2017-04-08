@@ -1,11 +1,24 @@
 package sifmultitool;
 
+import java.awt.Color;
+
 import java.io.IOException;
 import org.jsoup.Jsoup;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 /**
  *
@@ -131,14 +144,14 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jLabelBasedOn = new javax.swing.JLabel();
         jComboBoxBasedOn = new javax.swing.JComboBox<>();
         jCheckBoxMatchingFriendCenter = new javax.swing.JCheckBox();
-        jLabelStarNotes = new javax.swing.JLabel();
-        jSpinnerStarNotes = new javax.swing.JSpinner();
         jCheckBoxAllIdolized = new javax.swing.JCheckBox();
         jLabelPerfect = new javax.swing.JLabel();
         jSpinnerPerfect = new javax.swing.JSpinner();
+        jButtonSkillGraph = new javax.swing.JButton();
+        jLabelStep2Error = new javax.swing.JLabel();
 
         jFrameResult.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        jFrameResult.setTitle("Result");
+        jFrameResult.setTitle("SIF MultiTool by Umidah - Result");
         jFrameResult.setName("frame2"); // NOI18N
         jFrameResult.setSize(new java.awt.Dimension(750, 400));
 
@@ -183,11 +196,11 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             .addGroup(jFrameResultLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("SIF MultiTool Version 1.0 by Umidah");
+        setTitle("SIF MultiTool by Umidah");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(450, 400));
         setSize(new java.awt.Dimension(950, 400));
@@ -455,21 +468,11 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             }
         });
 
-        jCheckBoxMatchingFriendCenter.setSelected(true);
         jCheckBoxMatchingFriendCenter.setText("Friend Center");
         jCheckBoxMatchingFriendCenter.setToolTipText("Select to enable calculation with Friend Assist");
         jCheckBoxMatchingFriendCenter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxMatchingFriendCenterActionPerformed(evt);
-            }
-        });
-
-        jLabelStarNotes.setText("Star Notes");
-
-        jSpinnerStarNotes.setValue(50);
-        jSpinnerStarNotes.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinnerStarNotesStateChanged(evt);
             }
         });
 
@@ -494,6 +497,16 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 jSpinnerPerfectStateChanged(evt);
             }
         });
+
+        jButtonSkillGraph.setText("Skill Graph");
+        jButtonSkillGraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSkillGraphActionPerformed(evt);
+            }
+        });
+
+        jLabelStep2Error.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabelStep2Error.setText("Error");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -603,66 +616,53 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelPerfect)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jComboBoxCenterSkill, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerPerfect, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(jRadioButtonAverage)
-                                                .addGap(3, 3, 3)
-                                                .addComponent(jRadioButtonAbsolute))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabelCenterSkill)
-                                                        .addGap(18, 18, 18))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabelSubSkill)
-                                                        .addGap(33, 33, 33)))
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jComboBoxSubSkill, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jComboBoxCenterSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(jLabelBasedOn)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jComboBoxBasedOn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(jLabelStep2)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButtonCalculate)))
-                                        .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(jLabelTime)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSpinnerTime))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabelAttribute)
-                                                    .addComponent(jLabelNoteCount))
-                                                .addGap(16, 16, 16)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jComboBoxAttribute, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jSpinnerNoteCount, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelPerfect)
-                                                .addGap(22, 22, 22)
-                                                .addComponent(jSpinnerPerfect)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelStarNotes)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jSpinnerStarNotes))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelTime)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jSpinnerTime))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelSongType)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jComboBoxSongType, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(187, 187, 187))
+                                        .addComponent(jLabelSongType)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboBoxSongType, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabelSubSkill)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBoxMatchingFriendCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(jRadioButtonAverage)
+                                .addGap(3, 3, 3)
+                                .addComponent(jRadioButtonAbsolute))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelStep2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelStep2Error)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButtonCalculate)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonSkillGraph))))
+                            .addComponent(jCheckBoxMatchingFriendCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelCenterSkill)
+                                    .addComponent(jLabelBasedOn))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxSubSkill, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBoxBasedOn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelAttribute)
+                                    .addComponent(jLabelNoteCount))
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBoxAttribute, 0, 72, Short.MAX_VALUE)
+                                    .addComponent(jSpinnerNoteCount))))
+                        .addGap(0, 31, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -692,9 +692,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     .addComponent(jSpinnerCardSkill2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxSIS2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelNoteCount)
-                    .addComponent(jSpinnerNoteCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelStarNotes)
-                    .addComponent(jSpinnerStarNotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinnerNoteCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCard3)
@@ -712,7 +710,9 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     .addComponent(jSpinnerCardID4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBoxIdolized4)
                     .addComponent(jSpinnerCardSkill4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxSIS4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxSIS4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCenterSkill)
+                    .addComponent(jComboBoxCenterSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCard5)
@@ -720,8 +720,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     .addComponent(jCheckBoxIdolized5)
                     .addComponent(jSpinnerCardSkill5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxSIS5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelCenterSkill)
-                    .addComponent(jComboBoxCenterSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelBasedOn)
                     .addComponent(jComboBoxBasedOn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -764,10 +762,13 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                     .addComponent(jButtonGetCardData)
                     .addComponent(jLabelStep1)
                     .addComponent(jLabelStep2)
-                    .addComponent(jButtonCalculate))
+                    .addComponent(jButtonCalculate)
+                    .addComponent(jButtonSkillGraph))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelSuccess)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelSuccess)
+                    .addComponent(jLabelStep2Error))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jLabelSuccess.setVisible(false);
@@ -792,6 +793,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jComboBoxSIS9.setVisible(false);
         jLabelCenterSkill.setVisible(false);
         jComboBoxCenterSkill.setVisible(false);
+        jComboBoxCenterSkill.setEnabled(false);
         jLabelAttribute.setVisible(false);
         jComboBoxAttribute.setVisible(false);
         jLabelSubSkill.setVisible(false);
@@ -810,12 +812,12 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         jLabelBasedOn.setVisible(false);
         jComboBoxBasedOn.setVisible(false);
         jCheckBoxMatchingFriendCenter.setVisible(false);
-        jLabelStarNotes.setVisible(false);
-        jSpinnerStarNotes.setVisible(false);
         jLabelPerfect.setVisible(false);
         jSpinnerPerfect.setVisible(false);
+        jButtonSkillGraph.setVisible(false);
+        jLabelStep2Error.setVisible(false);
 
-        setBounds(0, 0, 678, 512);
+        setBounds(0, 0, 676, 514);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGetCardDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetCardDataActionPerformed
@@ -855,8 +857,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             addSkillTables();
             
             addSIS();
-            
-            addStarNotes(cardIDs);
            
             addCenterSkill();
             
@@ -1996,27 +1996,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         
     }
     
-    private void addStarNotes(int[] cardIDs) {
-        if (cardIDs[0] == 206 ||
-            cardIDs[1] == 206 ||
-            cardIDs[2] == 206 ||
-            cardIDs[3] == 206 ||
-            cardIDs[4] == 206 ||
-            cardIDs[5] == 206 ||
-            cardIDs[6] == 206 ||
-            cardIDs[7] == 206 ||
-            cardIDs[8] == 206) {
-            jLabelStarNotes.setVisible(true);
-            jSpinnerStarNotes.setVisible(true);
-        }
-        
-        else {
-            jLabelStarNotes.setVisible(false);
-            jSpinnerStarNotes.setVisible(false);
-        }
-        
-    }
-    
     private void addTheRest() {
         jLabelAttribute.setVisible(true);
         jComboBoxAttribute.setVisible(true);
@@ -2038,6 +2017,8 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         
         jLabelStep2.setVisible(true);
         jButtonCalculate.setVisible(true);
+        
+        jButtonSkillGraph.setVisible(true);
         
         jCheckBoxMatchingFriendCenter.setVisible(true);
     }
@@ -2933,6 +2914,25 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private void jButtonCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalculateActionPerformed
         // TODO add your handling code here:
         
+        if (Integer.parseInt(jSpinnerPerfect.getValue().toString()) < 0 ||
+            Integer.parseInt(jSpinnerPerfect.getValue().toString()) > 100 ) {
+            jLabelStep2Error.setText("Error: Perfect% not between 0 and 100");
+            jLabelStep2Error.setVisible(true);
+            return;
+        }
+        
+        else if (Integer.parseInt(jSpinnerNoteCount.getValue().toString()) < 0) {
+            jLabelStep2Error.setText("Error: Note Count less than 0");
+            jLabelStep2Error.setVisible(true);
+            return;
+        }
+        
+        else if (Integer.parseInt(jSpinnerTime.getValue().toString()) < 0) {
+            jLabelStep2Error.setText("Error: Time less than 0");
+            jLabelStep2Error.setVisible(true);
+            return;
+        }
+        
         setUserInput();
         
         int initialSum = 0;
@@ -3173,13 +3173,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
             jSpinnerNoteCount.setValue(1);
         }
     }//GEN-LAST:event_jSpinnerNoteCountStateChanged
-	
-	    private void jSpinnerStarNotesStateChanged(javax.swing.event.ChangeEvent evt) {                                               
-        // TODO add your handling code here:
-        if ((int) jSpinnerStarNotes.getValue() < 0) {
-            jSpinnerStarNotes.setValue(0);
-        }
-    }                                              
+                                     
 
     private void jSpinnerTimeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerTimeStateChanged
         // TODO add your handling code here:
@@ -3238,6 +3232,770 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jCheckBoxMatchingFriendCenterActionPerformed
 
+    private void jButtonSkillGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSkillGraphActionPerformed
+        // TODO add your handling code here:
+        
+        if (Integer.parseInt(jSpinnerPerfect.getValue().toString()) < 0 ||
+            Integer.parseInt(jSpinnerPerfect.getValue().toString()) > 100 ) {
+            jLabelStep2Error.setText("Error: Perfect% not between 0 and 100");
+            jLabelStep2Error.setVisible(true);
+            return;
+        }
+        
+        else if (Integer.parseInt(jSpinnerNoteCount.getValue().toString()) < 0) {
+            jLabelStep2Error.setText("Error: Note Count less than 0");
+            jLabelStep2Error.setVisible(true);
+            return;
+        }
+        
+        else if (Integer.parseInt(jSpinnerTime.getValue().toString()) < 0) {
+            jLabelStep2Error.setText("Error: Time less than 0");
+            jLabelStep2Error.setVisible(true);
+            return;
+        }
+        
+        setUserInput();
+        XYSeriesCollection skillGraphCollection = new XYSeriesCollection();
+        
+        if ((int) SkillLevelCard1[0][0] != 0) {
+            
+            SkillCalculator skill1 = new SkillCalculator(card1, userInput, card1.getSkillLevelTable(), userInput.getCard1SkillLevel());
+            
+            double sis;
+            
+            if (card1.getSkillType().equals("Score")) {
+                
+                if (userInput.getCard1SIS().contains("Ch")) {
+                    sis = 2.5;
+                }
+                
+                else {
+                    sis = 1;
+                }
+                
+            }
+            
+            else if (card1.getSkillType().equals("Healer")) {
+                
+                if (userInput.getCard1SIS().contains("He")) {
+                    sis = 480;
+                }
+                
+                else {
+                    sis = 0;
+                }
+                
+            }
+            
+            else {
+                sis = 0;
+            }
+                  
+            String name1;
+            
+            if (sis == 2.5) {
+                name1 = card1.getName() + " " + card1.getCollection() + " with Charm";
+            }
+            
+            else if (sis == 480) {
+                name1 = card1.getName() + " " + card1.getCollection() + " with Heal";
+            }
+            
+            else {
+                name1 = card1.getName() + " " + card1.getCollection();
+            }
+            
+            XYSeries card1Series = new XYSeries(name1);
+            
+                if (userInput.getCalculationMethod().equals("Average")) {
+            
+                    card1Series.add(1, Math.round((0.01 * SkillLevelCard1[0][0]) * SkillLevelCard1[0][1] * skill1.getActivationCount()) * sis);
+                    card1Series.add(2, Math.round((0.01 * SkillLevelCard1[1][0]) * SkillLevelCard1[1][1] * skill1.getActivationCount()) * sis);
+                    card1Series.add(3, Math.round((0.01 * SkillLevelCard1[2][0]) * SkillLevelCard1[2][1] * skill1.getActivationCount()) * sis);
+                    card1Series.add(4, Math.round((0.01 * SkillLevelCard1[3][0]) * SkillLevelCard1[3][1] * skill1.getActivationCount()) * sis);
+                    card1Series.add(5, Math.round((0.01 * SkillLevelCard1[4][0]) * SkillLevelCard1[4][1] * skill1.getActivationCount()) * sis);
+                    card1Series.add(6, Math.round((0.01 * SkillLevelCard1[5][0]) * SkillLevelCard1[5][1] * skill1.getActivationCount()) * sis);
+                    card1Series.add(7, Math.round((0.01 * SkillLevelCard1[6][0]) * SkillLevelCard1[6][1] * skill1.getActivationCount()) * sis);
+                    card1Series.add(8, Math.round((0.01 * SkillLevelCard1[7][0]) * SkillLevelCard1[7][1] * skill1.getActivationCount()) * sis);
+
+                }
+                
+                else {
+                    
+                    card1Series.add(1, (int) Math.round(SkillLevelCard1[0][1] * skill1.getActivationCount()) * sis);
+                    card1Series.add(2, (int) Math.round(SkillLevelCard1[1][1] * skill1.getActivationCount()) * sis);
+                    card1Series.add(3, (int) Math.round(SkillLevelCard1[2][1] * skill1.getActivationCount()) * sis);
+                    card1Series.add(4, (int) Math.round(SkillLevelCard1[3][1] * skill1.getActivationCount()) * sis);
+                    card1Series.add(5, (int) Math.round(SkillLevelCard1[4][1] * skill1.getActivationCount()) * sis);
+                    card1Series.add(6, (int) Math.round(SkillLevelCard1[5][1] * skill1.getActivationCount()) * sis);
+                    card1Series.add(7, (int) Math.round(SkillLevelCard1[6][1] * skill1.getActivationCount()) * sis);
+                    card1Series.add(8, (int) Math.round(SkillLevelCard1[7][1] * skill1.getActivationCount()) * sis);
+                    
+                }
+                
+                skillGraphCollection.addSeries(card1Series);
+
+        }
+        
+        if ((int) SkillLevelCard2[0][0] != 0) {
+            
+            SkillCalculator skill2 = new SkillCalculator(card2, userInput, card2.getSkillLevelTable(), userInput.getCard2SkillLevel());
+            
+            double sis;
+            
+            if (card2.getSkillType().equals("Score")) {
+                
+                if (userInput.getCard2SIS().contains("Ch")) {
+                    sis = 2.5;
+                }
+                
+                else {
+                    sis = 1;
+                }
+                
+            }
+            
+            else if (card2.getSkillType().equals("Healer")) {
+                
+                if (userInput.getCard2SIS().contains("He")) {
+                    sis = 480;
+                }
+                
+                else {
+                    sis = 0;
+                }
+                
+            }
+            
+            else {
+                sis = 0;
+            }
+                  
+            String name2;
+            
+            if (sis == 2.5) {
+                name2= card2.getName() + " " + card2.getCollection() + " with Charm";
+            }
+            
+            else if (sis == 480) {
+                name2 = card2.getName() + " " + card2.getCollection() + " with Heal";
+            }
+            
+            else {
+                name2 = card2.getName() + " " + card2.getCollection();
+            }
+            
+            XYSeries card2Series = new XYSeries(name2);
+            
+                if (userInput.getCalculationMethod().equals("Average")) {
+            
+                    card2Series.add(1, Math.round((0.01 * SkillLevelCard2[0][0]) * SkillLevelCard2[0][1] * skill2.getActivationCount()) * sis);
+                    card2Series.add(2, Math.round((0.01 * SkillLevelCard2[1][0]) * SkillLevelCard2[1][1] * skill2.getActivationCount()) * sis);
+                    card2Series.add(3, Math.round((0.01 * SkillLevelCard2[2][0]) * SkillLevelCard2[2][1] * skill2.getActivationCount()) * sis);
+                    card2Series.add(4, Math.round((0.01 * SkillLevelCard2[3][0]) * SkillLevelCard2[3][1] * skill2.getActivationCount()) * sis);
+                    card2Series.add(5, Math.round((0.01 * SkillLevelCard2[4][0]) * SkillLevelCard2[4][1] * skill2.getActivationCount()) * sis);
+                    card2Series.add(6, Math.round((0.01 * SkillLevelCard2[5][0]) * SkillLevelCard2[5][1] * skill2.getActivationCount()) * sis);
+                    card2Series.add(7, Math.round((0.01 * SkillLevelCard2[6][0]) * SkillLevelCard2[6][1] * skill2.getActivationCount()) * sis);
+                    card2Series.add(8, Math.round((0.01 * SkillLevelCard2[7][0]) * SkillLevelCard2[7][1] * skill2.getActivationCount()) * sis);
+
+                }
+                
+                else {
+                    
+                    card2Series.add(1, (int) Math.round(SkillLevelCard2[0][1] * skill2.getActivationCount()) * sis);
+                    card2Series.add(2, (int) Math.round(SkillLevelCard2[1][1] * skill2.getActivationCount()) * sis);
+                    card2Series.add(3, (int) Math.round(SkillLevelCard2[2][1] * skill2.getActivationCount()) * sis);
+                    card2Series.add(4, (int) Math.round(SkillLevelCard2[3][1] * skill2.getActivationCount()) * sis);
+                    card2Series.add(5, (int) Math.round(SkillLevelCard2[4][1] * skill2.getActivationCount()) * sis);
+                    card2Series.add(6, (int) Math.round(SkillLevelCard2[5][1] * skill2.getActivationCount()) * sis);
+                    card2Series.add(7, (int) Math.round(SkillLevelCard2[6][1] * skill2.getActivationCount()) * sis);
+                    card2Series.add(8, (int) Math.round(SkillLevelCard2[7][1] * skill2.getActivationCount()) * sis);
+                    
+                }
+                
+                skillGraphCollection.addSeries(card2Series);
+
+        }
+        
+        if ((int) SkillLevelCard3[0][0] != 0) {
+            
+            SkillCalculator skill3 = new SkillCalculator(card3, userInput, card3.getSkillLevelTable(), userInput.getCard3SkillLevel());
+            
+            double sis;
+            
+            if (card3.getSkillType().equals("Score")) {
+                
+                if (userInput.getCard3SIS().contains("Ch")) {
+                    sis = 2.5;
+                }
+                
+                else {
+                    sis = 3;
+                }
+                
+            }
+            
+            else if (card3.getSkillType().equals("Healer")) {
+                
+                if (userInput.getCard3SIS().contains("He")) {
+                    sis = 480;
+                }
+                
+                else {
+                    sis = 0;
+                }
+                
+            }
+            
+            else {
+                sis = 0;
+            }
+                  
+            String name3;
+            
+            if (sis == 2.5) {
+                name3 = card3.getName() + " " + card3.getCollection() + " with Charm";
+            }
+            
+            else if (sis == 480) {
+                name3 = card3.getName() + " " + card3.getCollection() + " with Heal";
+            }
+            
+            else {
+                name3 = card3.getName() + " " + card3.getCollection();
+            }
+            
+            XYSeries card3Series = new XYSeries(name3);
+            
+                if (userInput.getCalculationMethod().equals("Average")) {
+            
+                    card3Series.add(1, Math.round((0.01 * SkillLevelCard3[0][0]) * SkillLevelCard3[0][1] * skill3.getActivationCount()) * sis);
+                    card3Series.add(2, Math.round((0.01 * SkillLevelCard3[1][0]) * SkillLevelCard3[1][1] * skill3.getActivationCount()) * sis);
+                    card3Series.add(3, Math.round((0.01 * SkillLevelCard3[2][0]) * SkillLevelCard3[2][1] * skill3.getActivationCount()) * sis);
+                    card3Series.add(4, Math.round((0.01 * SkillLevelCard3[3][0]) * SkillLevelCard3[3][1] * skill3.getActivationCount()) * sis);
+                    card3Series.add(5, Math.round((0.01 * SkillLevelCard3[4][0]) * SkillLevelCard3[4][1] * skill3.getActivationCount()) * sis);
+                    card3Series.add(6, Math.round((0.01 * SkillLevelCard3[5][0]) * SkillLevelCard3[5][1] * skill3.getActivationCount()) * sis);
+                    card3Series.add(7, Math.round((0.01 * SkillLevelCard3[6][0]) * SkillLevelCard3[6][1] * skill3.getActivationCount()) * sis);
+                    card3Series.add(8, Math.round((0.01 * SkillLevelCard3[7][0]) * SkillLevelCard3[7][1] * skill3.getActivationCount()) * sis);
+
+                }
+                
+                else {
+                    
+                    card3Series.add(1, (int) Math.round(SkillLevelCard3[0][1] * skill3.getActivationCount()) * sis);
+                    card3Series.add(2, (int) Math.round(SkillLevelCard3[1][1] * skill3.getActivationCount()) * sis);
+                    card3Series.add(3, (int) Math.round(SkillLevelCard3[2][1] * skill3.getActivationCount()) * sis);
+                    card3Series.add(4, (int) Math.round(SkillLevelCard3[3][1] * skill3.getActivationCount()) * sis);
+                    card3Series.add(5, (int) Math.round(SkillLevelCard3[4][1] * skill3.getActivationCount()) * sis);
+                    card3Series.add(6, (int) Math.round(SkillLevelCard3[5][1] * skill3.getActivationCount()) * sis);
+                    card3Series.add(7, (int) Math.round(SkillLevelCard3[6][1] * skill3.getActivationCount()) * sis);
+                    card3Series.add(8, (int) Math.round(SkillLevelCard3[7][1] * skill3.getActivationCount()) * sis);
+                    
+                }
+                
+                skillGraphCollection.addSeries(card3Series);
+
+        }
+        
+        if ((int) SkillLevelCard4[0][0] != 0) {
+            
+            SkillCalculator skill4 = new SkillCalculator(card4, userInput, card4.getSkillLevelTable(), userInput.getCard4SkillLevel());
+            
+            double sis;
+            
+            if (card4.getSkillType().equals("Score")) {
+                
+                if (userInput.getCard4SIS().contains("Ch")) {
+                    sis = 2.5;
+                }
+                
+                else {
+                    sis = 1;
+                }
+                
+            }
+            
+            else if (card4.getSkillType().equals("Healer")) {
+                
+                if (userInput.getCard4SIS().contains("He")) {
+                    sis = 480;
+                }
+                
+                else {
+                    sis = 0;
+                }
+                
+            }
+            
+            else {
+                sis = 0;
+            }
+                  
+            String name4;
+            
+            if (sis == 2.5) {
+                name4 = card4.getName() + " " + card4.getCollection() + " with Charm";
+            }
+            
+            else if (sis == 480) {
+                name4 = card4.getName() + " " + card4.getCollection() + " with Heal";
+            }
+            
+            else {
+                name4 = card4.getName() + " " + card4.getCollection();
+            }
+            
+            XYSeries card4Series = new XYSeries(name4);
+            
+                if (userInput.getCalculationMethod().equals("Average")) {
+            
+                    card4Series.add(1, Math.round((0.01 * SkillLevelCard4[0][0]) * SkillLevelCard4[0][1] * skill4.getActivationCount()) * sis);
+                    card4Series.add(2, Math.round((0.01 * SkillLevelCard4[1][0]) * SkillLevelCard4[1][1] * skill4.getActivationCount()) * sis);
+                    card4Series.add(3, Math.round((0.01 * SkillLevelCard4[2][0]) * SkillLevelCard4[2][1] * skill4.getActivationCount()) * sis);
+                    card4Series.add(4, Math.round((0.01 * SkillLevelCard4[3][0]) * SkillLevelCard4[3][1] * skill4.getActivationCount()) * sis);
+                    card4Series.add(5, Math.round((0.01 * SkillLevelCard4[4][0]) * SkillLevelCard4[4][1] * skill4.getActivationCount()) * sis);
+                    card4Series.add(6, Math.round((0.01 * SkillLevelCard4[5][0]) * SkillLevelCard4[5][1] * skill4.getActivationCount()) * sis);
+                    card4Series.add(7, Math.round((0.01 * SkillLevelCard4[6][0]) * SkillLevelCard4[6][1] * skill4.getActivationCount()) * sis);
+                    card4Series.add(8, Math.round((0.01 * SkillLevelCard4[7][0]) * SkillLevelCard4[7][1] * skill4.getActivationCount()) * sis);
+
+                }
+                
+                else {
+                    
+                    card4Series.add(1, (int) Math.round(SkillLevelCard4[0][1] * skill4.getActivationCount()) * sis);
+                    card4Series.add(2, (int) Math.round(SkillLevelCard4[1][1] * skill4.getActivationCount()) * sis);
+                    card4Series.add(3, (int) Math.round(SkillLevelCard4[2][1] * skill4.getActivationCount()) * sis);
+                    card4Series.add(4, (int) Math.round(SkillLevelCard4[3][1] * skill4.getActivationCount()) * sis);
+                    card4Series.add(5, (int) Math.round(SkillLevelCard4[4][1] * skill4.getActivationCount()) * sis);
+                    card4Series.add(6, (int) Math.round(SkillLevelCard4[5][1] * skill4.getActivationCount()) * sis);
+                    card4Series.add(7, (int) Math.round(SkillLevelCard4[6][1] * skill4.getActivationCount()) * sis);
+                    card4Series.add(8, (int) Math.round(SkillLevelCard4[7][1] * skill4.getActivationCount()) * sis);
+                    
+                }
+                
+                skillGraphCollection.addSeries(card4Series);
+
+        }
+        
+        if ((int) SkillLevelCard5[0][0] != 0) {
+            
+            SkillCalculator skill5 = new SkillCalculator(card5, userInput, card5.getSkillLevelTable(), userInput.getCard5SkillLevel());
+            
+            double sis;
+            
+            if (card5.getSkillType().equals("Score")) {
+                
+                if (userInput.getCard5SIS().contains("Ch")) {
+                    sis = 2.5;
+                }
+                
+                else {
+                    sis = 1;
+                }
+                
+            }
+            
+            else if (card5.getSkillType().equals("Healer")) {
+                
+                if (userInput.getCard5SIS().contains("He")) {
+                    sis = 480;
+                }
+                
+                else {
+                    sis = 0;
+                }
+                
+            }
+            
+            else {
+                sis = 0;
+            }
+                  
+            String name5;
+            
+            if (sis == 2.5) {
+                name5 = card5.getName() + " " + card5.getCollection() + " with Charm";
+            }
+            
+            else if (sis == 480) {
+                name5 = card5.getName() + " " + card5.getCollection() + " with Heal";
+            }
+            
+            else {
+                name5 = card5.getName() + " " + card5.getCollection();
+            }
+            
+            XYSeries card5Series = new XYSeries(name5);
+            
+                if (userInput.getCalculationMethod().equals("Average")) {
+            
+                    card5Series.add(1, Math.round((0.01 * SkillLevelCard5[0][0]) * SkillLevelCard5[0][1] * skill5.getActivationCount()) * sis);
+                    card5Series.add(2, Math.round((0.01 * SkillLevelCard5[1][0]) * SkillLevelCard5[1][1] * skill5.getActivationCount()) * sis);
+                    card5Series.add(3, Math.round((0.01 * SkillLevelCard5[2][0]) * SkillLevelCard5[2][1] * skill5.getActivationCount()) * sis);
+                    card5Series.add(4, Math.round((0.01 * SkillLevelCard5[3][0]) * SkillLevelCard5[3][1] * skill5.getActivationCount()) * sis);
+                    card5Series.add(5, Math.round((0.01 * SkillLevelCard5[4][0]) * SkillLevelCard5[4][1] * skill5.getActivationCount()) * sis);
+                    card5Series.add(6, Math.round((0.01 * SkillLevelCard5[5][0]) * SkillLevelCard5[5][1] * skill5.getActivationCount()) * sis);
+                    card5Series.add(7, Math.round((0.01 * SkillLevelCard5[6][0]) * SkillLevelCard5[6][1] * skill5.getActivationCount()) * sis);
+                    card5Series.add(8, Math.round((0.01 * SkillLevelCard5[7][0]) * SkillLevelCard5[7][1] * skill5.getActivationCount()) * sis);
+
+                }
+                
+                else {
+                    
+                    card5Series.add(1, (int) Math.round(SkillLevelCard5[0][1] * skill5.getActivationCount()) * sis);
+                    card5Series.add(2, (int) Math.round(SkillLevelCard5[1][1] * skill5.getActivationCount()) * sis);
+                    card5Series.add(3, (int) Math.round(SkillLevelCard5[2][1] * skill5.getActivationCount()) * sis);
+                    card5Series.add(4, (int) Math.round(SkillLevelCard5[3][1] * skill5.getActivationCount()) * sis);
+                    card5Series.add(5, (int) Math.round(SkillLevelCard5[4][1] * skill5.getActivationCount()) * sis);
+                    card5Series.add(6, (int) Math.round(SkillLevelCard5[5][1] * skill5.getActivationCount()) * sis);
+                    card5Series.add(7, (int) Math.round(SkillLevelCard5[6][1] * skill5.getActivationCount()) * sis);
+                    card5Series.add(8, (int) Math.round(SkillLevelCard5[7][1] * skill5.getActivationCount()) * sis);
+                    
+                }
+                
+                skillGraphCollection.addSeries(card5Series);
+
+        }
+        
+        if ((int) SkillLevelCard6[0][0] != 0) {
+            
+            SkillCalculator skill6 = new SkillCalculator(card6, userInput, card6.getSkillLevelTable(), userInput.getCard6SkillLevel());
+            
+            double sis;
+            
+            if (card6.getSkillType().equals("Score")) {
+                
+                if (userInput.getCard6SIS().contains("Ch")) {
+                    sis = 2.5;
+                }
+                
+                else {
+                    sis = 1;
+                }
+                
+            }
+            
+            else if (card6.getSkillType().equals("Healer")) {
+                
+                if (userInput.getCard6SIS().contains("He")) {
+                    sis = 480;
+                }
+                
+                else {
+                    sis = 0;
+                }
+                
+            }
+            
+            else {
+                sis = 0;
+            }
+                  
+            String name6;
+            
+            if (sis == 2.5) {
+                name6 = card6.getName() + " " + card6.getCollection() + " with Charm";
+            }
+            
+            else if (sis == 480) {
+                name6 = card6.getName() + " " + card6.getCollection() + " with Heal";
+            }
+            
+            else {
+                name6 = card6.getName() + " " + card6.getCollection();
+            }
+            
+            XYSeries card6Series = new XYSeries(name6);
+            
+                if (userInput.getCalculationMethod().equals("Average")) {
+            
+                    card6Series.add(1, Math.round((0.01 * SkillLevelCard6[0][0]) * SkillLevelCard6[0][1] * skill6.getActivationCount()) * sis);
+                    card6Series.add(2, Math.round((0.01 * SkillLevelCard6[1][0]) * SkillLevelCard6[1][1] * skill6.getActivationCount()) * sis);
+                    card6Series.add(3, Math.round((0.01 * SkillLevelCard6[2][0]) * SkillLevelCard6[2][1] * skill6.getActivationCount()) * sis);
+                    card6Series.add(4, Math.round((0.01 * SkillLevelCard6[3][0]) * SkillLevelCard6[3][1] * skill6.getActivationCount()) * sis);
+                    card6Series.add(5, Math.round((0.01 * SkillLevelCard6[4][0]) * SkillLevelCard6[4][1] * skill6.getActivationCount()) * sis);
+                    card6Series.add(6, Math.round((0.01 * SkillLevelCard6[5][0]) * SkillLevelCard6[5][1] * skill6.getActivationCount()) * sis);
+                    card6Series.add(7, Math.round((0.01 * SkillLevelCard6[6][0]) * SkillLevelCard6[6][1] * skill6.getActivationCount()) * sis);
+                    card6Series.add(8, Math.round((0.01 * SkillLevelCard6[7][0]) * SkillLevelCard6[7][1] * skill6.getActivationCount()) * sis);
+
+                }
+                
+                else {
+                    
+                    card6Series.add(1, (int) Math.round(SkillLevelCard6[0][1] * skill6.getActivationCount()) * sis);
+                    card6Series.add(2, (int) Math.round(SkillLevelCard6[1][1] * skill6.getActivationCount()) * sis);
+                    card6Series.add(3, (int) Math.round(SkillLevelCard6[2][1] * skill6.getActivationCount()) * sis);
+                    card6Series.add(4, (int) Math.round(SkillLevelCard6[3][1] * skill6.getActivationCount()) * sis);
+                    card6Series.add(5, (int) Math.round(SkillLevelCard6[4][1] * skill6.getActivationCount()) * sis);
+                    card6Series.add(6, (int) Math.round(SkillLevelCard6[5][1] * skill6.getActivationCount()) * sis);
+                    card6Series.add(7, (int) Math.round(SkillLevelCard6[6][1] * skill6.getActivationCount()) * sis);
+                    card6Series.add(8, (int) Math.round(SkillLevelCard6[7][1] * skill6.getActivationCount()) * sis);
+                    
+                }
+                
+                skillGraphCollection.addSeries(card6Series);
+
+        }
+        
+        if ((int) SkillLevelCard7[0][0] != 0) {
+            
+            SkillCalculator skill7 = new SkillCalculator(card7, userInput, card7.getSkillLevelTable(), userInput.getCard7SkillLevel());
+            
+            double sis;
+            
+            if (card7.getSkillType().equals("Score")) {
+                
+                if (userInput.getCard7SIS().contains("Ch")) {
+                    sis = 2.5;
+                }
+                
+                else {
+                    sis = 1;
+                }
+                
+            }
+            
+            else if (card7.getSkillType().equals("Healer")) {
+                
+                if (userInput.getCard7SIS().contains("He")) {
+                    sis = 480;
+                }
+                
+                else {
+                    sis = 0;
+                }
+                
+            }
+            
+            else {
+                sis = 0;
+            }
+                  
+            String name7;
+            
+            if (sis == 2.5) {
+                name7 = card7.getName() + " " + card7.getCollection() + " with Charm";
+            }
+            
+            else if (sis == 480) {
+                name7 = card7.getName() + " " + card7.getCollection() + " with Heal";
+            }
+            
+            else {
+                name7 = card7.getName() + " " + card7.getCollection();
+            }
+            
+            XYSeries card7Series = new XYSeries(name7);
+            
+                if (userInput.getCalculationMethod().equals("Average")) {
+            
+                    card7Series.add(1, Math.round((0.01 * SkillLevelCard7[0][0]) * SkillLevelCard7[0][1] * skill7.getActivationCount()) * sis);
+                    card7Series.add(2, Math.round((0.01 * SkillLevelCard7[1][0]) * SkillLevelCard7[1][1] * skill7.getActivationCount()) * sis);
+                    card7Series.add(3, Math.round((0.01 * SkillLevelCard7[2][0]) * SkillLevelCard7[2][1] * skill7.getActivationCount()) * sis);
+                    card7Series.add(4, Math.round((0.01 * SkillLevelCard7[3][0]) * SkillLevelCard7[3][1] * skill7.getActivationCount()) * sis);
+                    card7Series.add(5, Math.round((0.01 * SkillLevelCard7[4][0]) * SkillLevelCard7[4][1] * skill7.getActivationCount()) * sis);
+                    card7Series.add(6, Math.round((0.01 * SkillLevelCard7[5][0]) * SkillLevelCard7[5][1] * skill7.getActivationCount()) * sis);
+                    card7Series.add(7, Math.round((0.01 * SkillLevelCard7[6][0]) * SkillLevelCard7[6][1] * skill7.getActivationCount()) * sis);
+                    card7Series.add(8, Math.round((0.01 * SkillLevelCard7[7][0]) * SkillLevelCard7[7][1] * skill7.getActivationCount()) * sis);
+
+                }
+                
+                else {
+                    
+                    card7Series.add(1, (int) Math.round(SkillLevelCard7[0][1] * skill7.getActivationCount()) * sis);
+                    card7Series.add(2, (int) Math.round(SkillLevelCard7[1][1] * skill7.getActivationCount()) * sis);
+                    card7Series.add(3, (int) Math.round(SkillLevelCard7[2][1] * skill7.getActivationCount()) * sis);
+                    card7Series.add(4, (int) Math.round(SkillLevelCard7[3][1] * skill7.getActivationCount()) * sis);
+                    card7Series.add(5, (int) Math.round(SkillLevelCard7[4][1] * skill7.getActivationCount()) * sis);
+                    card7Series.add(6, (int) Math.round(SkillLevelCard7[5][1] * skill7.getActivationCount()) * sis);
+                    card7Series.add(7, (int) Math.round(SkillLevelCard7[6][1] * skill7.getActivationCount()) * sis);
+                    card7Series.add(8, (int) Math.round(SkillLevelCard7[7][1] * skill7.getActivationCount()) * sis);
+                    
+                }
+                
+                skillGraphCollection.addSeries(card7Series);
+
+        }
+        
+        if ((int) SkillLevelCard8[0][0] != 0) {
+            
+            SkillCalculator skill8 = new SkillCalculator(card8, userInput, card8.getSkillLevelTable(), userInput.getCard8SkillLevel());
+            
+            double sis;
+            
+            if (card8.getSkillType().equals("Score")) {
+                
+                if (userInput.getCard8SIS().contains("Ch")) {
+                    sis = 2.5;
+                }
+                
+                else {
+                    sis = 1;
+                }
+                
+            }
+            
+            else if (card8.getSkillType().equals("Healer")) {
+                
+                if (userInput.getCard8SIS().contains("He")) {
+                    sis = 480;
+                }
+                
+                else {
+                    sis = 0;
+                }
+                
+            }
+            
+            else {
+                sis = 0;
+            }
+                  
+            String name8;
+            
+            if (sis == 2.5) {
+                name8 = card8.getName() + " " + card8.getCollection() + " with Charm";
+            }
+            
+            else if (sis == 480) {
+                name8 = card8.getName() + " " + card8.getCollection() + " with Heal";
+            }
+            
+            else {
+                name8 = card8.getName() + " " + card8.getCollection();
+            }
+            
+            XYSeries card8Series = new XYSeries(name8);
+            
+                if (userInput.getCalculationMethod().equals("Average")) {
+            
+                    card8Series.add(1, Math.round((0.01 * SkillLevelCard8[0][0]) * SkillLevelCard8[0][1] * skill8.getActivationCount()) * sis);
+                    card8Series.add(2, Math.round((0.01 * SkillLevelCard8[1][0]) * SkillLevelCard8[1][1] * skill8.getActivationCount()) * sis);
+                    card8Series.add(3, Math.round((0.01 * SkillLevelCard8[2][0]) * SkillLevelCard8[2][1] * skill8.getActivationCount()) * sis);
+                    card8Series.add(4, Math.round((0.01 * SkillLevelCard8[3][0]) * SkillLevelCard8[3][1] * skill8.getActivationCount()) * sis);
+                    card8Series.add(5, Math.round((0.01 * SkillLevelCard8[4][0]) * SkillLevelCard8[4][1] * skill8.getActivationCount()) * sis);
+                    card8Series.add(6, Math.round((0.01 * SkillLevelCard8[5][0]) * SkillLevelCard8[5][1] * skill8.getActivationCount()) * sis);
+                    card8Series.add(7, Math.round((0.01 * SkillLevelCard8[6][0]) * SkillLevelCard8[6][1] * skill8.getActivationCount()) * sis);
+                    card8Series.add(8, Math.round((0.01 * SkillLevelCard8[7][0]) * SkillLevelCard8[7][1] * skill8.getActivationCount()) * sis);
+
+                }
+                
+                else {
+                    
+                    card8Series.add(1, (int) Math.round(SkillLevelCard8[0][1] * skill8.getActivationCount()) * sis);
+                    card8Series.add(2, (int) Math.round(SkillLevelCard8[1][1] * skill8.getActivationCount()) * sis);
+                    card8Series.add(3, (int) Math.round(SkillLevelCard8[2][1] * skill8.getActivationCount()) * sis);
+                    card8Series.add(4, (int) Math.round(SkillLevelCard8[3][1] * skill8.getActivationCount()) * sis);
+                    card8Series.add(5, (int) Math.round(SkillLevelCard8[4][1] * skill8.getActivationCount()) * sis);
+                    card8Series.add(6, (int) Math.round(SkillLevelCard8[5][1] * skill8.getActivationCount()) * sis);
+                    card8Series.add(7, (int) Math.round(SkillLevelCard8[6][1] * skill8.getActivationCount()) * sis);
+                    card8Series.add(8, (int) Math.round(SkillLevelCard8[7][1] * skill8.getActivationCount()) * sis);
+                    
+                }
+                
+                skillGraphCollection.addSeries(card8Series);
+
+        }
+        
+        if ((int) SkillLevelCard9[0][0] != 0) {
+            
+            SkillCalculator skill9 = new SkillCalculator(card9, userInput, card9.getSkillLevelTable(), userInput.getCard9SkillLevel());
+            
+            double sis;
+            
+            if (card9.getSkillType().equals("Score")) {
+                
+                if (userInput.getCard9SIS().contains("Ch")) {
+                    sis = 2.5;
+                }
+                
+                else {
+                    sis = 1;
+                }
+                
+            }
+            
+            else if (card9.getSkillType().equals("Healer")) {
+                
+                if (userInput.getCard9SIS().contains("He")) {
+                    sis = 480;
+                }
+                
+                else {
+                    sis = 0;
+                }
+                
+            }
+            
+            else {
+                sis = 0;
+            }
+                  
+            String name9;
+            
+            if (sis == 2.5) {
+                name9 = card9.getName() + " " + card9.getCollection() + " with Charm";
+            }
+            
+            else if (sis == 480) {
+                name9 = card9.getName() + " " + card9.getCollection() + " with Heal";
+            }
+            
+            else {
+                name9 = card9.getName() + " " + card9.getCollection();
+            }
+            
+            XYSeries card9Series = new XYSeries(name9);
+            
+                if (userInput.getCalculationMethod().equals("Average")) {
+            
+                    card9Series.add(1, Math.round((0.01 * SkillLevelCard9[0][0]) * SkillLevelCard9[0][1] * skill9.getActivationCount()) * sis);
+                    card9Series.add(2, Math.round((0.01 * SkillLevelCard9[1][0]) * SkillLevelCard9[1][1] * skill9.getActivationCount()) * sis);
+                    card9Series.add(3, Math.round((0.01 * SkillLevelCard9[2][0]) * SkillLevelCard9[2][1] * skill9.getActivationCount()) * sis);
+                    card9Series.add(4, Math.round((0.01 * SkillLevelCard9[3][0]) * SkillLevelCard9[3][1] * skill9.getActivationCount()) * sis);
+                    card9Series.add(5, Math.round((0.01 * SkillLevelCard9[4][0]) * SkillLevelCard9[4][1] * skill9.getActivationCount()) * sis);
+                    card9Series.add(6, Math.round((0.01 * SkillLevelCard9[5][0]) * SkillLevelCard9[5][1] * skill9.getActivationCount()) * sis);
+                    card9Series.add(7, Math.round((0.01 * SkillLevelCard9[6][0]) * SkillLevelCard9[6][1] * skill9.getActivationCount()) * sis);
+                    card9Series.add(8, Math.round((0.01 * SkillLevelCard9[7][0]) * SkillLevelCard9[7][1] * skill9.getActivationCount()) * sis);
+
+                }
+                
+                else {
+                    
+                    card9Series.add(1, (int) Math.round(SkillLevelCard9[0][1] * skill9.getActivationCount()) * sis);
+                    card9Series.add(2, (int) Math.round(SkillLevelCard9[1][1] * skill9.getActivationCount()) * sis);
+                    card9Series.add(3, (int) Math.round(SkillLevelCard9[2][1] * skill9.getActivationCount()) * sis);
+                    card9Series.add(4, (int) Math.round(SkillLevelCard9[3][1] * skill9.getActivationCount()) * sis);
+                    card9Series.add(5, (int) Math.round(SkillLevelCard9[4][1] * skill9.getActivationCount()) * sis);
+                    card9Series.add(6, (int) Math.round(SkillLevelCard9[5][1] * skill9.getActivationCount()) * sis);
+                    card9Series.add(7, (int) Math.round(SkillLevelCard9[6][1] * skill9.getActivationCount()) * sis);
+                    card9Series.add(8, (int) Math.round(SkillLevelCard9[7][1] * skill9.getActivationCount()) * sis);
+                    
+                }
+                
+                skillGraphCollection.addSeries(card9Series);
+
+        }
+        
+        JFreeChart chart = ChartFactory.createXYLineChart("Skill Graph","Skill Level", "Expected Score", skillGraphCollection, PlotOrientation.VERTICAL, true, true, false);
+        
+        final XYPlot plot = chart.getXYPlot();
+        plot.setBackgroundPaint(Color.lightGray);
+        
+        final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+        rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+        
+        final XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+        renderer.setSeriesShapesVisible(1, false);
+        plot.setRenderer(renderer);
+        
+                
+        ChartFrame frame = new ChartFrame("SIF MultiTool by Umidah - Skill Graph", chart);
+        frame.setVisible(true);
+        frame.setSize(700, 490);
+    }//GEN-LAST:event_jButtonSkillGraphActionPerformed
+
+    
     private void setUserInput() {
         
         userInput.setCard1SIS(jComboBoxSIS1.getSelectedItem().toString());
@@ -3350,6 +4108,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroupCalculate;
     private javax.swing.JButton jButtonCalculate;
     private javax.swing.JButton jButtonGetCardData;
+    private javax.swing.JButton jButtonSkillGraph;
     private javax.swing.JCheckBox jCheckBoxAllIdolized;
     private javax.swing.JCheckBox jCheckBoxIdolized1;
     private javax.swing.JCheckBox jCheckBoxIdolized2;
@@ -3394,9 +4153,9 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPerfect;
     private javax.swing.JLabel jLabelSIS;
     private javax.swing.JLabel jLabelSongType;
-    private javax.swing.JLabel jLabelStarNotes;
     private javax.swing.JLabel jLabelStep1;
     private javax.swing.JLabel jLabelStep2;
+    private javax.swing.JLabel jLabelStep2Error;
     private javax.swing.JLabel jLabelSubSkill;
     private javax.swing.JLabel jLabelSuccess;
     private javax.swing.JLabel jLabelTime;
@@ -3423,7 +4182,6 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinnerCardSkill9;
     private javax.swing.JSpinner jSpinnerNoteCount;
     private javax.swing.JSpinner jSpinnerPerfect;
-    private javax.swing.JSpinner jSpinnerStarNotes;
     private javax.swing.JSpinner jSpinnerTime;
     private javax.swing.JTable jTableResults;
     // End of variables declaration//GEN-END:variables

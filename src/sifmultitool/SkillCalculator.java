@@ -19,6 +19,14 @@ public class SkillCalculator {
     
     public SkillCalculator(Card card, UserInput userInput, double[][] skillTable, int skillLevel) {
         
+        if (Integer.toString(card.getCardNumber()).equals("90") ||
+            Integer.toString(card.getCardNumber()).equals("107") ||
+            Integer.toString(card.getCardNumber()).equals("162") ||
+            Integer.toString(card.getCardNumber()).equals("182") ||
+            Integer.toString(card.getCardNumber()).equals("206")) {
+            return;
+        }
+        
         skillParser(card, userInput);
         
         double contribution = 0;
@@ -168,6 +176,13 @@ public class SkillCalculator {
      */
     public int getSkillContribution() {
         return skillContribution;
+    }
+
+    /**
+     * @return the activationCount
+     */
+    public int getActivationCount() {
+        return activationCount;
     }
     
 }
