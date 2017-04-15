@@ -3232,6 +3232,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jCheckBoxMatchingFriendCenterActionPerformed
 
+    
     private void jButtonSkillGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSkillGraphActionPerformed
         // TODO add your handling code here:
         
@@ -3977,7 +3978,21 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
 
         }
         
-        JFreeChart chart = ChartFactory.createXYLineChart("Skill Graph","Skill Level", "Expected Score", skillGraphCollection, PlotOrientation.VERTICAL, true, true, false);
+        String calculationMethod;
+        
+        if (jRadioButtonAbsolute.isSelected()) {
+            calculationMethod = "Absolute Calculate, ";
+        }
+        
+        else {
+            calculationMethod = "Average Calculation, ";
+        }
+        
+        String graphName = "Skill Graph Parameters - " + calculationMethod  + jSpinnerNoteCount.getValue().toString() + " Note, " + 
+                                              jSpinnerPerfect.getValue().toString() + "% Perfects, " +
+                                              jSpinnerTime.getValue().toString() + " Seconds";
+        
+        JFreeChart chart = ChartFactory.createXYLineChart(graphName, "Skill Level", "Expected Score", skillGraphCollection, PlotOrientation.VERTICAL, true, true, false);
         
         final XYPlot plot = chart.getXYPlot();
         plot.setBackgroundPaint(Color.lightGray);
