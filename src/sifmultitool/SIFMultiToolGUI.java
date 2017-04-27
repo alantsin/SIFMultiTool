@@ -3431,7 +3431,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                 }
                 
                 else {
-                    sis = 3;
+                    sis = 1;
                 }
                 
             }
