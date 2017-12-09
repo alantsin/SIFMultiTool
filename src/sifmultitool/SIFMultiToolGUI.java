@@ -2217,7 +2217,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             
                             
                             SkillLevelCard1[j][1] = (int) Double.parseDouble(temp);
-                            html = html.substring(indexEnd + 1, html.length());
+                            html = html.substring(indexEnd + 7, html.length());
                             
                         }
                         
@@ -2239,7 +2239,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             temp = temp.replaceAll("[^\\d.]", "");
                             
                             SkillLevelCard2[j][1] = (int) Double.parseDouble(temp);
-                            html = html.substring(indexEnd + 1, html.length());
+                            html = html.substring(indexEnd + 7, html.length());
                             
                         }
                         
@@ -2261,7 +2261,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             temp = temp.replaceAll("[^\\d.]", "");
                             
                             SkillLevelCard3[j][1] = (int) Double.parseDouble(temp);
-                            html = html.substring(indexEnd + 1, html.length());
+                            html = html.substring(indexEnd + 7, html.length());
                             
                         }
                         
@@ -2283,7 +2283,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             temp = temp.replaceAll("[^\\d.]", "");
                             
                             SkillLevelCard4[j][1] = (int) Double.parseDouble(temp);
-                            html = html.substring(indexEnd + 1, html.length());
+                            html = html.substring(indexEnd + 7, html.length());
                             
                         }
                         
@@ -2305,7 +2305,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             temp = temp.replaceAll("[^\\d.]", "");
                             
                             SkillLevelCard5[j][1] = (int) Double.parseDouble(temp);
-                            html = html.substring(indexEnd + 1, html.length());
+                            html = html.substring(indexEnd + 7, html.length());
                             
                         }
                         
@@ -2327,7 +2327,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             temp = temp.replaceAll("[^\\d.]", "");
                             
                             SkillLevelCard6[j][1] = (int) Double.parseDouble(temp);
-                            html = html.substring(indexEnd + 1, html.length());
+                            html = html.substring(indexEnd + 7, html.length());
                             
                         }
                         
@@ -2349,7 +2349,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             temp = temp.replaceAll("[^\\d.]", "");
                             
                             SkillLevelCard7[j][1] = (int) Double.parseDouble(temp);
-                            html = html.substring(indexEnd + 1, html.length());
+                            html = html.substring(indexEnd + 7, html.length());
                             
                         }
                         
@@ -2371,7 +2371,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             temp = temp.replaceAll("[^\\d.]", "");
                             
                             SkillLevelCard8[j][1] = (int) Double.parseDouble(temp);
-                            html = html.substring(indexEnd + 1, html.length());
+                            html = html.substring(indexEnd + 7, html.length());
                             
                         }
                         
@@ -2393,7 +2393,7 @@ public class SIFMultiToolGUI extends javax.swing.JFrame {
                             temp = temp.replaceAll("[^\\d.]", "");
                             
                             SkillLevelCard9[j][1] = (int) Double.parseDouble(temp);
-                            html = html.substring(indexEnd + 1, html.length());
+                            html = html.substring(indexEnd + 7, html.length());
                             
                         }
                         
