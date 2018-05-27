@@ -33,10 +33,11 @@ public class GetCardJSON {
 
 	public JSONArray readJSONFromURL(String apiNumber) throws IOException {
 		// Use School Idol Tomodachi's API to get card data
-		String baseURL = "http://schoolido.lu/api/cards/";
-		String URL = baseURL + apiNumber;
+		String baseURL = "https://schoolido.lu/api/cards/";
+		String URL = baseURL + apiNumber + "/";
 			
         InputStream is = new URL(URL).openStream();
+        
         JSONArray json = null;
         try {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
